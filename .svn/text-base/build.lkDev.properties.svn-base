@@ -1,8 +1,0 @@
-#Managed by Liferay IDE (remove this comment to prevent future updates)
-#Wed Oct 19 10:51:32 CST 2011
-app.server.dir=${project.root.dir}/server/liferay-portal-6.0-ee-sp2/tomcat-6.0.32
-app.server.portal.dir=${app.server.dir}/webapps/ROOT
-app.server.lib.global.dir=${app.server.dir}/lib/ext
-app.server.deploy.dir=${app.server.dir}/webapps
-app.server.type=tomcat
-
