@@ -15,6 +15,7 @@ public class KKWsEngUtil {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
+		
 		return _kkWsEng;
 	}
 	
@@ -25,6 +26,7 @@ public class KKWsEngUtil {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
+		
 		return _kkWsEng;
 	}
 	

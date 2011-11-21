@@ -16,26 +16,4 @@
 
 <%@ include file="/html/konakart/init.jsp" %>
 
-<% 	
-	Product[] productArray = (Product[])renderRequest.getAttribute("productArray");
-
-	String serviceUrl = (String)renderRequest.getAttribute("serviceUrl");
-		
-	String imgUrl = serviceUrl + "images/";
-	
-	String ourl = serviceUrl + "SelectProd.do?prodId=";
-	
-	String showType = (String)renderRequest.getAttribute("showType");;
-	
-	out.print(showType+"<br>");
-	
-	for(int i = 0;i<productArray.length;i++){
-		out.print(productArray[i].getName()+"<br>");
-		String jj = imgUrl +productArray[i].getImage();
-		
-		%>
-		<a href="<%= ourl + productArray[i].getId()%>"><img src="<%= jj %>"/></a><br>
-<%
-	}
-%>
-
+Connect is time out,please refresh or reset the address of web service 

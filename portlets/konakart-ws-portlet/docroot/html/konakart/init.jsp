@@ -43,11 +43,13 @@
 
 <%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
 
+<%@page import="com.liferay.konakart.util.PortletConstants"%>
+
 <portlet:defineObjects />
 
 <%
 	PortletPreferences preferences = renderRequest.getPreferences();
-	
+		 	
 	String portletResource = ParamUtil.getString(
 		renderRequest, "portletResource");
 	

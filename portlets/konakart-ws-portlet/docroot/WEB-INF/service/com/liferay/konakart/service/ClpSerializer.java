@@ -49,7 +49,7 @@ public class ClpSerializer {
 						new Class<?>[] { String.class });
 
 				String portletPropsServletContextName = (String)getMethod.invoke(null,
-						"konakart-ws2-portlet-deployment-context");
+						"konakart-ws-portlet-deployment-context");
 
 				if (Validator.isNotNull(portletPropsServletContextName)) {
 					_servletContextName = portletPropsServletContextName;
@@ -65,7 +65,7 @@ public class ClpSerializer {
 			if (Validator.isNull(_servletContextName)) {
 				try {
 					String propsUtilServletContextName = PropsUtil.get(
-							"konakart-ws2-portlet-deployment-context");
+							"konakart-ws-portlet-deployment-context");
 
 					if (Validator.isNotNull(propsUtilServletContextName)) {
 						_servletContextName = propsUtilServletContextName;
@@ -80,7 +80,7 @@ public class ClpSerializer {
 			}
 
 			if (Validator.isNull(_servletContextName)) {
-				_servletContextName = "konakart-ws2-portlet";
+				_servletContextName = "konakart-ws-portlet";
 			}
 
 			return _servletContextName;

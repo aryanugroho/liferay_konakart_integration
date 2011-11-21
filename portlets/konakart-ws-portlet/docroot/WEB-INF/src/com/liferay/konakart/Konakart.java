@@ -1,8 +1,10 @@
 package com.liferay.konakart;
 
 import com.konakart.wsapp.Product;
+
 import com.liferay.konakart.service.LPruductLocalServiceUtil;
 import com.liferay.konakart.util.KKWsEngUtil;
+import com.liferay.konakart.util.PortletConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -26,13 +28,13 @@ import javax.portlet.RenderResponse;
 public class Konakart extends MVCPortlet {
 
 	public void doView(
-		RenderRequest renderRequest, RenderResponse renderResponse) {
+			RenderRequest renderRequest, RenderResponse renderResponse) 
+		throws IOException, PortletException{
 		
-		try {
 			String webServiceAddress = getWebServiceAddress(renderRequest);
 			
-			String serviceurl = StringUtil.replace(webServiceAddress,
-					"services/KKWebServiceEng?wsdl", "");
+			String serviceUrl = StringUtil.replace(webServiceAddress,
+				"services/KKWebServiceEng?wsdl", "");
 			
 			URL url = new URL(webServiceAddress);	
 			
@@ -45,10 +47,10 @@ public class Konakart extends MVCPortlet {
 			
 			Product[] productArray = new Product[0];
 			
-			if (showType.equals("bestsSellers")) {
+			if (showType.equals(PortletConstants.BESTSELLERS)) {
 				productArray = LPruductLocalServiceUtil.
 					getBestSellers(showCount);
-			} else if(showType.equals("special")) {
+			} else if (showType.equals(PortletConstants.SPECIAL)) {
 				productArray = LPruductLocalServiceUtil.
 					getSpecialProducts(showCount);
 			}
@@ -57,23 +59,18 @@ public class Konakart extends MVCPortlet {
 	
 			renderRequest.setAttribute("showType", showType);
 	
-			renderRequest.setAttribute("serviceurl", serviceurl);
+			renderRequest.setAttribute("serviceUrl", serviceUrl);
 			
-			super.doView(renderRequest, renderResponse);		
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (PortletException e) {
-			e.printStackTrace();
-		}
+			super.doView(renderRequest, renderResponse);	
 	}
 	
 	protected String getWebServiceAddress(RenderRequest renderRequest) {
 		String address = 
 			"http://www.konakart.com/konakart/services/KKWebServiceEng?wsdl";
 
-		String webServiceAddress = PrefsParamUtil.getString(
-				getPortletPreferences(renderRequest), renderRequest,
-				"webServiceAddress");
+		String webServiceAddress = 
+			PrefsParamUtil.getString(getPortletPreferences(renderRequest), 
+				renderRequest, "webServiceAddress");
 
 		if (Validator.isNotNull(webServiceAddress)) {
 			address = webServiceAddress;
@@ -82,19 +79,24 @@ public class Konakart extends MVCPortlet {
 		return address;
 	}
 
-	protected String getShowType(RenderRequest renderRequest) {
-		String showType = "";
-		showType = PrefsParamUtil
-				.getString(getPortletPreferences(renderRequest), renderRequest,
-						"showType");
+	protected String getShowType (RenderRequest renderRequest){
+		String showType = PrefsParamUtil.getString(
+			getPortletPreferences(renderRequest), renderRequest, "showType");
+		
+		if (Validator.isNull(showType)) {
+			showType = PortletConstants.BESTSELLERS;
+		}
+		
 		return showType;
 	}
 	
-	protected int getShowCount(RenderRequest renderRequest) {
+	protected int getShowCount (RenderRequest renderRequest){
 		int count = 5;
+		
 		count = PrefsParamUtil
-				.getInteger(getPortletPreferences(renderRequest), renderRequest,
-						"showCount");
+			.getInteger(getPortletPreferences(renderRequest), renderRequest,
+				"showCount");
+		
 		return count;
 	}
 	
@@ -107,10 +109,9 @@ public class Konakart extends MVCPortlet {
 				"portletResource");
 
 		if (Validator.isNotNull(portletResource)) {
-
 			try {
 				preferences = PortletPreferencesFactoryUtil.getPortletSetup(
-						renderRequest, portletResource);
+					renderRequest, portletResource);
 			} catch (PortalException e) {
 				e.printStackTrace();
 			} catch (SystemException e) {
@@ -120,4 +121,5 @@ public class Konakart extends MVCPortlet {
 		}
 		return preferences;
 	}
+	
 }

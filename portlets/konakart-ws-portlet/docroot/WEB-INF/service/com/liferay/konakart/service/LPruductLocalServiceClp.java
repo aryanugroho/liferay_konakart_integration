@@ -109,7 +109,8 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 		}
 	}
 
-	public com.konakart.wsapp.Product[] getBestSellers() {
+	public com.konakart.wsapp.Product[] getBestSellers()
+		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getBestSellersMethodKey3);
@@ -118,6 +119,10 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -130,7 +135,8 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 		return (com.konakart.wsapp.Product[])ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.konakart.wsapp.Product[] getBestSellers(int limit) {
+	public com.konakart.wsapp.Product[] getBestSellers(int limit)
+		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getBestSellersMethodKey4,
@@ -140,6 +146,10 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -154,7 +164,7 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 
 	public com.konakart.wsapp.Product[] getBestSellers(
 		com.liferay.konakart.util.LDataDescriptor dd, int categoryId,
-		int languageId) {
+		int languageId) throws java.rmi.RemoteException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getBestSellersMethodKey5,
@@ -164,6 +174,10 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
