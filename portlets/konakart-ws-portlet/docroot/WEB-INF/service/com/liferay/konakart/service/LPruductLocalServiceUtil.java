@@ -61,17 +61,19 @@ public class LPruductLocalServiceUtil {
 		getService().setKKWsEng(kkWsEng);
 	}
 
-	public static com.konakart.wsapp.Product[] getBestSellers() {
+	public static com.konakart.wsapp.Product[] getBestSellers()
+		throws java.rmi.RemoteException {
 		return getService().getBestSellers();
 	}
 
-	public static com.konakart.wsapp.Product[] getBestSellers(int limit) {
+	public static com.konakart.wsapp.Product[] getBestSellers(int limit)
+		throws java.rmi.RemoteException {
 		return getService().getBestSellers(limit);
 	}
 
 	public static com.konakart.wsapp.Product[] getBestSellers(
 		com.liferay.konakart.util.LDataDescriptor dd, int categoryId,
-		int languageId) {
+		int languageId) throws java.rmi.RemoteException {
 		return getService().getBestSellers(dd, categoryId, languageId);
 	}
 

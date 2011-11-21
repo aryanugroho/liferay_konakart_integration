@@ -51,17 +51,19 @@ public class LPruductLocalServiceWrapper implements LPruductLocalService {
 		_lPruductLocalService.setKKWsEng(kkWsEng);
 	}
 
-	public com.konakart.wsapp.Product[] getBestSellers() {
+	public com.konakart.wsapp.Product[] getBestSellers()
+		throws java.rmi.RemoteException {
 		return _lPruductLocalService.getBestSellers();
 	}
 
-	public com.konakart.wsapp.Product[] getBestSellers(int limit) {
+	public com.konakart.wsapp.Product[] getBestSellers(int limit)
+		throws java.rmi.RemoteException {
 		return _lPruductLocalService.getBestSellers(limit);
 	}
 
 	public com.konakart.wsapp.Product[] getBestSellers(
 		com.liferay.konakart.util.LDataDescriptor dd, int categoryId,
-		int languageId) {
+		int languageId) throws java.rmi.RemoteException {
 		return _lPruductLocalService.getBestSellers(dd, categoryId, languageId);
 	}
 

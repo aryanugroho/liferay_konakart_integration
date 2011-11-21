@@ -59,15 +59,17 @@ public interface LPruductLocalService {
 	public void setKKWsEng(com.konakart.ws.KKWSEngIf kkWsEng);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.konakart.wsapp.Product[] getBestSellers();
+	public com.konakart.wsapp.Product[] getBestSellers()
+		throws java.rmi.RemoteException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.konakart.wsapp.Product[] getBestSellers(int limit);
+	public com.konakart.wsapp.Product[] getBestSellers(int limit)
+		throws java.rmi.RemoteException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.konakart.wsapp.Product[] getBestSellers(
 		com.liferay.konakart.util.LDataDescriptor dd, int categoryId,
-		int languageId);
+		int languageId) throws java.rmi.RemoteException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.konakart.wsapp.Product[] getSpecialProducts();

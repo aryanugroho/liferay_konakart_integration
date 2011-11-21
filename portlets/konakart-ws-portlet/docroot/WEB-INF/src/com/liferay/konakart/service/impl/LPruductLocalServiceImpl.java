@@ -47,31 +47,26 @@ public class LPruductLocalServiceImpl extends LPruductLocalServiceBaseImpl {
 		_kkWsEng = kkWsEng;
 	}
 	
-	public Product[] getBestSellers() {
-		
+	public Product[] getBestSellers() throws RemoteException{
 		return getBestSellers(new LDataDescriptor(),
-				KK_Constant.KK_NOT_CONSTRAINT_CATEGORY_ID,
-				KK_Constant.KK_DEFAULT_LANGUAGE_ID);
+			KK_Constant.KK_NOT_CONSTRAINT_CATEGORY_ID,
+			KK_Constant.KK_DEFAULT_LANGUAGE_ID);
 	}
 	
-	public Product[] getBestSellers(int limit) {
-		
+	public Product[] getBestSellers(int limit) throws RemoteException{
 		return getBestSellers(new LDataDescriptor(limit),
-				KK_Constant.KK_NOT_CONSTRAINT_CATEGORY_ID,
-				KK_Constant.KK_DEFAULT_LANGUAGE_ID);
+			KK_Constant.KK_NOT_CONSTRAINT_CATEGORY_ID,
+			KK_Constant.KK_DEFAULT_LANGUAGE_ID);
 	}
 	
-	public Product[] getBestSellers(LDataDescriptor dd, int categoryId,
-			int languageId) {
+	public Product[] getBestSellers(
+			LDataDescriptor dd, int categoryId,int languageId) 
+		throws RemoteException{
 
 		Product[] productArray = new Product[0];
 
-		try {
-			productArray = _kkWsEng.getBestSellers(
-					dd.get_dataDescriptor(), categoryId, languageId);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		productArray = _kkWsEng.getBestSellers(
+			dd.get_dataDescriptor(), categoryId, languageId);
 
 		return productArray;
 	}
