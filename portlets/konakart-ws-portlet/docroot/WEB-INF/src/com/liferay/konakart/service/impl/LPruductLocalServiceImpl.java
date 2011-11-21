@@ -17,7 +17,7 @@ package com.liferay.konakart.service.impl;
 import com.konakart.ws.KKWSEngIf;
 import com.konakart.wsapp.Product;
 import com.liferay.konakart.service.base.LPruductLocalServiceBaseImpl;
-import com.liferay.konakart.util.KK_Constant;
+import com.liferay.konakart.util.KKConstant;
 import com.liferay.konakart.util.LDataDescriptor;
 
 import java.rmi.RemoteException;
@@ -49,14 +49,14 @@ public class LPruductLocalServiceImpl extends LPruductLocalServiceBaseImpl {
 	
 	public Product[] getBestSellers() throws RemoteException{
 		return getBestSellers(new LDataDescriptor(),
-			KK_Constant.KK_NOT_CONSTRAINT_CATEGORY_ID,
-			KK_Constant.KK_DEFAULT_LANGUAGE_ID);
+			KKConstant.KK_NOT_CONSTRAINT_CATEGORY_ID,
+			KKConstant.KK_DEFAULT_LANGUAGE_ID);
 	}
 	
 	public Product[] getBestSellers(int limit) throws RemoteException{
 		return getBestSellers(new LDataDescriptor(limit),
-			KK_Constant.KK_NOT_CONSTRAINT_CATEGORY_ID,
-			KK_Constant.KK_DEFAULT_LANGUAGE_ID);
+			KKConstant.KK_NOT_CONSTRAINT_CATEGORY_ID,
+			KKConstant.KK_DEFAULT_LANGUAGE_ID);
 	}
 	
 	public Product[] getBestSellers(
