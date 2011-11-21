@@ -34,8 +34,8 @@
 	<aui:input helpMessage="address-help-message" lable="web-service-address" name="preferences--webServiceAddress--" type="test" value="<%= webServiceAddress %>"/> 
 	
 	<aui:select label="show-type" name="preferences--showType--">
-		<aui:option label="best-sellers" selected='<%=showType.equals("bestsSellers") %>' value="bestsSellers"/>
-		<aui:option label="special" selected='<%=showType.equals("special") %>' value="special"/>
+		<aui:option label="best-sellers" selected='<%=showType.equals(PortletConstants.BESTSELLERS) %>' value="<%= PortletConstants.BESTSELLERS %>"/>
+		<aui:option label="special" selected='<%= showType.equals(PortletConstants.SPECIAL) %>' value="<%= PortletConstants.SPECIAL %>"/>
 	</aui:select>
 	
 	<aui:select label="show-count" name="preferences--showCount--">

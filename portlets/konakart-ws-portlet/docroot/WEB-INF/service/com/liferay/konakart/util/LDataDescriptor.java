@@ -3,6 +3,7 @@ package com.liferay.konakart.util;
 import com.konakart.wsapp.DataDescriptor;
 
 public class LDataDescriptor {
+	
 	public LDataDescriptor() {
 		_dataDescriptor = new DataDescriptor();
 		_dataDescriptor.setOffset(0);

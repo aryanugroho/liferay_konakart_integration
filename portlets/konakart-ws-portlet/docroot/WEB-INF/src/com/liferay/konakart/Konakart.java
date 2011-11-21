@@ -33,7 +33,7 @@ public class Konakart extends MVCPortlet {
 		
 			String webServiceAddress = getWebServiceAddress(renderRequest);
 			
-			String serviceurl = StringUtil.replace(webServiceAddress,
+			String serviceUrl = StringUtil.replace(webServiceAddress,
 				"services/KKWebServiceEng?wsdl", "");
 			
 			URL url = new URL(webServiceAddress);	
@@ -59,7 +59,7 @@ public class Konakart extends MVCPortlet {
 	
 			renderRequest.setAttribute("showType", showType);
 	
-			renderRequest.setAttribute("serviceurl", serviceurl);
+			renderRequest.setAttribute("serviceUrl", serviceUrl);
 			
 			super.doView(renderRequest, renderResponse);	
 	}
@@ -79,23 +79,24 @@ public class Konakart extends MVCPortlet {
 		return address;
 	}
 
-	protected String getShowType(RenderRequest renderRequest) {
+	protected String getShowType (RenderRequest renderRequest){
 		String showType = PrefsParamUtil.getString(
 			getPortletPreferences(renderRequest), renderRequest, "showType");
 		
 		if (Validator.isNull(showType)) {
-			showType = "bestsSellers";
+			showType = PortletConstants.BESTSELLERS;
 		}
 		
 		return showType;
 	}
 	
-	protected int getShowCount(RenderRequest renderRequest) {
+	protected int getShowCount (RenderRequest renderRequest){
 		int count = 5;
 		
 		count = PrefsParamUtil
 			.getInteger(getPortletPreferences(renderRequest), renderRequest,
 				"showCount");
+		
 		return count;
 	}
 	

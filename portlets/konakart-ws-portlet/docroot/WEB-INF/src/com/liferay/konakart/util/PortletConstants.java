@@ -19,7 +19,7 @@ package com.liferay.konakart.util;
  */
 public interface PortletConstants {
 	
-	public static final String BESTSELLERS = "bestSellers";
+	public static final String BESTSELLERS = "bestsellers";
 	
 	public static final String SPECIAL = "special";
 }

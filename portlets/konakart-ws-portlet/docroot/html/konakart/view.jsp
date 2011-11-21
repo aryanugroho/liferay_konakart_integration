@@ -19,11 +19,11 @@
 <% 	
 	Product[] productArray = (Product[])renderRequest.getAttribute("productArray");
 
-	String serviceurl = (String)renderRequest.getAttribute("serviceurl");
+	String serviceUrl = (String)renderRequest.getAttribute("serviceUrl");
 		
-	String imgurl = serviceurl + "images/";
+	String imgUrl = serviceUrl + "images/";
 	
-	String ourl = serviceurl + "SelectProd.do?prodId=";
+	String ourl = serviceUrl + "SelectProd.do?prodId=";
 	
 	String showType = (String)renderRequest.getAttribute("showType");;
 	
@@ -31,12 +31,11 @@
 	
 	for(int i = 0;i<productArray.length;i++){
 		out.print(productArray[i].getName()+"<br>");
-		String jj = imgurl +productArray[i].getImage();
+		String jj = imgUrl +productArray[i].getImage();
 		
 		%>
-		<a href="<%= ourl + productArray[i].getId()%>"><img src = "<%=jj %>"/></a><br>
+		<a href="<%= ourl + productArray[i].getId()%>"><img src="<%= jj %>"/></a><br>
 <%
-		
 	}
 %>
 
