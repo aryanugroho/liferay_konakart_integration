@@ -15,3 +15,5 @@
 --%>
 
 <%@ include file="/html/konakart/init.jsp" %>
+
+Connect is time out,please refresh or reset the address of web service 
