@@ -17,9 +17,11 @@
 <%@ include file="/html/konakart/init.jsp" %>
 
 <% 	
-	Product[] productArray = (Product[])renderRequest.getAttribute("productArray");
+	Product[] productArray = (Product[]) renderRequest.getAttribute("productArray");
 
-	String serviceUrl = (String)renderRequest.getAttribute("serviceUrl");
+	List<Product> productList = Arrays.asList(productArray);
+		
+	String serviceUrl = (String) renderRequest.getAttribute("serviceUrl");
 		
 	String imgUrl = serviceUrl + "images/";
 	
@@ -27,15 +29,53 @@
 	
 	String showType = (String)renderRequest.getAttribute("showType");;
 	
-	out.print(showType+"<br>");
-	
-	for(int i = 0;i<productArray.length;i++){
-		out.print(productArray[i].getName()+"<br>");
-		String jj = imgUrl +productArray[i].getImage();
-		
-		%>
-		<a href="<%= ourl + productArray[i].getId()%>"><img src="<%= jj %>"/></a><br>
-<%
-	}
+	out.print(showType+"<br>");	
 %>
+
+<liferay-ui:search-container
+	delta='<%= GetterUtil.getInteger(preferences.getValue("rowsPerPage", "5")) %>'
+	emptyResultsMessage="there are no products"
+	>
+	
+	<liferay-ui:search-container-results
+		results="<%= ListUtil.subList(productList, searchContainer.getStart(), searchContainer.getEnd()) %>"
+		total="<%= productList.size() %>" />
+
+	<liferay-ui:search-container-row
+		className="com.konakart.wsapp.Product" keyProperty="id"
+		modelVar="product" escapedModel="false">
+
+		<%
+			int productId = product.getId();
+			System.out.println(imgUrl + product.getImage());
+		%>
+
+		<liferay-ui:search-container-column-text
+			name="Name"
+			value="<%= product.getName() %>"
+		/>
+		
+		<liferay-ui:search-container-column-text 
+			name="Image"
+			>
+			<liferay-ui:icon
+				src="<%= imgUrl + product.getImage()%>"
+			/>
+		</liferay-ui:search-container-column-text>
+	
+		<liferay-ui:search-container-column-text
+			name="Price"
+			value="<%= String.valueOf(product.getPriceExTax()) %>" 
+		/>
+
+		<liferay-ui:search-container-column-text
+			name="Sepcial Price"
+			value="<%= String.valueOf(product.getSpecialPriceIncTax()) %>" 
+		/>
+
+	</liferay-ui:search-container-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>
+
 

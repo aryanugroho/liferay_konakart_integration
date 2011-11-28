@@ -79,7 +79,7 @@ public class Konakart extends MVCPortlet {
 		return address;
 	}
 
-	protected String getShowType (RenderRequest renderRequest){
+	protected String getShowType(RenderRequest renderRequest) {
 		String showType = PrefsParamUtil.getString(
 			getPortletPreferences(renderRequest), renderRequest, "showType");
 		
@@ -90,7 +90,7 @@ public class Konakart extends MVCPortlet {
 		return showType;
 	}
 	
-	protected int getShowCount (RenderRequest renderRequest){
+	protected int getShowCount(RenderRequest renderRequest) {
 		int count = 5;
 		
 		count = PrefsParamUtil
@@ -117,7 +117,6 @@ public class Konakart extends MVCPortlet {
 			} catch (SystemException e) {
 				e.printStackTrace();
 			}
-
 		}
 		return preferences;
 	}
