@@ -16,6 +16,7 @@ package com.liferay.konakart.service.messaging;
 
 import com.liferay.konakart.service.ClpSerializer;
 import com.liferay.konakart.service.LPruductLocalServiceUtil;
+import com.liferay.konakart.service.LReviewLocalServiceUtil;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
@@ -35,6 +36,8 @@ public class ClpMessageListener extends BaseMessageListener {
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
 			LPruductLocalServiceUtil.clearService();
+
+			LReviewLocalServiceUtil.clearService();
 		}
 	}
 }

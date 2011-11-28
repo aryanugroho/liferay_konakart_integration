@@ -5,4 +5,5 @@
 	<namespace>konakart</namespace>
 
 	<entity name="LPruduct" local-service="true" remote-service="false"/>
+	<entity name="LReview" local-service="true" remote-service="false"/>
 </service-builder>
