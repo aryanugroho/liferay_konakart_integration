@@ -14,6 +14,7 @@
  */
 --%>
 
+<%@page import="com.konakart.ws.KKWSEngIf"%>
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
@@ -58,4 +59,6 @@
 		preferences = PortletPreferencesFactoryUtil.getPortletSetup(
 			renderRequest, portletResource);
 	}
+	
+	KKWSEngIf kkWsEng = (KKWSEngIf) renderRequest.getAttribute("kkWSEng");
 %>

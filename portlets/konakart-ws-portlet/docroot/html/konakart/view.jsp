@@ -14,6 +14,7 @@
 */
 --%>
 
+<%@page import="com.liferay.konakart.service.LReviewLocalServiceUtil"%>
 <%@ include file="/html/konakart/init.jsp" %>
 
 <% 	
@@ -47,7 +48,10 @@
 
 		<%
 			int productId = product.getId();
-			System.out.println(imgUrl + product.getImage());
+			LReviewLocalServiceUtil.setKKWsEng(kkWsEng);
+			
+			float d = (float)LReviewLocalServiceUtil.getAverageRating(productId);
+			
 		%>
 
 		<liferay-ui:search-container-column-text
@@ -70,7 +74,12 @@
 
 		<liferay-ui:search-container-column-text
 			name="Sepcial Price"
-			value="<%= String.valueOf(product.getSpecialPriceIncTax()) %>" 
+			value="<%= String.valueOf(product.getSpecialPriceExTax()) %>" 
+		/>
+		
+		<liferay-ui:search-container-column-score
+			name="Reviews"
+			score="<%= d*2/10 %>" 
 		/>
 
 	</liferay-ui:search-container-row>

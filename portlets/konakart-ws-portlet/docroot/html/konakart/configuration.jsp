@@ -38,17 +38,11 @@
 		<aui:option label="special" selected='<%= showType.equals(PortletConstants.SPECIAL) %>' value="<%= PortletConstants.SPECIAL %>"/>
 	</aui:select>
 	
-	<aui:select label="show-count" name="preferences--showCount--">
-		<aui:option label="1" selected="<%= showCount == 1 %>" value="1"/>
-		<aui:option label="2" selected="<%= showCount == 2 %>" value="2"/>
-		<aui:option label="3" selected="<%= showCount == 3 %>" value="3"/>
-		<aui:option label="4" selected="<%= showCount == 4 %>" value="4"/>
-		<aui:option label="5" selected="<%= showCount == 5 %>" value="5"/>
-	</aui:select>
+	<aui:input label="show-count" name="preferences--showCount--" type="text" value="<%= showCount %>"/>
 	
 	<aui:field-wrapper label="show-columns">
 		<%
-		String allShowColumns = "name,image,price,special-price";
+		String allShowColumns = "name,image,price,special-price,review";
 		Set availableColumns = SetUtil.fromArray(StringUtil.split(allShowColumns));
 		// Left list
 

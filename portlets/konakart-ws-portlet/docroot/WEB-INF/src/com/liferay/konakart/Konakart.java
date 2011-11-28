@@ -1,5 +1,6 @@
 package com.liferay.konakart;
 
+import com.konakart.ws.KKWSEngIf;
 import com.konakart.wsapp.Product;
 
 import com.liferay.konakart.service.LPruductLocalServiceUtil;
@@ -38,8 +39,9 @@ public class Konakart extends MVCPortlet {
 			
 			URL url = new URL(webServiceAddress);	
 			
-			LPruductLocalServiceUtil.setKKWsEng(
-				KKWsEngUtil.getKKWsEngUtil(url));
+			KKWSEngIf kkWSEng = KKWsEngUtil.getKKWsEngUtil(url);
+			
+			LPruductLocalServiceUtil.setKKWsEng(kkWSEng);
 			
 			String showType = getShowType(renderRequest);
 			
@@ -54,6 +56,8 @@ public class Konakart extends MVCPortlet {
 				productArray = LPruductLocalServiceUtil.
 					getSpecialProducts(showCount);
 			}
+			
+			renderRequest.setAttribute("kkWSEng", kkWSEng);
 			
 			renderRequest.setAttribute("productArray", productArray);
 	

@@ -5,4 +5,8 @@
 	<bean id="com.liferay.konakart.service.LPruductLocalServiceUtil" class="com.liferay.konakart.service.LPruductLocalServiceUtil">
 		<property name="service" ref="com.liferay.konakart.service.LPruductLocalService" />
 	</bean>
+	<bean id="com.liferay.konakart.service.LReviewLocalService" class="com.liferay.konakart.service.impl.LReviewLocalServiceImpl" />
+	<bean id="com.liferay.konakart.service.LReviewLocalServiceUtil" class="com.liferay.konakart.service.LReviewLocalServiceUtil">
+		<property name="service" ref="com.liferay.konakart.service.LReviewLocalService" />
+	</bean>
 </beans>
