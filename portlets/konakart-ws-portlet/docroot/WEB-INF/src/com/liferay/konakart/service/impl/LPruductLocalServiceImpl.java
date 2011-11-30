@@ -14,11 +14,14 @@
 
 package com.liferay.konakart.service.impl;
 
+import com.konakart.app.DataDescConstants;
 import com.konakart.ws.KKWSEngIf;
+
 import com.konakart.wsapp.Product;
 import com.liferay.konakart.service.base.LPruductLocalServiceBaseImpl;
 import com.liferay.konakart.util.KKConstant;
 import com.liferay.konakart.util.LDataDescriptor;
+import com.liferay.konakart.util.LProductSearch;
 
 import java.rmi.RemoteException;
 
@@ -90,6 +93,35 @@ public class LPruductLocalServiceImpl extends LPruductLocalServiceBaseImpl {
 		}
 
 		return productArray;		
+	}
+	
+	public Product getProduct(String sessionId, int productId, int languageId) 
+		throws RemoteException {
+		
+		return _kkWsEng.getProduct(sessionId, productId, languageId);
+	}
+	
+	public Product[] getLastestProducts() throws RemoteException {
+		return getLastestProducts(5);
+	}
+	
+	public Product[] getLastestProducts(int limit) throws RemoteException {
+		LProductSearch lps = new LProductSearch();
+		LDataDescriptor ldd= new LDataDescriptor();
+		
+		ldd.setOrderBy(DataDescConstants.ORDER_BY_DATE_ADDED_DESCENDING);
+		
+		ldd.setLimit(limit);
+		
+		return searchProducts(null, ldd, lps, -1);
+	}
+	
+	public Product[] searchProducts(
+			String sessionId, LDataDescriptor ldd, LProductSearch lps, 
+			int langugeId) 
+		throws RemoteException {
+		
+		return _kkWsEng.searchForProducts(sessionId, ldd.get_dataDescriptor(), lps.getProductSearch(), -1).getProductArray();
 	}
 	
 	private static KKWSEngIf _kkWsEng;

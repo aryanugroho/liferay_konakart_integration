@@ -85,6 +85,30 @@ public class LPruductLocalServiceUtil {
 		return getService().getSpecialProducts(limit);
 	}
 
+	public static com.konakart.wsapp.Product getProduct(
+		java.lang.String sessionId, int productId, int languageId)
+		throws java.rmi.RemoteException {
+		return getService().getProduct(sessionId, productId, languageId);
+	}
+
+	public static com.konakart.wsapp.Product[] getLastestProducts()
+		throws java.rmi.RemoteException {
+		return getService().getLastestProducts();
+	}
+
+	public static com.konakart.wsapp.Product[] getLastestProducts(int limit)
+		throws java.rmi.RemoteException {
+		return getService().getLastestProducts(limit);
+	}
+
+	public static com.konakart.wsapp.Product[] searchProducts(
+		java.lang.String sessionId,
+		com.liferay.konakart.util.LDataDescriptor ldd,
+		com.liferay.konakart.util.LProductSearch lps, int langugeId)
+		throws java.rmi.RemoteException {
+		return getService().searchProducts(sessionId, ldd, lps, langugeId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
