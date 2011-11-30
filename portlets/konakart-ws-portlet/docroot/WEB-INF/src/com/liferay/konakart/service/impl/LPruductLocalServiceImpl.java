@@ -14,18 +14,16 @@
 
 package com.liferay.konakart.service.impl;
 
+import com.konakart.app.DataDescConstants;
 import com.konakart.ws.KKWSEngIf;
-import com.konakart.wsapp.DataDescriptor;
+
 import com.konakart.wsapp.Product;
-import com.konakart.wsapp.ProductSearch;
 import com.liferay.konakart.service.base.LPruductLocalServiceBaseImpl;
 import com.liferay.konakart.util.KKConstant;
 import com.liferay.konakart.util.LDataDescriptor;
 import com.liferay.konakart.util.LProductSearch;
 
 import java.rmi.RemoteException;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * The implementation of the l pruduct local service.
@@ -104,13 +102,18 @@ public class LPruductLocalServiceImpl extends LPruductLocalServiceBaseImpl {
 	}
 	
 	public Product[] getLastestProducts() throws RemoteException {
-		Calendar calendar = Calendar.getInstance();
-		
-		Date date = new Date();
-		calendar.setTime(date);
+		return getLastestProducts(5);
+	}
+	
+	public Product[] getLastestProducts(int limit) throws RemoteException {
 		LProductSearch lps = new LProductSearch();
+		LDataDescriptor ldd= new LDataDescriptor();
 		
-		return searchProducts(null, null, lps, -1);
+		ldd.setOrderBy(DataDescConstants.ORDER_BY_DATE_ADDED_DESCENDING);
+		
+		ldd.setLimit(limit);
+		
+		return searchProducts(null, ldd, lps, -1);
 	}
 	
 	public Product[] searchProducts(

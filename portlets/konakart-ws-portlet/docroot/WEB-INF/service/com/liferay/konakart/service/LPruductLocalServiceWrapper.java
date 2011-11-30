@@ -75,6 +75,30 @@ public class LPruductLocalServiceWrapper implements LPruductLocalService {
 		return _lPruductLocalService.getSpecialProducts(limit);
 	}
 
+	public com.konakart.wsapp.Product getProduct(java.lang.String sessionId,
+		int productId, int languageId) throws java.rmi.RemoteException {
+		return _lPruductLocalService.getProduct(sessionId, productId, languageId);
+	}
+
+	public com.konakart.wsapp.Product[] getLastestProducts()
+		throws java.rmi.RemoteException {
+		return _lPruductLocalService.getLastestProducts();
+	}
+
+	public com.konakart.wsapp.Product[] getLastestProducts(int limit)
+		throws java.rmi.RemoteException {
+		return _lPruductLocalService.getLastestProducts(limit);
+	}
+
+	public com.konakart.wsapp.Product[] searchProducts(
+		java.lang.String sessionId,
+		com.liferay.konakart.util.LDataDescriptor ldd,
+		com.liferay.konakart.util.LProductSearch lps, int langugeId)
+		throws java.rmi.RemoteException {
+		return _lPruductLocalService.searchProducts(sessionId, ldd, lps,
+			langugeId);
+	}
+
 	public LPruductLocalService getWrappedLPruductLocalService() {
 		return _lPruductLocalService;
 	}

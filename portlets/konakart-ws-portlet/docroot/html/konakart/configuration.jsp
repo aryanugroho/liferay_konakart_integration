@@ -39,6 +39,7 @@
 				<aui:select label="show-type" name="preferences--showType--">
 					<aui:option label="best-sellers" selected='<%=showType.equals(PortletConstants.BESTSELLERS) %>' value="<%= PortletConstants.BESTSELLERS %>"/>
 					<aui:option label="special" selected='<%= showType.equals(PortletConstants.SPECIAL) %>' value="<%= PortletConstants.SPECIAL %>"/>
+					<aui:option label="whats-new" selected='<%= showType.equals(PortletConstants.LATEEST) %>' value="<%= PortletConstants.LATEEST %>"/>
 				</aui:select>
 			</aui:fieldset>	
 		</liferay-ui:panel>

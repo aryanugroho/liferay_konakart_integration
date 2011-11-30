@@ -26,7 +26,9 @@ public class LDataDescriptor {
 	public void setOffset(int offset) {
 		_dataDescriptor.setOffset(offset);
 	}
-	
+	public void setOrderBy(String orderBy) {
+		_dataDescriptor.setOrderBy(orderBy);
+	}
 	public void setLimit(int limit) {
 		_dataDescriptor.setLimit(limit);
 	}

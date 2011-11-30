@@ -22,4 +22,6 @@ public interface PortletConstants {
 	public static final String BESTSELLERS = "bestsellers";
 	
 	public static final String SPECIAL = "special";
+	
+	public static final String LATEEST = "lastest";
 }

@@ -55,6 +55,9 @@ public class Konakart extends MVCPortlet {
 			} else if (showType.equals(PortletConstants.SPECIAL)) {
 				productArray = LPruductLocalServiceUtil.
 					getSpecialProducts(showCount);
+			} else if (showType.equals(PortletConstants.LATEEST)) {
+				productArray = LPruductLocalServiceUtil.
+					getLastestProducts(showCount);
 			}
 			
 			renderRequest.setAttribute("kkWSEng", kkWSEng);

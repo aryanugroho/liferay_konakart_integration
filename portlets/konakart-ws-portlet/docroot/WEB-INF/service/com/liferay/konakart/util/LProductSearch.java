@@ -8,6 +8,11 @@ public class LProductSearch {
 	
 	public LProductSearch() {
 		_productSearch = new ProductSearch();
+		_productSearch.setCategoryId(-100);
+		_productSearch.setManufacturerId(-100);
+		_productSearch.setWhereToSearch(0);
+		_productSearch.setSearchInSubCats(true);
+		_productSearch.setProductType(-1);
 	}
 	
 	public ProductSearch getProductSearch() {
