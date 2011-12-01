@@ -20,7 +20,9 @@
 	String webServiceAddress = PrefsParamUtil.getString(preferences, renderRequest, "webServiceAddress", "");
 	
 	String showType = PrefsParamUtil.getString(preferences, renderRequest, "showType");
-			
+	
+	boolean randomShow = PrefsParamUtil.getBoolean(preferences, renderRequest, "randomShow", false);
+		
 	int showCount = PrefsParamUtil.getInteger(preferences, renderRequest, "showCount", 5);
 %>
 
@@ -94,7 +96,7 @@
 			
 			</aui:field-wrapper>
 			
-			<aui:input label="show-random" name="" type="checkbox" value=""/>
+			<aui:input label="show-random" name="" type="checkbox" value="<%= randomShow %>"/>
 		</liferay-ui:panel>
 		
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="pricePanel" persistState="<%= true %>" title="price">
