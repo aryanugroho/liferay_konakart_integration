@@ -8,6 +8,7 @@ import com.liferay.konakart.util.KKWsEngUtil;
 import com.liferay.konakart.util.PortletConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -17,6 +18,7 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 
 import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
@@ -49,6 +51,14 @@ public class Konakart extends MVCPortlet {
 			
 			Product[] productArray = new Product[0];
 			
+			boolean showRandom = getShowRandom(renderRequest);
+			
+			int count =  showCount;
+			
+			if (showRandom) {
+				showCount = showCount *2; 
+			}
+			
 			if (showType.equals(PortletConstants.BESTSELLERS)) {
 				productArray = LPruductLocalServiceUtil.
 					getBestSellers(showCount);
@@ -58,6 +68,10 @@ public class Konakart extends MVCPortlet {
 			} else if (showType.equals(PortletConstants.LATEEST)) {
 				productArray = LPruductLocalServiceUtil.
 					getLastestProducts(showCount);
+			}
+			
+			if (showRandom) {
+				productArray = getRandomShowProducts(productArray, count); 
 			}
 			
 			renderRequest.setAttribute("kkWSEng", kkWSEng);
@@ -87,24 +101,18 @@ public class Konakart extends MVCPortlet {
 	}
 
 	protected String getShowType(RenderRequest renderRequest) {
-		String showType = PrefsParamUtil.getString(
-			getPortletPreferences(renderRequest), renderRequest, "showType");
-		
-		if (Validator.isNull(showType)) {
-			showType = PortletConstants.BESTSELLERS;
-		}
-		
-		return showType;
+		return PrefsParamUtil.getString(getPortletPreferences(renderRequest), 
+			renderRequest, "showType", PortletConstants.BESTSELLERS);
+	}
+	
+	protected boolean getShowRandom(RenderRequest renderRequest) {	
+		return PrefsParamUtil.getBoolean(getPortletPreferences(renderRequest), 
+			renderRequest, "showRandom", false);
 	}
 	
 	protected int getShowCount(RenderRequest renderRequest) {
-		int count = 5;
-		
-		count = PrefsParamUtil
-			.getInteger(getPortletPreferences(renderRequest), renderRequest,
-				"showCount");
-		
-		return count;
+		return PrefsParamUtil.getInteger(getPortletPreferences(renderRequest), 
+			renderRequest, "showCount", 5);
 	}
 	
 	protected PortletPreferences getPortletPreferences(
@@ -125,7 +133,34 @@ public class Konakart extends MVCPortlet {
 				e.printStackTrace();
 			}
 		}
+		
 		return preferences;
 	}
 	
+	protected Product[] getRandomShowProducts(
+			Product[] products, int showCount) {
+		
+		Product[] randomProducts;
+		
+		if (products.length <= showCount) {
+			randomProducts = products;
+		} else {
+			randomProducts = new Product[showCount];
+			
+			Random random = new Random();
+			
+			int i = 0;
+			
+			while (i < showCount) {
+				int r = random.nextInt(products.length);
+				
+				if (!ArrayUtil.contains(randomProducts, products[r])) {
+					randomProducts[i] = products[r];
+					i++;
+				}
+			}
+		}
+		
+		return randomProducts;
+	}
 }
