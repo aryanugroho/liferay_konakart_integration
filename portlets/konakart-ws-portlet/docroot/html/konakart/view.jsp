@@ -14,7 +14,6 @@
 */
 --%>
 
-<%@page import="com.liferay.konakart.service.LReviewLocalServiceUtil"%>
 <%@ include file="/html/konakart/init.jsp" %>
 
 <% 	
@@ -22,6 +21,8 @@
 
 	List<Product> productList = Arrays.asList(productArray);
 		
+	
+	
 	String serviceUrl = (String) renderRequest.getAttribute("serviceUrl");
 		
 	String imgUrl = serviceUrl + "images/";
@@ -35,6 +36,7 @@
 
 <liferay-ui:search-container
 	delta='<%= GetterUtil.getInteger(preferences.getValue("rowsPerPage", "5")) %>'
+	headerNames="<%= StringUtil.merge(showsColumns) %>"
 	emptyResultsMessage="there are no products"
 	>
 	
@@ -52,36 +54,44 @@
 			
 			float d = (float)LReviewLocalServiceUtil.getAverageRating(productId);
 			
+			for (int i = 0;i < showsColumns.length; i++) {
+				String showsColumn = showsColumns[i];
 		%>
-
-		<liferay-ui:search-container-column-text
-			name="Name"
-			value="<%= product.getName() %>"
-		/>
 		
-		<liferay-ui:search-container-column-text 
-			name="Image"
-			>
-			<liferay-ui:icon
-				src="<%= imgUrl + product.getImage()%>"
-			/>
-		</liferay-ui:search-container-column-text>
-	
-		<liferay-ui:search-container-column-text
-			name="Price"
-			value="<%= String.valueOf(product.getPriceExTax()) %>" 
-		/>
-
-		<liferay-ui:search-container-column-text
-			name="Sepcial Price"
-			value="<%= String.valueOf(product.getSpecialPriceExTax()) %>" 
-		/>
+		<c:choose>
+			<c:when test='<%= showsColumn.equals("name") %>'>
+				<liferay-ui:search-container-column-text
+					name="Name"
+					value="<%= product.getName() %>"
+				/>
+			</c:when>
 		
-		<liferay-ui:search-container-column-score
-			name="Reviews"
-			score="<%= d*2/10 %>" 
-		/>
-
+			<c:when test='<%= showsColumn.equals("image") %>'>
+				<liferay-ui:search-container-column-text 
+					name="Image"
+					>
+					<liferay-ui:icon
+						src="<%= imgUrl + product.getImage()%>"
+					/>
+				</liferay-ui:search-container-column-text>
+			</c:when>
+			
+			<c:when test='<%= showsColumn.equals("price") %>'>
+				<liferay-ui:search-container-column-text
+					name="Price"
+					value="<%= String.valueOf(product.getPriceExTax()) %>" 
+				/>
+			</c:when>
+			
+			<c:when test='<%= showsColumn.equals("review") %>'>
+				<liferay-ui:search-container-column-score
+					name="Reviews"
+					score="<%= d*2/10 %>" 
+				/>
+			</c:when>
+		</c:choose>
+		
+		<% } %>
 	</liferay-ui:search-container-row>
 
 	<liferay-ui:search-iterator />
