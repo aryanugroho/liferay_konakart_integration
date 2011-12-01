@@ -20,8 +20,6 @@
 	Product[] productArray = (Product[]) renderRequest.getAttribute("productArray");
 
 	List<Product> productList = Arrays.asList(productArray);
-		
-	
 	
 	String serviceUrl = (String) renderRequest.getAttribute("serviceUrl");
 		
@@ -79,8 +77,24 @@
 			<c:when test='<%= showsColumn.equals("price") %>'>
 				<liferay-ui:search-container-column-text
 					name="Price"
-					value="<%= String.valueOf(product.getPriceExTax()) %>" 
-				/>
+					buffer="buffer" 
+				>
+				
+				<% 
+					if (Validator.isNull(product.getSpecialPriceExTax())) {
+						buffer.append(product.getPrice0());
+					} else {
+						buffer.append("<s>");
+						buffer.append(product.getPrice0());
+						buffer.append("</s> ");
+						buffer.append("<i><font color='red'>");
+						buffer.append(product.getSpecialPriceExTax());
+						buffer.append("</font></i>");
+						
+					}
+				%>
+				
+				</liferay-ui:search-container-column-text>
 			</c:when>
 			
 			<c:when test='<%= showsColumn.equals("review") %>'>
