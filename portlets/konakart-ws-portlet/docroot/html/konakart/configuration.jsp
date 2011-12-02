@@ -99,10 +99,15 @@
 		</liferay-ui:panel>
 		
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="pricePanel" persistState="<%= true %>" title="price">
-			Display Price with Tax?(If it have and will show special price ,the same)
+			Display Price with Tax?(If it have and special price ,the same)
 			<aui:input type="radio" label="with-tax" name="withTax" value=""/>
 			<aui:input type="radio" label="without-tax" name="withTax" value=""/>
-			<aui:input type="radio" label="both" name="withTax" value=""/>
+			
+			<aui:select label="display-price-with-tax" name="preferences--withTax--">
+				<aui:option label="best-sellers" selected='<%=showType.equals(PortletConstants.BESTSELLERS) %>' value="<%= PortletConstants.BESTSELLERS %>"/>
+				<aui:option label="special" selected='<%= showType.equals(PortletConstants.SPECIAL) %>' value="<%= PortletConstants.SPECIAL %>"/>
+			</aui:select>
+			
 		</liferay-ui:panel>
 		
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="pricePanel" persistState="<%= true %>" title="reviews">
