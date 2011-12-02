@@ -14,6 +14,7 @@
 */
 --%>
 
+<%@page import="java.math.BigDecimal"%>
 <%@ include file="/html/konakart/init.jsp" %>
 
 <% 	
@@ -28,6 +29,8 @@
 	String ourl = serviceUrl + "SelectProd.do?prodId=";
 	
 	String showType = (String)renderRequest.getAttribute("showType");;
+	
+	boolean withTax = PrefsParamUtil.getBoolean(preferences, request, "withTax", false);
 	
 	out.print(showType+"<br>");	
 %>
@@ -80,17 +83,27 @@
 					buffer="buffer" 
 				>
 				
-				<% 
-					if (Validator.isNull(product.getSpecialPriceExTax())) {
-						buffer.append(product.getPrice0());
+				<% 	
+					BigDecimal price;
+					BigDecimal specialPrice;
+					
+					if (withTax) {
+						price = product.getPriceIncTax();
+						specialPrice = product.getSpecialPriceIncTax();
+					} else {
+						price = product.getPriceExTax();
+						specialPrice = product.getSpecialPriceExTax();
+					}
+					
+					if (Validator.isNull(specialPrice)) {
+						buffer.append(price);
 					} else {
 						buffer.append("<s>");
-						buffer.append(product.getPrice0());
+						buffer.append(price);
 						buffer.append("</s> ");
 						buffer.append("<i><font color='red'>");
-						buffer.append(product.getSpecialPriceExTax());
+						buffer.append(specialPrice);
 						buffer.append("</font></i>");
-						
 					}
 				%>
 				

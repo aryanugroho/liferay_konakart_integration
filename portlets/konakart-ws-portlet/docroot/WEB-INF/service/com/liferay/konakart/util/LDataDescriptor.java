@@ -1,13 +1,14 @@
 package com.liferay.konakart.util;
 
 import com.konakart.wsapp.DataDescriptor;
+import com.konakart.app.DataDescConstants;
 
 public class LDataDescriptor {
 	
 	public LDataDescriptor() {
 		_dataDescriptor = new DataDescriptor();
 		_dataDescriptor.setOffset(0);
-		_dataDescriptor.setLimit(100);
+		_dataDescriptor.setLimit(DataDescConstants.MAX_ROWS);
 	}
 	public LDataDescriptor(int limit) {
 		_dataDescriptor = new DataDescriptor();

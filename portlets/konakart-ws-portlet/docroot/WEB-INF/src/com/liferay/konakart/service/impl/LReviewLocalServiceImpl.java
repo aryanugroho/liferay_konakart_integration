@@ -49,7 +49,7 @@ public class LReviewLocalServiceImpl extends LReviewLocalServiceBaseImpl {
 		return getAverageRating(new LDataDescriptor(), productId);
 	}
 	
-	public double getAverageRating(LDataDescriptor ldd,int productId) 
+	public double getAverageRating(LDataDescriptor ldd, int productId) 
 		throws RemoteException { 
 		
 		Review[] reviewArray = 

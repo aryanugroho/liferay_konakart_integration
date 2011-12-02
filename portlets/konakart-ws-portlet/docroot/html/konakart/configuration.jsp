@@ -22,6 +22,8 @@
 	String showType = PrefsParamUtil.getString(preferences, renderRequest, "showType");
 	
 	boolean showRandom = PrefsParamUtil.getBoolean(preferences, renderRequest, "showRandom", false);
+	
+	boolean withTax = PrefsParamUtil.getBoolean(preferences, renderRequest, "withTax", false);
 		
 	int showCount = PrefsParamUtil.getInteger(preferences, renderRequest, "showCount", 5);
 %>
@@ -99,15 +101,7 @@
 		</liferay-ui:panel>
 		
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="pricePanel" persistState="<%= true %>" title="price">
-			Display Price with Tax?(If it have and special price ,the same)
-			<aui:input type="radio" label="with-tax" name="withTax" value=""/>
-			<aui:input type="radio" label="without-tax" name="withTax" value=""/>
-			
-			<aui:select label="display-price-with-tax" name="preferences--withTax--">
-				<aui:option label="best-sellers" selected='<%=showType.equals(PortletConstants.BESTSELLERS) %>' value="<%= PortletConstants.BESTSELLERS %>"/>
-				<aui:option label="special" selected='<%= showType.equals(PortletConstants.SPECIAL) %>' value="<%= PortletConstants.SPECIAL %>"/>
-			</aui:select>
-			
+			<aui:input label="display-price-with-tax" name="preferences--withTax--" type="checkbox" value="<%= withTax %>"/>
 		</liferay-ui:panel>
 		
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="pricePanel" persistState="<%= true %>" title="reviews">
