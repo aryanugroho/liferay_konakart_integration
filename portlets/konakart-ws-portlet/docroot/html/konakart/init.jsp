@@ -22,6 +22,7 @@
 
 <%@page import="com.konakart.ws.KKWSEngIf"%>
 <%@page import="com.konakart.wsapp.Product"%>
+<%@page import="com.konakart.wsapp.Review"%>
 
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Arrays"%>
@@ -65,6 +66,8 @@
 	String allShowColumns = "name,image,price,review";
 	
 	String[] showsColumns = StringUtil.split(PrefsParamUtil.getString(preferences, request, "showColumns", allShowColumns));
+	
+	String reviewType = PrefsParamUtil.getString(preferences, request, "reviewType");
 	
 	KKWSEngIf kkWsEng = (KKWSEngIf) renderRequest.getAttribute("kkWSEng");
 %>

@@ -27,7 +27,7 @@
 	
 	String ourl = serviceUrl + "SelectProd.do?prodId=";
 	
-	String showType = (String)renderRequest.getAttribute("showType");;
+	String showType = (String) renderRequest.getAttribute("showType");
 	
 	boolean withTax = PrefsParamUtil.getBoolean(preferences, request, "withTax", false);
 	
@@ -51,8 +51,6 @@
 		<%
 			int productId = product.getId();
 			LReviewLocalServiceUtil.setKKWsEng(kkWsEng);
-			
-			float d = (float)LReviewLocalServiceUtil.getAverageRating(productId);
 			
 			for (int i = 0;i < showsColumns.length; i++) {
 				String showsColumn = showsColumns[i];
@@ -110,10 +108,39 @@
 			</c:when>
 			
 			<c:when test='<%= showsColumn.equals("review") %>'>
-				<liferay-ui:search-container-column-score
-					name="Reviews"
-					score="<%= d*2/10 %>" 
-				/>
+				<% 
+					LReviewLocalServiceUtil.setKKWsEng(kkWsEng);
+					
+					if (reviewType.equals(PortletConstants.AVERAGERATING)) { 	
+						
+						float rating = (float) LReviewLocalServiceUtil.getAverageRating(productId);
+				%>
+					<liferay-ui:search-container-column-score
+						name="Reviews"
+						score="<%= rating*2/10 %>" 
+					/>
+				
+				<% 
+					} else if (reviewType.equals(PortletConstants.LASTESTREVIEW)) {
+						Review review = LReviewLocalServiceUtil.getLastestRating(productId);
+						if (Validator.isNull(review)) {
+							review = new Review();
+							review.setRating(0);
+							review.setReviewText("No Review");
+						} else {
+							System.out.println(review.getReviewText());
+						}
+				%>
+					<liferay-ui:search-container-column-score
+						name="Reviews"
+						score="<%= review.getRating()*2/10 %>" 
+					/>
+					<liferay-ui:search-container-column-text
+						name="commit"
+						value="<%= review.getReviewText() %>"
+					/>
+					
+				<% } %>
 			</c:when>
 		</c:choose>
 		
