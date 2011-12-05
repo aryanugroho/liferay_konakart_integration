@@ -14,6 +14,7 @@
 
 package com.liferay.konakart.service.impl;
 
+import com.konakart.app.DataDescConstants;
 import com.konakart.ws.KKWSEngIf;
 import com.konakart.wsapp.Review;
 import com.liferay.konakart.service.base.LReviewLocalServiceBaseImpl;
@@ -69,5 +70,24 @@ public class LReviewLocalServiceImpl extends LReviewLocalServiceBaseImpl {
 		return total/reviewArray.length;
 	}
 	
+	public Review getLastestRating(int productId) throws RemoteException {
+		return getLastestRating(new LDataDescriptor(
+			1, DataDescConstants.ORDER_BY_DATE_ADDED_DESCENDING), productId);
+	}
+	
+	public Review getLastestRating(LDataDescriptor ldd, int productId) 
+		throws RemoteException { 
+		
+		Review[] reviewArray = 
+			_kkWsEng.getReviewsPerProduct(
+				ldd.get_dataDescriptor(), productId).getReviewArray();
+		
+		if (reviewArray.length == 0) {
+			return null;
+		}
+		
+		return reviewArray[0];
+	}
+		
 	private static KKWSEngIf _kkWsEng;
 }

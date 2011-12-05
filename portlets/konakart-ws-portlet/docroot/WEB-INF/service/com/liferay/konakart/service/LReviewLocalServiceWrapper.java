@@ -61,6 +61,17 @@ public class LReviewLocalServiceWrapper implements LReviewLocalService {
 		return _lReviewLocalService.getAverageRating(ldd, productId);
 	}
 
+	public com.konakart.wsapp.Review getLastestRating(int productId)
+		throws java.rmi.RemoteException {
+		return _lReviewLocalService.getLastestRating(productId);
+	}
+
+	public com.konakart.wsapp.Review getLastestRating(
+		com.liferay.konakart.util.LDataDescriptor ldd, int productId)
+		throws java.rmi.RemoteException {
+		return _lReviewLocalService.getLastestRating(ldd, productId);
+	}
+
 	public LReviewLocalService getWrappedLReviewLocalService() {
 		return _lReviewLocalService;
 	}
