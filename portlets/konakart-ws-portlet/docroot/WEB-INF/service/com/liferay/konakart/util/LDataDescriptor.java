@@ -10,10 +10,25 @@ public class LDataDescriptor {
 		_dataDescriptor.setOffset(0);
 		_dataDescriptor.setLimit(DataDescConstants.MAX_ROWS);
 	}
+	
 	public LDataDescriptor(int limit) {
 		_dataDescriptor = new DataDescriptor();
 		_dataDescriptor.setOffset(0);
 		_dataDescriptor.setLimit(limit);
+	}
+	
+	public LDataDescriptor(int limit, String orderBy) {
+		_dataDescriptor = new DataDescriptor();
+		_dataDescriptor.setOffset(0);
+		_dataDescriptor.setLimit(limit);
+		_dataDescriptor.setOrderBy(orderBy);
+	}
+	
+	public LDataDescriptor(String orderBy) {
+		_dataDescriptor = new DataDescriptor();
+		_dataDescriptor.setOffset(0);
+		_dataDescriptor.setLimit(DataDescConstants.MAX_ROWS);
+		_dataDescriptor.setOrderBy(orderBy);
 	}
 	
 	public DataDescriptor get_dataDescriptor() {

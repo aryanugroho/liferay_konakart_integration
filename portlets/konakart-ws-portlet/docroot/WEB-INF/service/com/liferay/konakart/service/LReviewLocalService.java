@@ -66,4 +66,13 @@ public interface LReviewLocalService {
 	public double getAverageRating(
 		com.liferay.konakart.util.LDataDescriptor ldd, int productId)
 		throws java.rmi.RemoteException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.konakart.wsapp.Review getLastestRating(int productId)
+		throws java.rmi.RemoteException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.konakart.wsapp.Review getLastestRating(
+		com.liferay.konakart.util.LDataDescriptor ldd, int productId)
+		throws java.rmi.RemoteException;
 }

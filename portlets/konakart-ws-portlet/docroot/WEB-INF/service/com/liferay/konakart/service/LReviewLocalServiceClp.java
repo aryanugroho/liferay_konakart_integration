@@ -40,6 +40,13 @@ public class LReviewLocalServiceClp implements LReviewLocalService {
 		_getAverageRatingMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAverageRating",
 				com.liferay.konakart.util.LDataDescriptor.class, int.class);
+
+		_getLastestRatingMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getLastestRating", int.class);
+
+		_getLastestRatingMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getLastestRating",
+				com.liferay.konakart.util.LDataDescriptor.class, int.class);
 	}
 
 	public java.lang.String getBeanIdentifier() {
@@ -154,6 +161,61 @@ public class LReviewLocalServiceClp implements LReviewLocalService {
 		return ((Double)returnObj).doubleValue();
 	}
 
+	public com.konakart.wsapp.Review getLastestRating(int productId)
+		throws java.rmi.RemoteException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getLastestRatingMethodKey5,
+				productId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.konakart.wsapp.Review)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.konakart.wsapp.Review getLastestRating(
+		com.liferay.konakart.util.LDataDescriptor ldd, int productId)
+		throws java.rmi.RemoteException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getLastestRatingMethodKey6,
+				ClpSerializer.translateInput(ldd), productId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.konakart.wsapp.Review)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -164,4 +226,6 @@ public class LReviewLocalServiceClp implements LReviewLocalService {
 	private MethodKey _setKKWsEngMethodKey2;
 	private MethodKey _getAverageRatingMethodKey3;
 	private MethodKey _getAverageRatingMethodKey4;
+	private MethodKey _getLastestRatingMethodKey5;
+	private MethodKey _getLastestRatingMethodKey6;
 }

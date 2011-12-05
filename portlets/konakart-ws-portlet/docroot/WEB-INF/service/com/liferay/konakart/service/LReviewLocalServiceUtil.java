@@ -72,6 +72,17 @@ public class LReviewLocalServiceUtil {
 		return getService().getAverageRating(ldd, productId);
 	}
 
+	public static com.konakart.wsapp.Review getLastestRating(int productId)
+		throws java.rmi.RemoteException {
+		return getService().getLastestRating(productId);
+	}
+
+	public static com.konakart.wsapp.Review getLastestRating(
+		com.liferay.konakart.util.LDataDescriptor ldd, int productId)
+		throws java.rmi.RemoteException {
+		return getService().getLastestRating(ldd, productId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
