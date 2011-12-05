@@ -70,4 +70,6 @@
 	String reviewType = PrefsParamUtil.getString(preferences, request, "reviewType");
 	
 	KKWSEngIf kkWsEng = (KKWSEngIf) renderRequest.getAttribute("kkWSEng");
+	
+	int rowsPerPage = GetterUtil.getInteger(preferences.getValue("rowsPerPage", "5"));
 %>
