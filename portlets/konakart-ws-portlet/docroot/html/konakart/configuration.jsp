@@ -20,7 +20,7 @@
 	String webServiceAddress = PrefsParamUtil.getString(preferences, renderRequest, "webServiceAddress", "");
 	
 	String showType = PrefsParamUtil.getString(preferences, renderRequest, "showType");
-	
+		
 	boolean showRandom = PrefsParamUtil.getBoolean(preferences, renderRequest, "showRandom", false);
 	
 	boolean withTax = PrefsParamUtil.getBoolean(preferences, renderRequest, "withTax", false);
@@ -38,14 +38,13 @@
 	<liferay-ui:panel-container extended="<%= true %>" id="settingsPanelContainer" persistState="<%= true %>">
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="overallPanel" persistState="<%= true %>" title="overall">
 			<aui:fieldset>
-				<aui:input helpMessage="address-help-message" lable="web-service-address" name="preferences--webServiceAddress--" size="20" type="test" value="<%= webServiceAddress %>"/> 
+				<aui:input helpMessage="address-help-message" lable="web-service-address" name="preferences--webServiceAddress--" size="200" type="test" value="<%= webServiceAddress %>"/> 
 		
 				<aui:select label="show-type" name="preferences--showType--">
 					<aui:option label="best-sellers" selected='<%=showType.equals(PortletConstants.BESTSELLERS) %>' value="<%= PortletConstants.BESTSELLERS %>"/>
 					<aui:option label="special" selected='<%= showType.equals(PortletConstants.SPECIAL) %>' value="<%= PortletConstants.SPECIAL %>"/>
 					<aui:option label="whats-new" selected='<%= showType.equals(PortletConstants.LATEEST) %>' value="<%= PortletConstants.LATEEST %>"/>
-				</aui:select>
-			
+				</aui:select>		
 			</aui:fieldset>
 		</liferay-ui:panel>
 		
@@ -105,10 +104,10 @@
 		</liferay-ui:panel>
 		
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="pricePanel" persistState="<%= true %>" title="reviews">
-			review type
-			<aui:input type="radio" label="the-average-rating " name="reviewType" value=""/>
-			<aui:input type="radio" label="the-random-users'-rating-with-commit" name="reviewType" value=""/>
-			<aui:input type="radio" label="the-lastest-users'-rating-with-commit" name="reviewType" value=""/>
+			<aui:select label="review-type" name="preferences--reviewType--">
+				<aui:option label="the-average-rating" selected='<%=reviewType.equals(PortletConstants.AVERAGERATING) %>' value="<%= PortletConstants.AVERAGERATING %>"/>
+				<aui:option label="the-lastest-users-review" selected='<%= reviewType.equals(PortletConstants.LASTESTREVIEW) %>' value="<%= PortletConstants.LASTESTREVIEW %>"/>
+			</aui:select>
 		</liferay-ui:panel>
 
 	</liferay-ui:panel-container>	
