@@ -14,14 +14,13 @@
  */
 --%>
 
-<%@page import="com.konakart.ws.KKWSEngIf"%>
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@page import="com.konakart.ws.KKWSEngIf"%>
 <%@page import="com.konakart.wsapp.Product"%>
 
 <%@page import="java.util.Iterator"%>
@@ -29,6 +28,7 @@
 <%@page import="java.util.Set"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@page import="java.math.BigDecimal"%>
 
 <%@page import="javax.portlet.PortletPreferences"%>
 

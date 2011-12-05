@@ -14,7 +14,6 @@
 */
 --%>
 
-<%@page import="java.math.BigDecimal"%>
 <%@ include file="/html/konakart/init.jsp" %>
 
 <% 	
@@ -123,5 +122,3 @@
 
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
-
-
