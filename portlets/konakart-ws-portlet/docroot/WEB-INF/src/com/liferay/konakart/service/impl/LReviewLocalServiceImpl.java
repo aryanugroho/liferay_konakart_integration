@@ -72,7 +72,7 @@ public class LReviewLocalServiceImpl extends LReviewLocalServiceBaseImpl {
 	
 	public Review getLastestRating(int productId) throws RemoteException {
 		return getLastestRating(new LDataDescriptor(
-			1, DataDescConstants.ORDER_BY_DATE_ADDED_DESCENDING), productId);
+				1, DataDescConstants.ORDER_BY_DATE_ADDED_DESCENDING), productId);
 	}
 	
 	public Review getLastestRating(LDataDescriptor ldd, int productId) 
