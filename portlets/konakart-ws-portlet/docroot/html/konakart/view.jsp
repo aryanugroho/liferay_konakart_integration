@@ -35,7 +35,7 @@
 %>
 
 <liferay-ui:search-container
-	delta='<%= GetterUtil.getInteger(preferences.getValue("rowsPerPage", "5")) %>'
+	delta='<%= rowsPerPage %>'
 	headerNames="<%= StringUtil.merge(showsColumns) %>"
 	emptyResultsMessage="there are no products"
 	>

@@ -38,18 +38,20 @@
 	<liferay-ui:panel-container extended="<%= true %>" id="settingsPanelContainer" persistState="<%= true %>">
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="overallPanel" persistState="<%= true %>" title="overall">
 			<aui:fieldset>
-				<aui:input helpMessage="address-help-message" lable="web-service-address" name="preferences--webServiceAddress--" size="200" type="test" value="<%= webServiceAddress %>"/> 
+				<aui:input helpMessage="address-help-message" lable="web-service-address" name="preferences--webServiceAddress--" size="80" type="test" value="<%= webServiceAddress %>"/> 
 		
 				<aui:select label="show-type" name="preferences--showType--">
 					<aui:option label="best-sellers" selected='<%=showType.equals(PortletConstants.BESTSELLERS) %>' value="<%= PortletConstants.BESTSELLERS %>"/>
 					<aui:option label="special" selected='<%= showType.equals(PortletConstants.SPECIAL) %>' value="<%= PortletConstants.SPECIAL %>"/>
 					<aui:option label="whats-new" selected='<%= showType.equals(PortletConstants.LATEEST) %>' value="<%= PortletConstants.LATEEST %>"/>
-				</aui:select>		
+				</aui:select>	
+				
+				<aui:input label="rows-per-page" name="preferences--rowsPerPage--" type="text" size="3" value="<%= rowsPerPage %>"/>	
 			</aui:fieldset>
 		</liferay-ui:panel>
 		
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="showPanel" persistState="<%= true %>" title="show">
-			<aui:input label="show-count" name="preferences--showCount--" type="text" value="<%= showCount %>"/>
+			<aui:input label="show-count" name="preferences--showCount--" type="text" size="3" value="<%= showCount %>"/>
 	
 			<aui:field-wrapper label="show-columns">
 				<%
