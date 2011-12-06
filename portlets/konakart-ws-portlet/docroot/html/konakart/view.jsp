@@ -59,6 +59,7 @@
 		<c:choose>
 			<c:when test='<%= showsColumn.equals("name") %>'>
 				<liferay-ui:search-container-column-text
+					href="<%= ourl + productId %>"
 					name="Name"
 					value="<%= product.getName() %>"
 				/>
@@ -124,12 +125,11 @@
 				<% 
 					} else if (reviewType.equals(PortletConstants.LASTESTREVIEW)) {
 						Review review = LReviewLocalServiceUtil.getLastestRating(productId);
+						
 						if (Validator.isNull(review)) {
 							review = new Review();
 							review.setRating(0);
 							review.setReviewText("No Review");
-						} else {
-							System.out.println(review.getReviewText());
 						}
 				%>
 					<liferay-ui:search-container-column-score
