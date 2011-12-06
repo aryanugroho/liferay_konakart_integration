@@ -67,6 +67,7 @@
 		
 			<c:when test='<%= showsColumn.equals("image") %>'>
 				<liferay-ui:search-container-column-text 
+					href="<%= ourl + productId %>"
 					name="Image"
 					>
 					<liferay-ui:icon
@@ -78,6 +79,7 @@
 			<c:when test='<%= showsColumn.equals("price") %>'>
 				<liferay-ui:search-container-column-text
 					name="Price"
+					href="<%= ourl + productId %>"
 					buffer="buffer" 
 				>
 				
@@ -137,6 +139,7 @@
 						score="<%= review.getRating()*2/10 %>" 
 					/>
 					<liferay-ui:search-container-column-text
+						href="<%= ourl + productId %>"
 						name="commit"
 						value="<%= review.getReviewText() %>"
 					/>
