@@ -93,12 +93,13 @@
 					}
 					
 					if (Validator.isNull(specialPrice)) {
+						buffer.append("$");
 						buffer.append(price);
 					} else {
-						buffer.append("<s>");
+						buffer.append("<s>$");
 						buffer.append(price);
 						buffer.append("</s> ");
-						buffer.append("<i><font color='red'>");
+						buffer.append("<i><font color='red'>$");
 						buffer.append(specialPrice);
 						buffer.append("</font></i>");
 					}
