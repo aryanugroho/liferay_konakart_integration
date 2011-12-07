@@ -4,7 +4,7 @@ import com.konakart.ws.KKWSEngIf;
 import com.konakart.wsapp.Product;
 
 import com.liferay.konakart.service.LPruductLocalServiceUtil;
-import com.liferay.konakart.util.KKWsEngUtil;
+import com.liferay.konakart.util.KKWsUtil;
 import com.liferay.konakart.util.PortletConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -34,24 +34,24 @@ public class PromotionPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse) 
 		throws IOException, PortletException{
 		
-			String webServiceAddress = getWebServiceAddress(renderRequest);
+			String webServiceAddress = KKWsUtil.getWebServiceAddress(renderRequest);
 			
 			String serviceUrl = StringUtil.replace(webServiceAddress,
 				"services/KKWebServiceEng?wsdl", "");
 			
 			URL url = new URL(webServiceAddress);	
 			
-			KKWSEngIf kkWSEng = KKWsEngUtil.getKKWsEngUtil(url);
+			KKWSEngIf kkWSEng = KKWsUtil.getKKWsEngUtil(url);
 			
 			LPruductLocalServiceUtil.setKKWsEng(kkWSEng);
 			
-			String showType = getShowType(renderRequest);
+			String showType = KKWsUtil.getShowType(renderRequest);
 			
-			int showCount = getShowCount(renderRequest);
+			int showCount = KKWsUtil.getShowCount(renderRequest);
 			
 			Product[] productArray = new Product[0];
 			
-			boolean showRandom = getShowRandom(renderRequest);
+			boolean showRandom = KKWsUtil.getShowRandom(renderRequest);
 			
 			int count =  showCount;
 			
@@ -83,58 +83,6 @@ public class PromotionPortlet extends MVCPortlet {
 			renderRequest.setAttribute("serviceUrl", serviceUrl);
 			
 			super.doView(renderRequest, renderResponse);	
-	}
-	
-	protected String getWebServiceAddress(RenderRequest renderRequest) {
-		String address = 
-			"http://www.konakart.com/konakart/services/KKWebServiceEng?wsdl";
-
-		String webServiceAddress = 
-			PrefsParamUtil.getString(getPortletPreferences(renderRequest), 
-				renderRequest, "webServiceAddress");
-
-		if (Validator.isNotNull(webServiceAddress)) {
-			address = webServiceAddress;
-		}
-
-		return address;
-	}
-
-	protected String getShowType(RenderRequest renderRequest) {
-		return PrefsParamUtil.getString(getPortletPreferences(renderRequest), 
-			renderRequest, "showType", PortletConstants.BESTSELLERS);
-	}
-	
-	protected boolean getShowRandom(RenderRequest renderRequest) {	
-		return PrefsParamUtil.getBoolean(getPortletPreferences(renderRequest), 
-			renderRequest, "showRandom", false);
-	}
-	
-	protected int getShowCount(RenderRequest renderRequest) {
-		return PrefsParamUtil.getInteger(getPortletPreferences(renderRequest), 
-			renderRequest, "showCount", 5);
-	}
-	
-	protected PortletPreferences getPortletPreferences(
-			RenderRequest renderRequest) {
-		
-		PortletPreferences preferences = renderRequest.getPreferences();
-
-		String portletResource = ParamUtil.getString(renderRequest,
-				"portletResource");
-
-		if (Validator.isNotNull(portletResource)) {
-			try {
-				preferences = PortletPreferencesFactoryUtil.getPortletSetup(
-					renderRequest, portletResource);
-			} catch (PortalException e) {
-				e.printStackTrace();
-			} catch (SystemException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return preferences;
 	}
 	
 	protected Product[] getRandomShowProducts(

@@ -2,7 +2,7 @@ package com.liferay.konakart;
 
 import com.konakart.ws.KKWSEngIf;
 import com.liferay.konakart.service.LPruductLocalServiceUtil;
-import com.liferay.konakart.util.KKWsEngUtil;
+import com.liferay.konakart.util.KKWsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -35,7 +35,7 @@ public class DetailPortlet extends MVCPortlet {
 		
 		URL url = new URL(webServiceAddress);	
 		
-		KKWSEngIf kkWSEng = KKWsEngUtil.getKKWsEngUtil(url);
+		KKWSEngIf kkWSEng = KKWsUtil.getKKWsEngUtil(url);
 		
 		LPruductLocalServiceUtil.setKKWsEng(kkWSEng);
 		
