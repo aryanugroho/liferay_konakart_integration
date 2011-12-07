@@ -72,4 +72,6 @@
 	KKWSEngIf kkWsEng = (KKWSEngIf) renderRequest.getAttribute("kkWSEng");
 	
 	int rowsPerPage = GetterUtil.getInteger(preferences.getValue("rowsPerPage", "5"));
+	
+	boolean linkToSite = PrefsParamUtil.getBoolean(preferences, request, "linkToSite", false);
 %>

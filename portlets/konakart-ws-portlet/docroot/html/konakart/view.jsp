@@ -52,6 +52,12 @@
 			int productId = product.getId();
 			LReviewLocalServiceUtil.setKKWsEng(kkWsEng);
 			
+			if (linkToSite) {
+				ourl = ourl + productId;
+			} else {
+				ourl = null;
+			}
+			
 			for (int i = 0;i < showsColumns.length; i++) {
 				String showsColumn = showsColumns[i];
 		%>
@@ -59,7 +65,7 @@
 		<c:choose>
 			<c:when test='<%= showsColumn.equals("name") %>'>
 				<liferay-ui:search-container-column-text
-					href="<%= ourl + productId %>"
+					href="<%= ourl %>"
 					name="Name"
 					value="<%= product.getName() %>"
 				/>
@@ -67,7 +73,7 @@
 		
 			<c:when test='<%= showsColumn.equals("image") %>'>
 				<liferay-ui:search-container-column-text 
-					href="<%= ourl + productId %>"
+					href="<%= ourl  %>"
 					name="Image"
 					>
 					<liferay-ui:icon
@@ -79,7 +85,7 @@
 			<c:when test='<%= showsColumn.equals("price") %>'>
 				<liferay-ui:search-container-column-text
 					name="Price"
-					href="<%= ourl + productId %>"
+					href="<%= ourl  %>"
 					buffer="buffer" 
 				>
 				
@@ -139,7 +145,7 @@
 						score="<%= review.getRating()*2/10 %>" 
 					/>
 					<liferay-ui:search-container-column-text
-						href="<%= ourl + productId %>"
+						href="<%= ourl %>"
 						name="commit"
 						value="<%= review.getReviewText() %>"
 					/>

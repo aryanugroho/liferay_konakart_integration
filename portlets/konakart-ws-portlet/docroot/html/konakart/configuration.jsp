@@ -47,6 +47,8 @@
 				</aui:select>	
 				
 				<aui:input label="rows-per-page" name="preferences--rowsPerPage--" type="text" size="3" value="<%= rowsPerPage %>"/>	
+				
+				<aui:input label="link-to-original-site" name="preferences--linkToSite--" type="checkbox" value="<%= linkToSite %>"/>
 			</aui:fieldset>
 		</liferay-ui:panel>
 		
