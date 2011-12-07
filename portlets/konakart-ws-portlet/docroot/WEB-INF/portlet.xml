@@ -8,8 +8,8 @@
 >
 	
 	<portlet>
-		<portlet-name>konakart</portlet-name>
-		<display-name>Konakart</display-name>
+		<portlet-name>promotion</portlet-name>
+		<display-name>Promotion</display-name>
 		<portlet-class>com.liferay.konakart.Konakart</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
@@ -27,8 +27,8 @@
 		</supports>
 		<resource-bundle>content/Language</resource-bundle>
 		<portlet-info>
-			<title>Konakart</title>
-			<short-title>Konakart</short-title>
+			<title>Promotion</title>
+			<short-title>Promotion</short-title>
 			<keywords></keywords>
 		</portlet-info>
 		<security-role-ref>
