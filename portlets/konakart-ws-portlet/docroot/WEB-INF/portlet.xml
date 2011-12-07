@@ -10,7 +10,7 @@
 	<portlet>
 		<portlet-name>promotion</portlet-name>
 		<display-name>Promotion</display-name>
-		<portlet-class>com.liferay.konakart.Konakart</portlet-class>
+		<portlet-class>com.liferay.konakart.PromotionPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/html/konakart/view.jsp</value>
@@ -29,6 +29,39 @@
 		<portlet-info>
 			<title>Promotion</title>
 			<short-title>Promotion</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>detailportlet</portlet-name>
+		<display-name>DetailPortlet</display-name>
+		<portlet-class>
+			com.liferay.konakart.DetailPortlet
+		</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/html/detailportlet/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Detail</title>
+			<short-title>Detail</short-title>
 			<keywords></keywords>
 		</portlet-info>
 		<security-role-ref>
