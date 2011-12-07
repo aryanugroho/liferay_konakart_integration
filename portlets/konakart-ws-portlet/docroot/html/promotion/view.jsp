@@ -14,7 +14,7 @@
 */
 --%>
 
-<%@ include file="/html/konakart/init.jsp" %>
+<%@ include file="/html/promotion/init.jsp" %>
 
 <% 	
 	Product[] productArray = (Product[]) renderRequest.getAttribute("productArray");
