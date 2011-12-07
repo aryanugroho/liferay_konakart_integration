@@ -28,7 +28,7 @@ import javax.portlet.RenderResponse;
 /**
  * Portlet implementation class Konakart
  */
-public class Konakart extends MVCPortlet {
+public class PromotionPortlet extends MVCPortlet {
 
 	public void doView(
 			RenderRequest renderRequest, RenderResponse renderResponse) 
