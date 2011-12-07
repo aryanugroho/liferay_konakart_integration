@@ -4,6 +4,6 @@
 <display>
 	<category name="category.sample">
 
-		<portlet id="konakart"></portlet>
+		<portlet id="promotion"></portlet>
 	</category>
 </display>
