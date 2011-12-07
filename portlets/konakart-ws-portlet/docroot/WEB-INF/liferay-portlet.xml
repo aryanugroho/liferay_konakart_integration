@@ -15,7 +15,7 @@
 		<css-class-wrapper>konakart-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
-		<portlet-name>detailportlet</portlet-name>
+		<portlet-name>detail</portlet-name>
 		<icon>/icon.png</icon>
 		<instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
