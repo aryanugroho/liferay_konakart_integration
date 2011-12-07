@@ -59,6 +59,7 @@
 		<c:choose>
 			<c:when test='<%= showsColumn.equals("name") %>'>
 				<liferay-ui:search-container-column-text
+					href="<%= ourl + productId %>"
 					name="Name"
 					value="<%= product.getName() %>"
 				/>
@@ -66,6 +67,7 @@
 		
 			<c:when test='<%= showsColumn.equals("image") %>'>
 				<liferay-ui:search-container-column-text 
+					href="<%= ourl + productId %>"
 					name="Image"
 					>
 					<liferay-ui:icon
@@ -77,6 +79,7 @@
 			<c:when test='<%= showsColumn.equals("price") %>'>
 				<liferay-ui:search-container-column-text
 					name="Price"
+					href="<%= ourl + productId %>"
 					buffer="buffer" 
 				>
 				
@@ -93,12 +96,13 @@
 					}
 					
 					if (Validator.isNull(specialPrice)) {
+						buffer.append("$");
 						buffer.append(price);
 					} else {
-						buffer.append("<s>");
+						buffer.append("<s>$");
 						buffer.append(price);
 						buffer.append("</s> ");
-						buffer.append("<i><font color='red'>");
+						buffer.append("<i><font color='red'>$");
 						buffer.append(specialPrice);
 						buffer.append("</font></i>");
 					}
@@ -123,12 +127,11 @@
 				<% 
 					} else if (reviewType.equals(PortletConstants.LASTESTREVIEW)) {
 						Review review = LReviewLocalServiceUtil.getLastestRating(productId);
+						
 						if (Validator.isNull(review)) {
 							review = new Review();
 							review.setRating(0);
 							review.setReviewText("No Review");
-						} else {
-							System.out.println(review.getReviewText());
 						}
 				%>
 					<liferay-ui:search-container-column-score
@@ -136,6 +139,7 @@
 						score="<%= review.getRating()*2/10 %>" 
 					/>
 					<liferay-ui:search-container-column-text
+						href="<%= ourl + productId %>"
 						name="commit"
 						value="<%= review.getReviewText() %>"
 					/>
