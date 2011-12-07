@@ -14,8 +14,6 @@
 */
 --%>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ include file="/html/promotion/init.jsp" %>
 
-<portlet:defineObjects />
-
-This is the <b>DetailPortlet</b> portlet in View mode.
+Connect is time out,please refresh or reset the address of web service 
