@@ -14,7 +14,7 @@
 */
 --%>
 
-<%@ include file="/html/konakart/init.jsp" %>
+<%@ include file="/html/promotion/init.jsp" %>
 
 <% 
 	String webServiceAddress = PrefsParamUtil.getString(preferences, renderRequest, "webServiceAddress", "");
