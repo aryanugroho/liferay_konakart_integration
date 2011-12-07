@@ -5,6 +5,6 @@
 	<category name="category.konakart">
 
 		<portlet id="promotion"></portlet>
-		<portlet id="detailportlet"></portlet>
+		<portlet id="detail"></portlet>
 	</category>
 </display>
