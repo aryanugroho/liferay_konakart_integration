@@ -6,14 +6,8 @@ import com.konakart.wsapp.Product;
 import com.liferay.konakart.service.LPruductLocalServiceUtil;
 import com.liferay.konakart.util.KKWsUtil;
 import com.liferay.konakart.util.PortletConstants;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.PrefsParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -21,7 +15,6 @@ import java.net.URL;
 import java.util.Random;
 
 import javax.portlet.PortletException;
-import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
