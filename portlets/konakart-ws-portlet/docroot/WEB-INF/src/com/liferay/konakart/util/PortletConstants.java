@@ -28,4 +28,6 @@ public interface PortletConstants {
 	public static final String AVERAGERATING = "averageRating";
 	
 	public static final String LASTESTREVIEW = "lastestReview";
+	
+	public static final String KKWSENG = "kkWsEng";
 }

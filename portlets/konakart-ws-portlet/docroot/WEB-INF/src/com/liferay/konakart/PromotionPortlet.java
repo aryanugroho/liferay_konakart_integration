@@ -34,7 +34,7 @@ public class PromotionPortlet extends MVCPortlet {
 			
 			URL url = new URL(webServiceAddress);	
 			
-			KKWSEngIf kkWSEng = KKWsUtil.getKKWsEngUtil(url);
+			KKWSEngIf kkWSEng = KKWsUtil.getKKWsEng(renderRequest, url);
 			
 			LPruductLocalServiceUtil.setKKWsEng(kkWSEng);
 			

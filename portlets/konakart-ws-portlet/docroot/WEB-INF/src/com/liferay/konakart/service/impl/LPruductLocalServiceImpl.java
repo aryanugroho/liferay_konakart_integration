@@ -95,6 +95,10 @@ public class LPruductLocalServiceImpl extends LPruductLocalServiceBaseImpl {
 		return productArray;		
 	}
 	
+	public Product getProduct(int productId) throws RemoteException {
+		return getProduct(null, productId, KKConstant.KK_DEFAULT_LANGUAGE_ID);
+	}
+	
 	public Product getProduct(String sessionId, int productId, int languageId) 
 		throws RemoteException {
 		
@@ -121,7 +125,8 @@ public class LPruductLocalServiceImpl extends LPruductLocalServiceBaseImpl {
 			int langugeId) 
 		throws RemoteException {
 		
-		return _kkWsEng.searchForProducts(sessionId, ldd.get_dataDescriptor(), lps.getProductSearch(), -1).getProductArray();
+		return _kkWsEng.searchForProducts(sessionId, ldd.get_dataDescriptor(), 
+			lps.getProductSearch(), -1).getProductArray();
 	}
 	
 	private static KKWSEngIf _kkWsEng;
