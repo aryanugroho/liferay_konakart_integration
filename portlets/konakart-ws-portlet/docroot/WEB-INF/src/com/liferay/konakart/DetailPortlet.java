@@ -44,7 +44,7 @@ public class DetailPortlet extends MVCPortlet {
 		renderRequest.setAttribute("productArray", productArray);
 
 		renderRequest.setAttribute("serviceUrl", serviceUrl);
-		
+		System.out.println("test");
 		super.doView(renderRequest, renderResponse);
 	}
 }
