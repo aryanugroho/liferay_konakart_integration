@@ -85,6 +85,11 @@ public class LPruductLocalServiceUtil {
 		return getService().getSpecialProducts(limit);
 	}
 
+	public static com.konakart.wsapp.Product getProduct(int productId)
+		throws java.rmi.RemoteException {
+		return getService().getProduct(productId);
+	}
+
 	public static com.konakart.wsapp.Product getProduct(
 		java.lang.String sessionId, int productId, int languageId)
 		throws java.rmi.RemoteException {

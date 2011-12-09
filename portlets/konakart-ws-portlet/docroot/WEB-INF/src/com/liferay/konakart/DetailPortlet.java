@@ -1,6 +1,7 @@
 package com.liferay.konakart;
 
 import com.konakart.ws.KKWSEngIf;
+import com.konakart.wsapp.Product;
 import com.liferay.konakart.service.LPruductLocalServiceUtil;
 import com.liferay.konakart.util.KKWsUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -23,15 +24,27 @@ public class DetailPortlet extends MVCPortlet {
 		throws IOException, PortletException{
 		
 		String webServiceAddress = KKWsUtil.getWebServiceAddress(renderRequest);
-		
+	
 		String serviceUrl = StringUtil.replace(webServiceAddress,
-			"services/KKWebServiceEng?wsdl", "");
-		
+				"services/KKWebServiceEng?wsdl", "");
+			
 		URL url = new URL(webServiceAddress);	
 		
-		KKWSEngIf kkWSEng = KKWsUtil.getKKWsEngUtil(url);
+		KKWSEngIf kkWSEng = KKWsUtil.getKKWsEng(url);
 		
 		LPruductLocalServiceUtil.setKKWsEng(kkWSEng);
 		
-	}	
+		Product[] productArray = new Product[0];
+		
+		productArray = LPruductLocalServiceUtil.
+				getLastestProducts(5);
+		
+		renderRequest.setAttribute("kkWSEng", kkWSEng);
+		
+		renderRequest.setAttribute("productArray", productArray);
+
+		renderRequest.setAttribute("serviceUrl", serviceUrl);
+		
+		super.doView(renderRequest, renderResponse);
+	}
 }

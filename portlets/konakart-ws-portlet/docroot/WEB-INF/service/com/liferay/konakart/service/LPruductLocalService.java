@@ -78,6 +78,10 @@ public interface LPruductLocalService {
 	public com.konakart.wsapp.Product[] getSpecialProducts(int limit);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.konakart.wsapp.Product getProduct(int productId)
+		throws java.rmi.RemoteException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.konakart.wsapp.Product getProduct(java.lang.String sessionId,
 		int productId, int languageId) throws java.rmi.RemoteException;
 
