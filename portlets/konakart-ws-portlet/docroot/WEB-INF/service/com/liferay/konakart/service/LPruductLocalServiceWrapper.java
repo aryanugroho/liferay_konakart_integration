@@ -75,6 +75,11 @@ public class LPruductLocalServiceWrapper implements LPruductLocalService {
 		return _lPruductLocalService.getSpecialProducts(limit);
 	}
 
+	public com.konakart.wsapp.Product getProduct(int productId)
+		throws java.rmi.RemoteException {
+		return _lPruductLocalService.getProduct(productId);
+	}
+
 	public com.konakart.wsapp.Product getProduct(java.lang.String sessionId,
 		int productId, int languageId) throws java.rmi.RemoteException {
 		return _lPruductLocalService.getProduct(sessionId, productId, languageId);

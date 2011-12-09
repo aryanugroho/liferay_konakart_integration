@@ -52,15 +52,18 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 				"getSpecialProducts", int.class);
 
 		_getProductMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getProduct", int.class);
+
+		_getProductMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getProduct", java.lang.String.class, int.class, int.class);
 
-		_getLastestProductsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getLastestProductsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLastestProducts");
 
-		_getLastestProductsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getLastestProductsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLastestProducts", int.class);
 
-		_searchProductsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchProductsMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchProducts", java.lang.String.class,
 				com.liferay.konakart.util.LDataDescriptor.class,
 				com.liferay.konakart.util.LProductSearch.class, int.class);
@@ -247,11 +250,38 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 		return (com.konakart.wsapp.Product[])ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.konakart.wsapp.Product getProduct(int productId)
+		throws java.rmi.RemoteException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getProductMethodKey8,
+				productId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.konakart.wsapp.Product)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.konakart.wsapp.Product getProduct(java.lang.String sessionId,
 		int productId, int languageId) throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getProductMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getProductMethodKey9,
 				ClpSerializer.translateInput(sessionId), productId, languageId);
 
 		try {
@@ -278,7 +308,7 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getLastestProductsMethodKey9);
+		MethodHandler methodHandler = new MethodHandler(_getLastestProductsMethodKey10);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -304,7 +334,7 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getLastestProductsMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getLastestProductsMethodKey11,
 				limit);
 
 		try {
@@ -334,7 +364,7 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchProductsMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_searchProductsMethodKey12,
 				ClpSerializer.translateInput(sessionId),
 				ClpSerializer.translateInput(ldd),
 				ClpSerializer.translateInput(lps), langugeId);
@@ -373,7 +403,8 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 	private MethodKey _getSpecialProductsMethodKey6;
 	private MethodKey _getSpecialProductsMethodKey7;
 	private MethodKey _getProductMethodKey8;
-	private MethodKey _getLastestProductsMethodKey9;
+	private MethodKey _getProductMethodKey9;
 	private MethodKey _getLastestProductsMethodKey10;
-	private MethodKey _searchProductsMethodKey11;
+	private MethodKey _getLastestProductsMethodKey11;
+	private MethodKey _searchProductsMethodKey12;
 }

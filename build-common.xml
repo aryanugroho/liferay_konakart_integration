@@ -3,18 +3,16 @@
 
 <project name="build-common">
 	<property environment="env" />
-	
-	<property name="project.root.dir" value=".." />
-	<property name="project.dir" value="." />
-	<property file="${project.dir}/build.lkDev.properties" />
+
+	<property file="${project.dir}/build.${user.name}.properties" />
 	<property file="${project.dir}/build.${env.COMPUTERNAME}.properties" />
 	<property file="${project.dir}/build.${env.HOST}.properties" />
 	<property file="${project.dir}/build.${env.HOSTNAME}.properties" />
 	<property file="${project.dir}/build.properties" />
-	
+
 	<property name="app.server.classes.portal.dir" value="${app.server.portal.dir}/WEB-INF/classes" />
 	<property name="app.server.lib.portal.dir" value="${app.server.portal.dir}/WEB-INF/lib" />
-	
+
 	<path id="lib.classpath">
 		<fileset dir="${project.dir}/lib" includes="*.jar" />
 	</path>
@@ -52,7 +50,11 @@
 			<equals arg1="${correct.ant.version}" arg2="true" />
 		</not>
 		<then>
-			<fail>Please use Ant 1.7.0 or above.</fail>
+			<fail>
+.
+
+Please use Ant 1.7.0 or above.
+			</fail>
 		</then>
 	</if>
 
@@ -79,10 +81,6 @@ ECJ was automatically installed. Please rerun your task.
 	</if>
 
 	<target name="compile-java">
-		<copy todir="${javac.destdir}">
-			<fileset dir="${javac.srcdir}" excludes="**/*.java" />
-		</copy>
-
 		<javac
 			classpathref="${javac.classpathref}"
 			compiler="${javac.compiler}"
@@ -94,6 +92,10 @@ ECJ was automatically installed. Please rerun your task.
 			nowarn="${javac.nowarn}"
 			srcdir="${javac.srcdir}"
 		/>
+
+		<copy todir="${javac.destdir}">
+			<fileset dir="${javac.srcdir}" excludes="**/*.java" />
+		</copy>
 	</target>
 
 	<target name="format-javadoc">
