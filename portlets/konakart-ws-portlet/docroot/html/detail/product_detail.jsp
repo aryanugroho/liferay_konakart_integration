@@ -14,4 +14,25 @@
  */
 --%>
 
+<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
 <%@ include file="/html/detail/init.jsp" %>
+
+<%
+	int pId = ParamUtil.getInteger(renderRequest, "productId");
+	
+	Product product = LPruductLocalServiceUtil.getProduct(pId);
+%>
+
+name : <%= product.getName() %> <br>
+price: <%= product.getPriceExTax() %> <br>
+Description: <%= product.getDescription() %> <br>
+
+<% 
+	if (product.getOpts().length != 0) {
+%>
+	<select>
+		<% for (int i = 0; i <product.getOpts().length; i++) {%>
+			<option><%=product.getOpts()[i].getValue() %></option>
+		<%} %>
+	</select>
+<% }%>

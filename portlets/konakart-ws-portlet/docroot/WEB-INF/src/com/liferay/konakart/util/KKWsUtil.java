@@ -4,6 +4,7 @@ import com.konakart.ws.KKWSEngIf;
 import com.konakart.ws.KKWSEngIfServiceLocator;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.servlet.PortletServlet;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -13,11 +14,13 @@ import java.net.URL;
 
 import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.rpc.ServiceException;
 
 public class KKWsUtil {
 	
-	public static KKWSEngIf getKKWsEngUtil() {
+	public static KKWSEngIf getKKWsEng() {
 		try {
 			_kkWsEng = new KKWSEngIfServiceLocator().getKKWebServiceEng();
 		} catch (ServiceException e) {
@@ -27,7 +30,7 @@ public class KKWsUtil {
 		return _kkWsEng;
 	}
 	
-	public static KKWSEngIf getKKWsEngUtil(URL webServiceURL) {
+	public static KKWSEngIf getKKWsEng(URL webServiceURL) {
 		try {
 			_kkWsEng = new KKWSEngIfServiceLocator().
 				getKKWebServiceEng(webServiceURL);
@@ -37,10 +40,50 @@ public class KKWsUtil {
 		
 		return _kkWsEng;
 	}
+
+	public static KKWSEngIf getKKWsEng(RenderRequest renderRequest) {
+		HttpServletRequest httpServletRequest = 
+				(HttpServletRequest) renderRequest.getAttribute(
+						PortletServlet.PORTLET_SERVLET_REQUEST);
+			
+		HttpSession session = httpServletRequest.getSession();
+
+		_kkWsEng = 
+			(KKWSEngIf) session.getAttribute(PortletConstants.KKWSENG);
+		
+		if (_kkWsEng == null) {
+			_kkWsEng = getKKWsEng();
+			session.setAttribute(PortletConstants.KKWSENG, _kkWsEng);
+		}
+		
+		return _kkWsEng;
+	}
+	
+	public static KKWSEngIf getKKWsEng(
+			RenderRequest renderRequest, URL webServiceURL) {
+		
+		HttpServletRequest httpServletRequest = 
+				(HttpServletRequest) renderRequest.getAttribute(
+						PortletServlet.PORTLET_SERVLET_REQUEST);
+			
+		HttpSession session = httpServletRequest.getSession();
+
+		_kkWsEng = 
+			(KKWSEngIf) session.getAttribute(PortletConstants.KKWSENG);
+		
+		if (_kkWsEng == null) {
+			_kkWsEng = getKKWsEng(webServiceURL);
+			session.setAttribute(PortletConstants.KKWSENG, _kkWsEng);
+		}
+		
+		return _kkWsEng;
+	}
+	
+	
 	
 	public static String getWebServiceAddress(RenderRequest renderRequest) {
 		String address = 
-			"http://www.konakart.com/konakart/services/KKWebServiceEng?wsdl";
+			"http://localhost:8780/konakart/services/KKWebServiceEng?wsdl";
 
 		String webServiceAddress = 
 			PrefsParamUtil.getString(getPortletPreferences(renderRequest), 
