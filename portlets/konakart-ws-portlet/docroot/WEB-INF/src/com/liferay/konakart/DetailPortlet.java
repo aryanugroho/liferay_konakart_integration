@@ -30,8 +30,6 @@ public class DetailPortlet extends MVCPortlet {
 		String productKeyWord = ParamUtil.getString(
 			renderRequest, "productKeyWord");
 		
-		System.out.println("after:"+ productKeyWord);
-		
 		if (Validator.isNotNull(productId)) {
 			renderRequest.setAttribute("productId", productId);
 			
@@ -69,7 +67,7 @@ public class DetailPortlet extends MVCPortlet {
 		renderRequest.setAttribute("productArray", productArray);
 
 		renderRequest.setAttribute("serviceUrl", serviceUrl);
-		System.out.println("test");
+		
 		super.doView(renderRequest, renderResponse);
 	}
 	

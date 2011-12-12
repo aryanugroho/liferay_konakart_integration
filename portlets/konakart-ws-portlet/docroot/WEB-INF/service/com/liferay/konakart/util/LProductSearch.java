@@ -27,5 +27,9 @@ public class LProductSearch {
 		_productSearch.setSearchText(searchText);
 	}
 	
+	public void setSearchTextRule(int searchTextRule) {
+		_productSearch.setSearchTextRule(searchTextRule);
+	}
+	
 	private ProductSearch _productSearch;
 }

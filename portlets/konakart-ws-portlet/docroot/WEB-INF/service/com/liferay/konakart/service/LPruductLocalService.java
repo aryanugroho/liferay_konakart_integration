@@ -94,6 +94,10 @@ public interface LPruductLocalService {
 		throws java.rmi.RemoteException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.konakart.wsapp.Product[] searchProductsByKey(
+		java.lang.String productKeyWord) throws java.rmi.RemoteException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.konakart.wsapp.Product[] searchProducts(
 		java.lang.String sessionId,
 		com.liferay.konakart.util.LDataDescriptor ldd,

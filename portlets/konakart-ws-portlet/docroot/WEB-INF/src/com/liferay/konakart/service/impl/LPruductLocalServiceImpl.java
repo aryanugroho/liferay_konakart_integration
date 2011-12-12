@@ -18,6 +18,7 @@ import com.konakart.app.DataDescConstants;
 import com.konakart.ws.KKWSEngIf;
 
 import com.konakart.wsapp.Product;
+
 import com.liferay.konakart.service.base.LPruductLocalServiceBaseImpl;
 import com.liferay.konakart.util.KKConstant;
 import com.liferay.konakart.util.LDataDescriptor;
@@ -116,6 +117,18 @@ public class LPruductLocalServiceImpl extends LPruductLocalServiceBaseImpl {
 		ldd.setOrderBy(DataDescConstants.ORDER_BY_DATE_ADDED_DESCENDING);
 		
 		ldd.setLimit(limit);
+		
+		return searchProducts(null, ldd, lps, -1);
+	}
+	
+	public Product[] searchProductsByKey(String productKeyWord) 
+		throws RemoteException {
+		
+		LProductSearch lps = new LProductSearch();
+		LDataDescriptor ldd= new LDataDescriptor();
+		
+		lps.setSearchText(productKeyWord);
+		lps.setSearchTextRule(KKConstant.SEARCH_ADD_WILDCARD_BEFORE_AND_AFTER);
 		
 		return searchProducts(null, ldd, lps, -1);
 	}

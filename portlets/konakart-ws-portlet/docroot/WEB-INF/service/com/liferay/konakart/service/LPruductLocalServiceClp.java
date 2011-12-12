@@ -63,7 +63,10 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 		_getLastestProductsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLastestProducts", int.class);
 
-		_searchProductsMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchProductsByKeyMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"searchProductsByKey", java.lang.String.class);
+
+		_searchProductsMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchProducts", java.lang.String.class,
 				com.liferay.konakart.util.LDataDescriptor.class,
 				com.liferay.konakart.util.LProductSearch.class, int.class);
@@ -357,6 +360,33 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 		return (com.konakart.wsapp.Product[])ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.konakart.wsapp.Product[] searchProductsByKey(
+		java.lang.String productKeyWord) throws java.rmi.RemoteException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_searchProductsByKeyMethodKey12,
+				ClpSerializer.translateInput(productKeyWord));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.konakart.wsapp.Product[])ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.konakart.wsapp.Product[] searchProducts(
 		java.lang.String sessionId,
 		com.liferay.konakart.util.LDataDescriptor ldd,
@@ -364,7 +394,7 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchProductsMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_searchProductsMethodKey13,
 				ClpSerializer.translateInput(sessionId),
 				ClpSerializer.translateInput(ldd),
 				ClpSerializer.translateInput(lps), langugeId);
@@ -406,5 +436,6 @@ public class LPruductLocalServiceClp implements LPruductLocalService {
 	private MethodKey _getProductMethodKey9;
 	private MethodKey _getLastestProductsMethodKey10;
 	private MethodKey _getLastestProductsMethodKey11;
-	private MethodKey _searchProductsMethodKey12;
+	private MethodKey _searchProductsByKeyMethodKey12;
+	private MethodKey _searchProductsMethodKey13;
 }
