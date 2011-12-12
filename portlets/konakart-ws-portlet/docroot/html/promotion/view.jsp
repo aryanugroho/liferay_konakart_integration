@@ -53,14 +53,18 @@
 			int productId = product.getId();
 			LReviewLocalServiceUtil.setKKWsEng(kkWsEng);
 			
-			if (linkToSite) {
+			if (linkType.equals(PortletConstants.NOLINK)) {
+				ourl = null;
+			} else if(linkType.equals(PortletConstants.LINKTOSITE)) {
 				ourl = ourl + productId;
-			} else {
+			} else if(linkType.equals(PortletConstants.DETAIL)) {
+				PortletURL pUrl = renderResponse.createActionURL();
+				pUrl.setParameter("productId", String.valueOf(productId));
+				
+				ourl = pUrl.toString();	
+			} else if(linkType.equals(PortletConstants.SELF)) {
 				ourl = null;
 			}
-			
-			PortletURL pUrl = renderResponse.createActionURL();
-			pUrl.setParameter("productId", String.valueOf(productId));
 			
 			for (int i = 0;i < showsColumns.length; i++) {
 				String showsColumn = showsColumns[i];
@@ -69,7 +73,7 @@
 		<c:choose>
 			<c:when test='<%= showsColumn.equals("name") %>'>
 				<liferay-ui:search-container-column-text
-					href="<%= pUrl.toString() %>"
+					href="<%= ourl %>"
 					name="Name"
 					value="<%= product.getName() %>"
 				/>

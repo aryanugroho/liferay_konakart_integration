@@ -69,6 +69,8 @@
 	
 	String reviewType = PrefsParamUtil.getString(preferences, request, "reviewType");
 	
+	String linkType = PrefsParamUtil.getString(preferences, request, "linkType");
+	
 	KKWSEngIf kkWsEng = (KKWSEngIf) renderRequest.getAttribute("kkWSEng");
 	
 	int rowsPerPage = GetterUtil.getInteger(preferences.getValue("rowsPerPage", "5"));

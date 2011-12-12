@@ -30,4 +30,12 @@ public interface PortletConstants {
 	public static final String LASTESTREVIEW = "lastestReview";
 	
 	public static final String KKWSENG = "kkWsEng";
+	
+	public static final String NOLINK = "noLink";
+	
+	public static final String DETAIL = "detail";
+	
+	public static final String SELF = "self";
+	
+	public static final String LINKTOSITE = "linkToSite";
 }
