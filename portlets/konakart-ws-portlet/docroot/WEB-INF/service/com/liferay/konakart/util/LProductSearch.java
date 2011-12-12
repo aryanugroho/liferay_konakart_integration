@@ -23,5 +23,9 @@ public class LProductSearch {
 		_productSearch.setDateAddedFrom(fromDate);
 	}
 	
+	public void setSearchText(String searchText) {
+		_productSearch.setSearchText(searchText);
+	}
+	
 	private ProductSearch _productSearch;
 }

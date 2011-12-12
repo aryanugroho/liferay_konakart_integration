@@ -14,8 +14,14 @@
 */
 --%>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ include file="/html/search/init.jsp" %>
 
-<portlet:defineObjects />
+<portlet:actionURL var="search"/>
 
-This is the <b>Search</b> portlet in View mode.
+<aui:form action="<%= search.toString() %>">
+	<aui:input name="productKeyWord"></aui:input>
+	
+	<aui:button-row>
+		<aui:button type="submit" />
+	</aui:button-row>
+</aui:form>

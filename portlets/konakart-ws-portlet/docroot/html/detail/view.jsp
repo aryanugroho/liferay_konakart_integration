@@ -14,7 +14,6 @@
 */
 --%>
 
-<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
 <%@ include file="/html/detail/init.jsp" %>
 
 <% 
@@ -43,7 +42,6 @@
 		<%
 			int productId = product.getId();
 			Product productDetail = LPruductLocalServiceUtil.getProduct(productId);
-			System.out.println(productDetail.getDescription());
 		%>
 		<portlet:renderURL var="testActionUrl">
 			<portlet:param name="jspPage" value="/html/detail/product_detail.jsp"></portlet:param>

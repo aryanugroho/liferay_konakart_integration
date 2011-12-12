@@ -14,7 +14,6 @@
  */
 --%>
 
-<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
 <%@ include file="/html/detail/init.jsp" %>
 
 <%

@@ -48,7 +48,6 @@
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="com.liferay.portal.kernel.util.PrefsParamUtil"%>
 
-<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
 <%@page import="com.liferay.konakart.service.LReviewLocalServiceUtil"%>
 <%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
 

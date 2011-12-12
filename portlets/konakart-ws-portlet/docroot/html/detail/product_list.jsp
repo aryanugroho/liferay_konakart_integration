@@ -15,3 +15,5 @@
 --%>
 
 <%@ include file="/html/detail/init.jsp" %>
+
+here is list page,and the got the public param:<%=renderRequest.getAttribute("productKeyWord") %>
