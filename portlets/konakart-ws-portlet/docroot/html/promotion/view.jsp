@@ -14,6 +14,7 @@
 */
 --%>
 
+<%@page import="javax.portlet.PortletURL"%>
 <%@ include file="/html/promotion/init.jsp" %>
 
 <% 	
@@ -58,6 +59,9 @@
 				ourl = null;
 			}
 			
+			PortletURL pUrl = renderResponse.createActionURL();
+			pUrl.setParameter("productId", String.valueOf(productId));
+			
 			for (int i = 0;i < showsColumns.length; i++) {
 				String showsColumn = showsColumns[i];
 		%>
@@ -65,7 +69,7 @@
 		<c:choose>
 			<c:when test='<%= showsColumn.equals("name") %>'>
 				<liferay-ui:search-container-column-text
-					href="<%= ourl %>"
+					href="<%= pUrl.toString() %>"
 					name="Name"
 					value="<%= product.getName() %>"
 				/>
@@ -125,10 +129,16 @@
 						
 						float rating = (float) LReviewLocalServiceUtil.getAverageRating(productId);
 				%>
-					<liferay-ui:search-container-column-score
+					
+					<liferay-ui:search-container-column-text
 						name="Reviews"
-						score="<%= rating*2/10 %>" 
-					/>
+						value="<%= String.valueOf(rating*2/10) %>"
+					>
+						<liferay-ui:ratings-score
+							score="<%= rating*2/10 %>" 
+						/>
+					</liferay-ui:search-container-column-text>
+					
 				
 				<% 
 					} else if (reviewType.equals(PortletConstants.LASTESTREVIEW)) {
@@ -140,10 +150,16 @@
 							review.setReviewText("No Review");
 						}
 				%>
-					<liferay-ui:search-container-column-score
+					
+					<liferay-ui:search-container-column-text
 						name="Reviews"
-						score="<%= review.getRating()*2/10 %>" 
-					/>
+						value="<%= String.valueOf(review.getRating()*2/10) %>"
+					>
+						<liferay-ui:ratings-score
+							score="<%= review.getRating()*2/10 %>" 
+						/>
+					</liferay-ui:search-container-column-text>
+					
 					<liferay-ui:search-container-column-text
 						href="<%= ourl %>"
 						name="commit"
