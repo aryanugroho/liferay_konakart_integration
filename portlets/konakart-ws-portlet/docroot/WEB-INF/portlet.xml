@@ -43,6 +43,9 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
+		<supported-public-render-parameter>
+			productId
+		</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>detail</portlet-name>
@@ -76,5 +79,12 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
+		<supported-public-render-parameter>
+			productId
+		</supported-public-render-parameter>
 	</portlet>
+	<public-render-parameter>
+    	<identifier>productId</identifier>
+    	<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:productId</qname>
+    </public-render-parameter>
 </portlet-app>

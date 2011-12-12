@@ -7,6 +7,7 @@ import com.liferay.konakart.service.LPruductLocalServiceUtil;
 import com.liferay.konakart.util.KKWsUtil;
 import com.liferay.konakart.util.PortletConstants;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
@@ -14,6 +15,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -23,6 +26,15 @@ import javax.portlet.RenderResponse;
  */
 public class PromotionPortlet extends MVCPortlet {
 
+	public void processAction(ActionRequest actionRequest,
+            ActionResponse actionResponse) 
+        throws PortletException, IOException {
+		
+		String productId = ParamUtil.getString(actionRequest, "productId");
+		
+		actionResponse.setRenderParameter("productId", productId);
+	}
+	
 	public void doView(
 			RenderRequest renderRequest, RenderResponse renderResponse) 
 		throws IOException, PortletException{
