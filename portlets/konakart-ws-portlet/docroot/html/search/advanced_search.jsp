@@ -15,3 +15,14 @@
 --%>
 
 <%@ include file="/html/search/init.jsp" %>
+
+<% 
+	String backURL = ParamUtil.getString(request, "backURL");
+%>
+
+<liferay-ui:header
+	backURL="<%= backURL %>"
+	title='advanced-search'
+/>
+
+advanced search

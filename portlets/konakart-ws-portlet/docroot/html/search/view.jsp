@@ -16,6 +16,9 @@
 
 <%@ include file="/html/search/init.jsp" %>
 
+<% 
+	String currentURL = PortalUtil.getCurrentURL(request);
+%>
 <portlet:actionURL var="search"/>
 
 <aui:form action="<%= search.toString() %>">
@@ -25,3 +28,10 @@
 		<aui:button type="submit" />
 	</aui:button-row>
 </aui:form>
+
+<portlet:renderURL var="advancedSearchUrl">
+	<portlet:param name="jspPage" value="/html/search/advanced_search.jsp" />
+	<portlet:param name="backURL" value="<%= currentURL %>" />
+</portlet:renderURL>
+
+<aui:a href="<%= advancedSearchUrl.toString() %>">Advanced Search</aui:a>
