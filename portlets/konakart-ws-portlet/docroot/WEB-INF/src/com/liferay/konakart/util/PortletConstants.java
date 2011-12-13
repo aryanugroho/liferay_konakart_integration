@@ -38,4 +38,10 @@ public interface PortletConstants {
 	public static final String SELF = "self";
 	
 	public static final String LINKTOSITE = "linkToSite";
+	
+	public static final String FIND = "find";
+	
+	public static final String MANUFACTURER = "manufacturer";
+	
+	public static final String CATEGORIES = "categories";
 }

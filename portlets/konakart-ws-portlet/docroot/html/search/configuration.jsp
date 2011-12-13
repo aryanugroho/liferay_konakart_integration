@@ -14,8 +14,26 @@
 */
 --%>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ include file="/html/search/init.jsp" %>
 
-<portlet:defineObjects />
+<liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
-This is the <b>Search</b> portlet in Config mode.
+<aui:form action="<%= configurationURL %>" method="post" name="fm">
+	<aui:input name="<%= com.liferay.portal.kernel.util.Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+	
+	<liferay-ui:panel-container extended="<%= true %>" id="settingsPanelContainer" persistState="<%= true %>">
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="overallPanel" persistState="<%= true %>" title="overall">
+			<aui:fieldset>
+				<aui:select label="search-type" name="preferences--searchType--">
+					<aui:option label="find" selected='<%=searchType.equals(PortletConstants.FIND) %>' value="<%= PortletConstants.FIND %>"/>
+					<aui:option label="manufacturer" selected='<%= searchType.equals(PortletConstants.MANUFACTURER) %>' value="<%= PortletConstants.MANUFACTURER %>"/>
+					<aui:option label="categories" selected='<%= searchType.equals(PortletConstants.CATEGORIES) %>' value="<%= PortletConstants.CATEGORIES %>"/>
+				</aui:select>
+			</aui:fieldset>
+		</liferay-ui:panel>
+	</liferay-ui:panel-container>
+	
+	<aui:button-row>
+		<aui:button type="submit" />
+	</aui:button-row>
+</aui:form>

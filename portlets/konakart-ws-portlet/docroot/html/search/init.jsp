@@ -57,6 +57,17 @@
 <portlet:defineObjects />
 
 <%
+	PortletPreferences preferences = renderRequest.getPreferences();
+		
+	String portletResource = ParamUtil.getString(
+		renderRequest, "portletResource");
+	
+	if (Validator.isNotNull(portletResource)) {
+		preferences = PortletPreferencesFactoryUtil.getPortletSetup(
+			renderRequest, portletResource);
+	}
+	
+	String searchType = PrefsParamUtil.getString(preferences, renderRequest, "searchType", PortletConstants.FIND);
 	
 	KKWSEngIf kkWsEng = KKWsUtil.getKKWsEng(renderRequest);
 		 
