@@ -4,10 +4,10 @@ import com.konakart.ws.KKWSEngIf;
 import com.konakart.ws.KKWSEngIfServiceLocator;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.servlet.PortletServlet;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import java.net.URL;
@@ -42,9 +42,8 @@ public class KKWsUtil {
 	}
 
 	public static KKWSEngIf getKKWsEng(RenderRequest renderRequest) {
-		HttpServletRequest httpServletRequest = 
-				(HttpServletRequest) renderRequest.getAttribute(
-						PortletServlet.PORTLET_SERVLET_REQUEST);
+		HttpServletRequest httpServletRequest = PortalUtil.
+			getHttpServletRequest(renderRequest);
 			
 		HttpSession session = httpServletRequest.getSession();
 
@@ -62,10 +61,9 @@ public class KKWsUtil {
 	public static KKWSEngIf getKKWsEng(
 			RenderRequest renderRequest, URL webServiceURL) {
 		
-		HttpServletRequest httpServletRequest = 
-				(HttpServletRequest) renderRequest.getAttribute(
-						PortletServlet.PORTLET_SERVLET_REQUEST);
-			
+		HttpServletRequest httpServletRequest = PortalUtil.
+				getHttpServletRequest(renderRequest);
+		
 		HttpSession session = httpServletRequest.getSession();
 
 		_kkWsEng = 
@@ -78,8 +76,6 @@ public class KKWsUtil {
 		
 		return _kkWsEng;
 	}
-	
-	
 	
 	public static String getWebServiceAddress(RenderRequest renderRequest) {
 		String address = 
