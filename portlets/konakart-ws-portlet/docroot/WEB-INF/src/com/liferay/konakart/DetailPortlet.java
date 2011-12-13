@@ -33,7 +33,8 @@ public class DetailPortlet extends MVCPortlet {
 		if (Validator.isNotNull(productId)) {
 			renderRequest.setAttribute("productId", productId);
 			
-			include("/html/detail/product_detail.jsp", renderRequest, renderResponse);
+			include("/html/detail/product_detail.jsp", 
+				renderRequest, renderResponse);
 			
 			return;
 		}
@@ -41,7 +42,8 @@ public class DetailPortlet extends MVCPortlet {
 		if (Validator.isNotNull(productKeyWord)) {
 			renderRequest.setAttribute("productKeyWord", productKeyWord);
 			
-			include("/html/detail/product_list.jsp", renderRequest, renderResponse);
+			include("/html/detail/product_list.jsp", 
+				renderRequest, renderResponse);
 			
 			return;
 		}
