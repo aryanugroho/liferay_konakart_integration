@@ -14,9 +14,6 @@
  */
 --%>
 
-<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
-<%@page import="com.liferay.konakart.util.KKWsUtil"%>
-<%@page import="com.liferay.portal.kernel.dao.orm.Session"%>
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
@@ -47,12 +44,14 @@
 <%@page import="com.liferay.portal.kernel.util.Validator"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="com.liferay.portal.kernel.util.PrefsParamUtil"%>
+<%@page import="com.liferay.portal.util.PortalUtil"%>
 
 <%@page import="com.liferay.konakart.service.LReviewLocalServiceUtil"%>
 <%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
 
 <%@page import="com.liferay.konakart.util.PortletConstants"%>
-
+<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
+<%@page import="com.liferay.konakart.util.KKWsUtil"%>
 
 <portlet:defineObjects />
 
