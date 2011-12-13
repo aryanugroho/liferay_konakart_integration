@@ -125,7 +125,7 @@
 	</liferay-ui:panel-container>	
 	
 	<aui:button-row>
-		<aui:button  type="submit" />
+		<aui:button type="submit" />
 	</aui:button-row>
 </aui:form>
 

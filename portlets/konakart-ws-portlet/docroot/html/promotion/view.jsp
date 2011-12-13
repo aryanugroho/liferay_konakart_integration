@@ -14,7 +14,6 @@
 */
 --%>
 
-<%@page import="javax.portlet.PortletURL"%>
 <%@ include file="/html/promotion/init.jsp" %>
 
 <% 	

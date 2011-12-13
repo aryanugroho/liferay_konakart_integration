@@ -106,6 +106,11 @@ public class LPruductLocalServiceUtil {
 		return getService().getLastestProducts(limit);
 	}
 
+	public static com.konakart.wsapp.Product[] searchProductsByKey(
+		java.lang.String productKeyWord) throws java.rmi.RemoteException {
+		return getService().searchProductsByKey(productKeyWord);
+	}
+
 	public static com.konakart.wsapp.Product[] searchProducts(
 		java.lang.String sessionId,
 		com.liferay.konakart.util.LDataDescriptor ldd,

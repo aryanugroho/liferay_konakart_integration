@@ -95,6 +95,11 @@ public class LPruductLocalServiceWrapper implements LPruductLocalService {
 		return _lPruductLocalService.getLastestProducts(limit);
 	}
 
+	public com.konakart.wsapp.Product[] searchProductsByKey(
+		java.lang.String productKeyWord) throws java.rmi.RemoteException {
+		return _lPruductLocalService.searchProductsByKey(productKeyWord);
+	}
+
 	public com.konakart.wsapp.Product[] searchProducts(
 		java.lang.String sessionId,
 		com.liferay.konakart.util.LDataDescriptor ldd,

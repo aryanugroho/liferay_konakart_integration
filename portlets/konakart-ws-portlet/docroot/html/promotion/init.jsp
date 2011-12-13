@@ -32,6 +32,7 @@
 <%@page import="java.math.BigDecimal"%>
 
 <%@page import="javax.portlet.PortletPreferences"%>
+<%@page import="javax.portlet.PortletURL"%>
 
 <%@page import="com.liferay.portal.kernel.util.KeyValuePairComparator"%>
 <%@page import="com.liferay.portal.kernel.util.ListUtil"%>

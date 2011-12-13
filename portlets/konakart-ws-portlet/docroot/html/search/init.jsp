@@ -48,7 +48,6 @@
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="com.liferay.portal.kernel.util.PrefsParamUtil"%>
 
-<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
 <%@page import="com.liferay.konakart.service.LReviewLocalServiceUtil"%>
 <%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
 
@@ -58,6 +57,17 @@
 <portlet:defineObjects />
 
 <%
+	PortletPreferences preferences = renderRequest.getPreferences();
+		
+	String portletResource = ParamUtil.getString(
+		renderRequest, "portletResource");
+	
+	if (Validator.isNotNull(portletResource)) {
+		preferences = PortletPreferencesFactoryUtil.getPortletSetup(
+			renderRequest, portletResource);
+	}
+	
+	String searchType = PrefsParamUtil.getString(preferences, renderRequest, "searchType", PortletConstants.FIND);
 	
 	KKWSEngIf kkWsEng = KKWsUtil.getKKWsEng(renderRequest);
 		 

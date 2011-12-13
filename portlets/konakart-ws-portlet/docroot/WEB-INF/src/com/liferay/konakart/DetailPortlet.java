@@ -27,10 +27,23 @@ public class DetailPortlet extends MVCPortlet {
 		
 		String productId = ParamUtil.getString(renderRequest, "productId");
 		
+		String productKeyWord = ParamUtil.getString(
+			renderRequest, "productKeyWord");
+		
 		if (Validator.isNotNull(productId)) {
 			renderRequest.setAttribute("productId", productId);
 			
-			include("/html/detail/product_detail.jsp", renderRequest, renderResponse);
+			include("/html/detail/product_detail.jsp", 
+				renderRequest, renderResponse);
+			
+			return;
+		}
+		
+		if (Validator.isNotNull(productKeyWord)) {
+			renderRequest.setAttribute("productKeyWord", productKeyWord);
+			
+			include("/html/detail/product_list.jsp", 
+				renderRequest, renderResponse);
 			
 			return;
 		}
@@ -56,7 +69,7 @@ public class DetailPortlet extends MVCPortlet {
 		renderRequest.setAttribute("productArray", productArray);
 
 		renderRequest.setAttribute("serviceUrl", serviceUrl);
-		System.out.println("test");
+		
 		super.doView(renderRequest, renderResponse);
 	}
 	
