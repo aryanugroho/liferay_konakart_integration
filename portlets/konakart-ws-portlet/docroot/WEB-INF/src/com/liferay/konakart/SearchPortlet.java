@@ -16,7 +16,7 @@ public class SearchPortlet extends MVCPortlet {
 		
 		String productKeyWord = 
 			ParamUtil.getString(actionRequest, "productKeyWord");
-		System.out.println("before:"+productKeyWord);
+		
 		actionResponse.setRenderParameter("productKeyWord", productKeyWord);
 	}
 }
