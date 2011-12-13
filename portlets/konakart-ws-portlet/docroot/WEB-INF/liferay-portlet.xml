@@ -17,6 +17,7 @@
 	<portlet>
 		<portlet-name>detail</portlet-name>
 		<icon>/icon.png</icon>
+		<configuration-action-class>com.liferay.konakart.action.ConfigurationActionImpl</configuration-action-class>
 		<instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>
@@ -27,6 +28,7 @@
 	<portlet>
 		<portlet-name>search</portlet-name>
 		<icon>/icon.png</icon>
+		<configuration-action-class>com.liferay.konakart.action.ConfigurationActionImpl</configuration-action-class>
 		<instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>
