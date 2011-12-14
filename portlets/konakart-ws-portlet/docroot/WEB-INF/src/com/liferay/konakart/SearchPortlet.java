@@ -11,7 +11,7 @@ import javax.portlet.ActionResponse;
  */
 public class SearchPortlet extends MVCPortlet {
  
-	public void processAction(ActionRequest actionRequest, 
+	public void QuickFina(ActionRequest actionRequest, 
 			ActionResponse actionResponse) {
 		
 		String productKeyWord = 
