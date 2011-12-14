@@ -19,7 +19,7 @@
 <% 
 	String currentURL = PortalUtil.getCurrentURL(request);
 %>
-<portlet:actionURL var="search"/>
+<portlet:actionURL name="QuickFina" var="search"/>
 
 <aui:form action="<%= search.toString() %>">
 	<aui:input name="productKeyWord"></aui:input>
