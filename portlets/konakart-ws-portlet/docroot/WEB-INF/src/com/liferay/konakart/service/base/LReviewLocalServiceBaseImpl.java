@@ -16,6 +16,8 @@ package com.liferay.konakart.service.base;
 
 import com.liferay.counter.service.CounterLocalService;
 
+import com.liferay.konakart.service.LCategoryLocalService;
+import com.liferay.konakart.service.LManufacturerLocalService;
 import com.liferay.konakart.service.LPruductLocalService;
 import com.liferay.konakart.service.LReviewLocalService;
 
@@ -53,6 +55,44 @@ public abstract class LReviewLocalServiceBaseImpl implements LReviewLocalService
 	 *
 	 * Never modify or reference this class directly. Always use {@link com.liferay.konakart.service.LReviewLocalServiceUtil} to access the l review local service.
 	 */
+
+	/**
+	 * Returns the l category local service.
+	 *
+	 * @return the l category local service
+	 */
+	public LCategoryLocalService getLCategoryLocalService() {
+		return lCategoryLocalService;
+	}
+
+	/**
+	 * Sets the l category local service.
+	 *
+	 * @param lCategoryLocalService the l category local service
+	 */
+	public void setLCategoryLocalService(
+		LCategoryLocalService lCategoryLocalService) {
+		this.lCategoryLocalService = lCategoryLocalService;
+	}
+
+	/**
+	 * Returns the l manufacturer local service.
+	 *
+	 * @return the l manufacturer local service
+	 */
+	public LManufacturerLocalService getLManufacturerLocalService() {
+		return lManufacturerLocalService;
+	}
+
+	/**
+	 * Sets the l manufacturer local service.
+	 *
+	 * @param lManufacturerLocalService the l manufacturer local service
+	 */
+	public void setLManufacturerLocalService(
+		LManufacturerLocalService lManufacturerLocalService) {
+		this.lManufacturerLocalService = lManufacturerLocalService;
+	}
 
 	/**
 	 * Returns the l pruduct local service.
@@ -261,6 +301,10 @@ public abstract class LReviewLocalServiceBaseImpl implements LReviewLocalService
 		}
 	}
 
+	@BeanReference(type = LCategoryLocalService.class)
+	protected LCategoryLocalService lCategoryLocalService;
+	@BeanReference(type = LManufacturerLocalService.class)
+	protected LManufacturerLocalService lManufacturerLocalService;
 	@BeanReference(type = LPruductLocalService.class)
 	protected LPruductLocalService lPruductLocalService;
 	@BeanReference(type = LReviewLocalService.class)

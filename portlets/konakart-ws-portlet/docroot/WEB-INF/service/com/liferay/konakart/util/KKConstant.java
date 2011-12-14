@@ -12,4 +12,8 @@ public interface KKConstant {
 	public static final int SEARCH_ADD_WILDCARD_AFTER = 2;
 	
 	public static final int SEARCH_ADD_WILDCARD_BEFORE_AND_AFTER = 3;
+	
+	public static final int ALL_MANUFACTURER = -100;
+	
+	public static final int ALL_CATEGORIES = -100;
 }

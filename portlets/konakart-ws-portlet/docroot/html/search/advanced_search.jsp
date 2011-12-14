@@ -18,6 +18,12 @@
 
 <% 
 	String backURL = ParamUtil.getString(request, "backURL");
+	
+	Manufacturer[] manufacturers = LManufacturerLocalServiceUtil.getAllManufacturers();
+	
+	Category[] categories = LCategoryLocalServiceUtil.getCategoryTree(true);
+	
+	Category[] allCategoryTrees = LCategoryLocalServiceUtil.getAllCategoryTree(categories, true);
 %>
 
 <liferay-ui:header
@@ -25,4 +31,46 @@
 	title='advanced-search'
 />
 
-advanced search
+<portlet:actionURL name="AdvancedSearch" var="advancedSearchUrl"/>
+
+<aui:form action="<%= advancedSearchUrl.toString() %>">
+	<aui:input name="searchKey" title="search-criteria:" type="text"></aui:input>
+	
+	<aui:input name="searchInDesciption" title="search-in-product-descriptions" type="checkbox"></aui:input>
+	
+	<aui:select name="categoryId" title="categories">
+		<aui:option value="<%= KKConstant.ALL_CATEGORIES %>">All Categories</aui:option>
+		
+		<% 
+		for (int i = 0; i < allCategoryTrees.length; i++) {
+		%>
+		<aui:option value="<%= allCategoryTrees[i].getId() %>"><%= allCategoryTrees[i].getName() %></aui:option>
+		<% 
+		}
+		%>
+	</aui:select>
+	
+	<aui:select name="manufacturerId" title="manufacturers">
+		<aui:option value="<%= KKConstant.ALL_MANUFACTURER %>">All Manufacturers</aui:option>
+		
+		<% 
+		for (int i = 0; i < manufacturers.length; i++) {
+		%>
+		<aui:option value="<%= manufacturers[i].getId() %>"><%= manufacturers[i].getName() %></aui:option>
+		<% 
+		}
+		%>
+	</aui:select>
+	
+	<aui:input name="priceFrom" type="text"></aui:input>
+	
+	<aui:input name="priceTo" type="text"></aui:input>
+	
+	<aui:input name="dateFrom" type="text"></aui:input>
+	
+	<aui:input name="dateTo" type="text"></aui:input>
+	
+	<aui:button-row>
+		<aui:button type="submit" />
+	</aui:button-row>
+</aui:form>

@@ -6,4 +6,6 @@
 
 	<entity name="LPruduct" local-service="true" remote-service="false"/>
 	<entity name="LReview" local-service="true" remote-service="false"/>
+	<entity name="LManufacturer" local-service="true" remote-service="false"/>
+	<entity name="LCategory" local-service="true" remote-service="false"/>
 </service-builder>

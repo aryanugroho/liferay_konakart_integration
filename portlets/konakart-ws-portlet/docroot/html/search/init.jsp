@@ -48,10 +48,16 @@
 
 <%@page import="com.liferay.konakart.service.LReviewLocalServiceUtil"%>
 <%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
+<%@page import="com.liferay.konakart.service.LManufacturerLocalServiceUtil"%>
+<%@page import="com.konakart.wsapp.Manufacturer"%>
 
 <%@page import="com.liferay.konakart.util.PortletConstants"%>
 <%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
 <%@page import="com.liferay.konakart.util.KKWsUtil"%>
+<%@page import="com.liferay.konakart.util.KKConstant"%>
+
+<%@page import="com.liferay.konakart.service.LCategoryLocalServiceUtil"%>
+<%@page import="com.konakart.wsapp.Category"%>
 
 <portlet:defineObjects />
 
@@ -69,6 +75,8 @@
 	String searchType = PrefsParamUtil.getString(preferences, renderRequest, "searchType", PortletConstants.FIND);
 	
 	KKWSEngIf kkWsEng = KKWsUtil.getKKWsEng(renderRequest);
-		 
+	
+	LManufacturerLocalServiceUtil.setKKWsEng(kkWsEng);	 
 	LPruductLocalServiceUtil.setKKWsEng(kkWsEng);
+	LCategoryLocalServiceUtil.setKKWsEng(kkWsEng);
 %>

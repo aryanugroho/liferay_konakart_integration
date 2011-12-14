@@ -1,6 +1,14 @@
 <?xml version="1.0"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.liferay.konakart.service.LCategoryLocalService" class="com.liferay.konakart.service.impl.LCategoryLocalServiceImpl" />
+	<bean id="com.liferay.konakart.service.LCategoryLocalServiceUtil" class="com.liferay.konakart.service.LCategoryLocalServiceUtil">
+		<property name="service" ref="com.liferay.konakart.service.LCategoryLocalService" />
+	</bean>
+	<bean id="com.liferay.konakart.service.LManufacturerLocalService" class="com.liferay.konakart.service.impl.LManufacturerLocalServiceImpl" />
+	<bean id="com.liferay.konakart.service.LManufacturerLocalServiceUtil" class="com.liferay.konakart.service.LManufacturerLocalServiceUtil">
+		<property name="service" ref="com.liferay.konakart.service.LManufacturerLocalService" />
+	</bean>
 	<bean id="com.liferay.konakart.service.LPruductLocalService" class="com.liferay.konakart.service.impl.LPruductLocalServiceImpl" />
 	<bean id="com.liferay.konakart.service.LPruductLocalServiceUtil" class="com.liferay.konakart.service.LPruductLocalServiceUtil">
 		<property name="service" ref="com.liferay.konakart.service.LPruductLocalService" />
