@@ -14,6 +14,7 @@
 */
 --%>
 
+<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
 <%@ include file="/html/promotion/init.jsp" %>
 
 <% 	
@@ -25,7 +26,7 @@
 		
 	String imgUrl = serviceUrl + "images/";
 	
-	String ourl = serviceUrl + "SelectProd.do?prodId=";
+	String renderUrl = "";
 	
 	String showType = (String) renderRequest.getAttribute("showType");
 	
@@ -50,21 +51,24 @@
 
 		<%
 			int productId = product.getId();
-			LReviewLocalServiceUtil.setKKWsEng(kkWsEng);
+			
+			LReviewLocalServiceUtil.setKKWsEng(kkWsEng);		
 			
 			if (linkType.equals(PortletConstants.NOLINK)) {
-				ourl = null;
+				renderUrl = null;
 			} else if(linkType.equals(PortletConstants.LINKTOSITE)) {
-				ourl = ourl + productId;
+				renderUrl = renderUrl + "serviceUrl" + productId;
 			} else if(linkType.equals(PortletConstants.DETAIL)) {
 				PortletURL pUrl = renderResponse.createActionURL();
 				pUrl.setParameter("productId", String.valueOf(productId));
 				
-				ourl = pUrl.toString();	
+				renderUrl = pUrl.toString();	
 			} else if(linkType.equals(PortletConstants.SELF)) {
-				ourl = null;
+				renderUrl = null;
 			}
 			
+			product = LPruductLocalServiceUtil.getProduct(productId);
+		
 			for (int i = 0;i < showsColumns.length; i++) {
 				String showsColumn = showsColumns[i];
 		%>
@@ -72,7 +76,7 @@
 		<c:choose>
 			<c:when test='<%= showsColumn.equals("name") %>'>
 				<liferay-ui:search-container-column-text
-					href="<%= ourl %>"
+					href="<%= renderUrl %>"
 					name="Name"
 					value="<%= product.getName() %>"
 				/>
@@ -80,7 +84,7 @@
 		
 			<c:when test='<%= showsColumn.equals("image") %>'>
 				<liferay-ui:search-container-column-text 
-					href="<%= ourl  %>"
+					href="<%= renderUrl  %>"
 					name="Image"
 					>
 					<liferay-ui:icon
@@ -92,7 +96,7 @@
 			<c:when test='<%= showsColumn.equals("price") %>'>
 				<liferay-ui:search-container-column-text
 					name="Price"
-					href="<%= ourl  %>"
+					href="<%= renderUrl  %>"
 					buffer="buffer" 
 				>
 				
@@ -134,15 +138,10 @@
 				%>
 					
 					<liferay-ui:search-container-column-text
-						name="Reviews"
+						name="rating"
 						value="<%= String.valueOf(rating*2/10) %>"
-					>
-						<liferay-ui:ratings-score
-							score="<%= rating*2/10 %>" 
-						/>
-					</liferay-ui:search-container-column-text>
-					
-				
+					/>
+						
 				<% 
 					} else if (reviewType.equals(PortletConstants.LASTESTREVIEW)) {
 						Review review = LReviewLocalServiceUtil.getLastestRating(productId);
@@ -153,18 +152,13 @@
 							review.setReviewText("No Review");
 						}
 				%>
+					<liferay-ui:search-container-column-text
+						name="rating"
+						value="<%= String.valueOf(review.getRating()) %>"
+					/>
 					
 					<liferay-ui:search-container-column-text
-						name="Reviews"
-						value="<%= String.valueOf(review.getRating()*2/10) %>"
-					>
-						<liferay-ui:ratings-score
-							score="<%= review.getRating()*2/10 %>" 
-						/>
-					</liferay-ui:search-container-column-text>
-					
-					<liferay-ui:search-container-column-text
-						href="<%= ourl %>"
+						href="<%= renderUrl %>"
 						name="commit"
 						value="<%= review.getReviewText() %>"
 					/>
