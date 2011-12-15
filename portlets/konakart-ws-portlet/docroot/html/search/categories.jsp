@@ -13,10 +13,27 @@
 * details.
 */
 --%>
-
+<%! 
+	String calculateBlank(int count) {
+		String blanks = "";
+		
+		for (int m = 0; m < count; m++) {
+			blanks = blanks + "->->";
+		}
+		
+		return blanks;
+	}
+%>
 <%
 	Category[] categories = LCategoryLocalServiceUtil.getCategoryTree(true);
 	
 	Category[] allCategoryTrees = LCategoryLocalServiceUtil.getAllCategoryTree(categories, true);
+	
+	for (int i = 0; i < allCategoryTrees.length; i++) { 
 %>
+	<aui:a href="www.baidu.com"><%= calculateBlank(allCategoryTrees[i].getLevel()) + allCategoryTrees[i].getName() %></aui:a>		
+		<br>
+	<%
+	}
+	%>
 
