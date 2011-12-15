@@ -51,7 +51,7 @@
 				<aui:select label="link-type" name="preferences--linkType--">
 					<aui:option label="no-link" selected='<%=linkType.equals(PortletConstants.NOLINK) %>' value="<%= PortletConstants.NOLINK %>"/>
 					<aui:option label="link-to-site" selected='<%=linkType.equals(PortletConstants.LINKTOSITE) %>' value="<%= PortletConstants.LINKTOSITE %>"/>
-					<aui:option label="detail" selected='<%= linkType.equals(PortletConstants.DETAIL) %>' value="<%= PortletConstants.DETAIL %>"/>
+					<aui:option label="detail-portlet" selected='<%= linkType.equals(PortletConstants.DETAIL) %>' value="<%= PortletConstants.DETAIL %>"/>
 					<aui:option label="self" selected='<%= linkType.equals(PortletConstants.SELF) %>' value="<%= PortletConstants.SELF %>"/>
 				</aui:select>	
 				
