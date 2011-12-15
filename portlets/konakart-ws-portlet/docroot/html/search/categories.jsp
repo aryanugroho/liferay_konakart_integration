@@ -13,5 +13,29 @@
 * details.
 */
 --%>
-
-<%@ include file="/html/search/init.jsp" %>
+<%! 
+	String calculateBlank(int count) {
+		String blanks = "";
+		
+		for (int m = 0; m < count; m++) {
+			blanks = blanks + "->->";
+		}
+		
+		return blanks;
+	}
+%>
+<%
+	Category[] categories = LCategoryLocalServiceUtil.getCategoryTree(true);
+	
+	Category[] allCategoryTrees = LCategoryLocalServiceUtil.getAllCategoryTree(categories, true);
+	
+	for (int i = 0; i < allCategoryTrees.length; i++) { 
+%>
+	<portlet:actionURL name="SearchByCategory" var="search">
+		<portlet:param name="categoryId" value="<%= String.valueOf(allCategoryTrees[i].getId()) %>"/>
+	</portlet:actionURL>
+	<aui:a href="<%= search.toString() %>"><%= calculateBlank(allCategoryTrees[i].getLevel()) + allCategoryTrees[i].getName() + "(" + allCategoryTrees[i].getNumberOfProducts() + ")"%></aui:a>		
+		<br>
+	<%
+	}
+	%>

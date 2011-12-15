@@ -16,22 +16,37 @@
 
 <%@ include file="/html/search/init.jsp" %>
 
-<% 
+<%
 	String currentURL = PortalUtil.getCurrentURL(request);
 %>
-<portlet:actionURL name="QuickFina" var="search"/>
+<c:choose>
+	<c:when test="<%= searchType.equals(PortletConstants.FIND) %>">
+		<portlet:actionURL name="QuickFina" var="search"/>
+		
+		<aui:form action="<%= search.toString() %>">
+			<aui:input name="productKeyWord"></aui:input>
+			
+			<aui:button-row>
+				<aui:button type="submit" />
+			</aui:button-row>
+		</aui:form>
+		
+		<portlet:renderURL var="advancedSearchUrl">
+			<portlet:param name="jspPage" value="/html/search/advanced_search.jsp" />
+			<portlet:param name="backURL" value="<%= currentURL %>" />
+		</portlet:renderURL>
+		
+		<aui:a href="<%= advancedSearchUrl.toString() %>">Advanced Search</aui:a>	
+	</c:when>
+	<c:when test="<%= searchType.equals(PortletConstants.MANUFACTURER) %>">
+		<%@ include file="/html/search/manufacturer.jsp" %>
+	</c:when>
+	<c:when test="<%= searchType.equals(PortletConstants.CATEGORIES) %>">
+		<%@ include file="/html/search/categories.jsp" %>
+	</c:when>
+</c:choose>
 
-<aui:form action="<%= search.toString() %>">
-	<aui:input name="productKeyWord"></aui:input>
-	
-	<aui:button-row>
-		<aui:button type="submit" />
-	</aui:button-row>
-</aui:form>
-
-<portlet:renderURL var="advancedSearchUrl">
-	<portlet:param name="jspPage" value="/html/search/advanced_search.jsp" />
-	<portlet:param name="backURL" value="<%= currentURL %>" />
-</portlet:renderURL>
-
-<aui:a href="<%= advancedSearchUrl.toString() %>">Advanced Search</aui:a>
+<aui:script>
+	function tt(s) {
+	alert(s);}
+</aui:script>

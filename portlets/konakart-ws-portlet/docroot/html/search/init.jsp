@@ -23,6 +23,8 @@
 <%@page import="com.konakart.ws.KKWSEngIf"%>
 <%@page import="com.konakart.wsapp.Product"%>
 <%@page import="com.konakart.wsapp.Review"%>
+<%@page import="com.konakart.wsapp.Category"%>
+<%@page import="com.konakart.wsapp.Manufacturer"%>
 
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Arrays"%>
@@ -37,27 +39,25 @@
 <%@page import="com.liferay.portal.kernel.util.ListUtil"%>
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
 <%@page import="com.liferay.portal.kernel.util.GetterUtil"%>
-<%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
 <%@page import="com.liferay.portal.kernel.util.KeyValuePair"%>
 <%@page import="com.liferay.portal.kernel.util.StringUtil"%>
 <%@page import="com.liferay.portal.kernel.util.SetUtil"%>
 <%@page import="com.liferay.portal.kernel.util.Validator"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="com.liferay.portal.kernel.util.PrefsParamUtil"%>
+<%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 
-<%@page import="com.liferay.konakart.service.LReviewLocalServiceUtil"%>
-<%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
+
 <%@page import="com.liferay.konakart.service.LManufacturerLocalServiceUtil"%>
-<%@page import="com.konakart.wsapp.Manufacturer"%>
+<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
+<%@page import="com.liferay.konakart.service.LReviewLocalServiceUtil"%>
+<%@page import="com.liferay.konakart.service.LCategoryLocalServiceUtil"%>
 
 <%@page import="com.liferay.konakart.util.PortletConstants"%>
-<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
+
 <%@page import="com.liferay.konakart.util.KKWsUtil"%>
 <%@page import="com.liferay.konakart.util.KKConstant"%>
-
-<%@page import="com.liferay.konakart.service.LCategoryLocalServiceUtil"%>
-<%@page import="com.konakart.wsapp.Category"%>
 
 <portlet:defineObjects />
 
