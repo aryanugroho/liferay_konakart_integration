@@ -16,12 +16,11 @@
 
 <%@ include file="/html/search/init.jsp" %>
 
-<% 
+<%
 	String currentURL = PortalUtil.getCurrentURL(request);
 %>
 <c:choose>
 	<c:when test="<%= searchType.equals(PortletConstants.FIND) %>">
-		
 		<portlet:actionURL name="QuickFina" var="search"/>
 		
 		<aui:form action="<%= search.toString() %>">
@@ -46,3 +45,8 @@
 		<%@ include file="/html/search/categories.jsp" %>
 	</c:when>
 </c:choose>
+
+<aui:script>
+	function tt(s) {
+	alert(s);}
+</aui:script>

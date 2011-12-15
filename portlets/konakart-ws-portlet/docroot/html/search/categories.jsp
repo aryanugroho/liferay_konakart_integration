@@ -31,9 +31,11 @@
 	
 	for (int i = 0; i < allCategoryTrees.length; i++) { 
 %>
-	<aui:a href="www.baidu.com"><%= calculateBlank(allCategoryTrees[i].getLevel()) + allCategoryTrees[i].getName() %></aui:a>		
+	<portlet:actionURL name="SearchByCategory" var="search">
+		<portlet:param name="categoryId" value="<%= String.valueOf(allCategoryTrees[i].getId()) %>"/>
+	</portlet:actionURL>
+	<aui:a href="<%= search.toString() %>"><%= calculateBlank(allCategoryTrees[i].getLevel()) + allCategoryTrees[i].getName() + "(" + allCategoryTrees[i].getNumberOfProducts() + ")"%></aui:a>		
 		<br>
 	<%
 	}
 	%>
-

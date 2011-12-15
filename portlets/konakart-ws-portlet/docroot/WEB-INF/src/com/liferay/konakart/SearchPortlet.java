@@ -20,7 +20,25 @@ public class SearchPortlet extends MVCPortlet {
 		actionResponse.setRenderParameter("productKeyWord", productKeyWord);
 	}
 	
-	public void AdvancedSearch (ActionRequest actionRequest, 
+	public void SearchByCategory(ActionRequest actionRequest, 
+			ActionResponse actionResponse) {
+		
+		int categoryId = ParamUtil.getInteger(actionRequest, "categoryId");
+		
+		actionResponse.setRenderParameter("categoryId", 
+			String.valueOf(categoryId));
+	}
+	
+	public void SearchByManu(ActionRequest actionRequest, 
+			ActionResponse actionResponse) {
+		
+		int manufacturerId = ParamUtil.getInteger(actionRequest, 
+			"manufacturerId");
+		
+		actionRequest.setAttribute("manufacturerId", manufacturerId);
+	}
+
+	public void AdvancedSearch(ActionRequest actionRequest, 
 			ActionResponse actionResponse) {
 		
 		String searchKey = ParamUtil.getString(actionRequest, "searchKey");
@@ -44,8 +62,6 @@ public class SearchPortlet extends MVCPortlet {
 		String[] searchParams = {searchKey, searchInDesciption, categoryId, 
 			manufacturerId, priceFrom, priceTo, dateFrom, dateTo};
 		
-		for(int i=0;i<searchParams.length;i++){
-			System.out.println(searchParams[i]);
-		}
+		actionResponse.setRenderParameter("searchParams", searchParams);
 	}
 }
