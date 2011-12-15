@@ -14,4 +14,18 @@
 */
 --%>
 
-<%@ include file="/html/search/init.jsp" %>
+<%
+	Manufacturer[] manufacturers = LManufacturerLocalServiceUtil.getAllManufacturers();
+%>
+
+<aui:select name="manufacturerId" title="manufacturers">
+	<aui:option value="0">Please Select</aui:option>
+		
+	<% 
+	for (int i = 0; i < manufacturers.length; i++) {
+	%>
+	<aui:option value="<%= manufacturers[i].getId() %>"><%= manufacturers[i].getName() %></aui:option>
+	<% 
+	}
+	%>
+</aui:select>

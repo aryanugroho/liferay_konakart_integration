@@ -14,4 +14,9 @@
 */
 --%>
 
-<%@ include file="/html/search/init.jsp" %>
+<%
+	Category[] categories = LCategoryLocalServiceUtil.getCategoryTree(true);
+	
+	Category[] allCategoryTrees = LCategoryLocalServiceUtil.getAllCategoryTree(categories, true);
+%>
+
