@@ -21,39 +21,21 @@ import javax.portlet.RenderResponse;
  */
 public class DetailPortlet extends MVCPortlet {
  
-	public void doView(
+	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse) 
 		throws IOException, PortletException{
 		
-		String productId = ParamUtil.getString(renderRequest, "productId");
+		String searchKey = ParamUtil.getString(renderRequest, "searchKey");
 		
-		String productKeyWord = ParamUtil.getString(
-			renderRequest, "productKeyWord");
+		String[] valueAndKey = null;
 		
-		String[] searchParams = renderRequest.getParameterValues("searchParams");
-		
-		String categoryId = ParamUtil.getString(
-			renderRequest, "categoryId");
-		
-		String manufacturerId = ParamUtil.getString(
-			renderRequest, "manufacturerId");
-		
-		if (Validator.isNotNull(productId)) {
-			renderRequest.setAttribute("productId", productId);
-			
-			include("/html/detail/product_detail.jsp", 
-				renderRequest, renderResponse);
-			
-			return;
-		}
-		
-		if (Validator.isNotNull(productKeyWord)) {
-			renderRequest.setAttribute("productKeyWord", productKeyWord);
-			
-			include("/html/detail/product_list.jsp", 
-				renderRequest, renderResponse);
-			
-			return;
+		if (Validator.isNotNull(searchKey)) {
+			valueAndKey = StringUtil.split(searchKey, "#");
+
+			if (Validator.isNotNull(valueAndKey[0])) {
+				System.out.println(valueAndKey[0]);
+				System.out.println(valueAndKey[1]);
+			}
 		}
 		
 		String webServiceAddress = KKWsUtil.getWebServiceAddress(renderRequest);
@@ -70,7 +52,7 @@ public class DetailPortlet extends MVCPortlet {
 		Product[] productArray = new Product[0];
 		
 		productArray = LPruductLocalServiceUtil.
-				getLastestProducts(5);
+			getLastestProducts(5);
 		
 		renderRequest.setAttribute("kkWSEng", kkWSEng);
 		
@@ -80,6 +62,4 @@ public class DetailPortlet extends MVCPortlet {
 		
 		super.doView(renderRequest, renderResponse);
 	}
-	
-	
 }

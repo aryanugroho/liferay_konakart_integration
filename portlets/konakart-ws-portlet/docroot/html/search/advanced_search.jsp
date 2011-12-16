@@ -34,7 +34,7 @@
 <portlet:actionURL name="AdvancedSearch" var="advancedSearchUrl"/>
 
 <aui:form action="<%= advancedSearchUrl.toString() %>">
-	<aui:input name="searchKey" title="search-criteria:" type="text"></aui:input>
+	<aui:input name="searchCriteria" title="search-criteria:" type="text"></aui:input>
 	
 	<aui:input name="searchInDesciption" title="search-in-product-descriptions" type="checkbox"></aui:input>
 	
