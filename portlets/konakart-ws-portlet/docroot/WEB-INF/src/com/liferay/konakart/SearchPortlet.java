@@ -14,8 +14,8 @@ public class SearchPortlet extends MVCPortlet {
 	public void QuickFina(ActionRequest actionRequest, 
 			ActionResponse actionResponse) {
 		
-		String productKeyWord = 
-			ParamUtil.getString(actionRequest, "productKeyWord");
+		String productKeyWord = ParamUtil.getString(actionRequest, 
+			"productKeyWord");
 		
 		actionResponse.setRenderParameter("productKeyWord", productKeyWord);
 	}
@@ -36,6 +36,9 @@ public class SearchPortlet extends MVCPortlet {
 			"manufacturerId");
 		
 		actionRequest.setAttribute("manufacturerId", manufacturerId);
+		
+		actionResponse.setRenderParameter("manufacturerId", 
+			String.valueOf(manufacturerId));
 	}
 
 	public void AdvancedSearch(ActionRequest actionRequest, 

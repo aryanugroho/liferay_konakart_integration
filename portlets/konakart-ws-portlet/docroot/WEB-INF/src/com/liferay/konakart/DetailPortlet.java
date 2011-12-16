@@ -30,6 +30,14 @@ public class DetailPortlet extends MVCPortlet {
 		String productKeyWord = ParamUtil.getString(
 			renderRequest, "productKeyWord");
 		
+		String[] searchParams = renderRequest.getParameterValues("searchParams");
+		
+		String categoryId = ParamUtil.getString(
+			renderRequest, "categoryId");
+		
+		String manufacturerId = ParamUtil.getString(
+			renderRequest, "manufacturerId");
+		
 		if (Validator.isNotNull(productId)) {
 			renderRequest.setAttribute("productId", productId);
 			

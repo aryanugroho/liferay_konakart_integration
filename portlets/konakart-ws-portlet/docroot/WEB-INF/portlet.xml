@@ -85,6 +85,15 @@
 		<supported-public-render-parameter>
 			productKeyWord
 		</supported-public-render-parameter>		
+		<supported-public-render-parameter>
+			manufacturerId
+		</supported-public-render-parameter>
+		<supported-public-render-parameter>
+			categoryId
+		</supported-public-render-parameter>
+		<supported-public-render-parameter>
+			searchParams
+		</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>search</portlet-name>
@@ -127,7 +136,17 @@
 		<supported-public-render-parameter>
 			productKeyWord
 		</supported-public-render-parameter>
+		<supported-public-render-parameter>
+			manufacturerId
+		</supported-public-render-parameter>
+		<supported-public-render-parameter>
+			categoryId
+		</supported-public-render-parameter>
+		<supported-public-render-parameter>
+			searchParams
+		</supported-public-render-parameter>
 	</portlet>
+	
 	<public-render-parameter>
     	<identifier>productId</identifier>
     	<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:productId</qname>
@@ -135,5 +154,17 @@
 	<public-render-parameter>
     	<identifier>productKeyWord</identifier>
     	<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:productKeyWord</qname>
+    </public-render-parameter>
+    <public-render-parameter>
+    	<identifier>manufacturerId</identifier>
+    	<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:manufacturerId</qname>
+    </public-render-parameter>
+    <public-render-parameter>
+    	<identifier>categoryId</identifier>
+    	<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:categoryId</qname>
+    </public-render-parameter>
+    <public-render-parameter>
+    	<identifier>searchParams</identifier>
+    	<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:searchParams</qname>
     </public-render-parameter>
 </portlet-app>
