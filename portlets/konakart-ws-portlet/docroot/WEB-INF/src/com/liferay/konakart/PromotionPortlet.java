@@ -32,14 +32,17 @@ public class PromotionPortlet extends MVCPortlet {
 		
 		String productId = ParamUtil.getString(actionRequest, "productId");
 		
-		actionResponse.setRenderParameter("productId", productId);
+		String searchKey = productId + "#productId";
+		
+		actionResponse.setRenderParameter("searchKey", searchKey);
 	}
 	
 	public void doView(
 			RenderRequest renderRequest, RenderResponse renderResponse) 
 		throws IOException, PortletException{
 		
-			String webServiceAddress = KKWsUtil.getWebServiceAddress(renderRequest);
+			String webServiceAddress = KKWsUtil.getWebServiceAddress(
+				renderRequest);
 			
 			String serviceUrl = StringUtil.replace(webServiceAddress,
 				"services/KKWebServiceEng?wsdl", "");

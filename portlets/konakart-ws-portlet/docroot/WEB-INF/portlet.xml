@@ -44,7 +44,7 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 		<supported-public-render-parameter>
-			productId
+			searchKey
 		</supported-public-render-parameter>
 	</portlet>
 	<portlet>
@@ -80,19 +80,7 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 		<supported-public-render-parameter>
-			productId
-		</supported-public-render-parameter>
-		<supported-public-render-parameter>
-			productKeyWord
-		</supported-public-render-parameter>		
-		<supported-public-render-parameter>
-			manufacturerId
-		</supported-public-render-parameter>
-		<supported-public-render-parameter>
-			categoryId
-		</supported-public-render-parameter>
-		<supported-public-render-parameter>
-			searchParams
+			searchKey
 		</supported-public-render-parameter>
 	</portlet>
 	<portlet>
@@ -134,37 +122,12 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 		<supported-public-render-parameter>
-			productKeyWord
-		</supported-public-render-parameter>
-		<supported-public-render-parameter>
-			manufacturerId
-		</supported-public-render-parameter>
-		<supported-public-render-parameter>
-			categoryId
-		</supported-public-render-parameter>
-		<supported-public-render-parameter>
-			searchParams
+			searchKey
 		</supported-public-render-parameter>
 	</portlet>
 	
 	<public-render-parameter>
-    	<identifier>productId</identifier>
-    	<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:productId</qname>
-    </public-render-parameter>
-	<public-render-parameter>
-    	<identifier>productKeyWord</identifier>
-    	<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:productKeyWord</qname>
-    </public-render-parameter>
-    <public-render-parameter>
-    	<identifier>manufacturerId</identifier>
-    	<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:manufacturerId</qname>
-    </public-render-parameter>
-    <public-render-parameter>
-    	<identifier>categoryId</identifier>
-    	<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:categoryId</qname>
-    </public-render-parameter>
-    <public-render-parameter>
-    	<identifier>searchParams</identifier>
-    	<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:searchParams</qname>
+    	<identifier>searchKey</identifier>
+    	<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:searchKey</qname>
     </public-render-parameter>
 </portlet-app>

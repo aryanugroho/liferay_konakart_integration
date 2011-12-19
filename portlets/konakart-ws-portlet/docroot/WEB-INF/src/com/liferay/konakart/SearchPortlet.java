@@ -1,6 +1,7 @@
 package com.liferay.konakart;
 
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import javax.portlet.ActionRequest;
@@ -17,7 +18,9 @@ public class SearchPortlet extends MVCPortlet {
 		String productKeyWord = ParamUtil.getString(actionRequest, 
 			"productKeyWord");
 		
-		actionResponse.setRenderParameter("productKeyWord", productKeyWord);
+		String searchKey = productKeyWord + "#productKeyWord";
+		
+		actionResponse.setRenderParameter("searchKey", searchKey);
 	}
 	
 	public void SearchByCategory(ActionRequest actionRequest, 
@@ -25,8 +28,9 @@ public class SearchPortlet extends MVCPortlet {
 		
 		int categoryId = ParamUtil.getInteger(actionRequest, "categoryId");
 		
-		actionResponse.setRenderParameter("categoryId", 
-			String.valueOf(categoryId));
+		String searchKey = categoryId + "#categoryId";
+		
+		actionResponse.setRenderParameter("searchKey", searchKey);
 	}
 	
 	public void SearchByManu(ActionRequest actionRequest, 
@@ -37,22 +41,24 @@ public class SearchPortlet extends MVCPortlet {
 		
 		actionRequest.setAttribute("manufacturerId", manufacturerId);
 		
-		actionResponse.setRenderParameter("manufacturerId", 
-			String.valueOf(manufacturerId));
+		String searchKey = manufacturerId + "#manufacturerId";
+		
+		actionResponse.setRenderParameter("searchKey", searchKey);
 	}
 
 	public void AdvancedSearch(ActionRequest actionRequest, 
 			ActionResponse actionResponse) {
 		
-		String searchKey = ParamUtil.getString(actionRequest, "searchKey");
+		String searchCriteria = ParamUtil.getString(actionRequest,
+			"searchCriteria");
 
-		String searchInDesciption = ParamUtil.getString(
-			actionRequest, "searchInDesciption");
+		String searchInDesciption = ParamUtil.getString(actionRequest, 
+			"searchInDesciption");
 		
 		String categoryId = ParamUtil.getString(actionRequest, "categoryId");
 		
-		String manufacturerId = ParamUtil.getString(
-			actionRequest, "manufacturerId");
+		String manufacturerId = ParamUtil.getString(actionRequest, 
+			"manufacturerId");
 		
 		String priceFrom = ParamUtil.getString(actionRequest, "priceFrom");
 		
@@ -62,9 +68,12 @@ public class SearchPortlet extends MVCPortlet {
 		
 		String dateTo = ParamUtil.getString(actionRequest, "dateTo");
 		
-		String[] searchParams = {searchKey, searchInDesciption, categoryId, 
+		String[] searchParams = {searchCriteria, searchInDesciption, categoryId, 
 			manufacturerId, priceFrom, priceTo, dateFrom, dateTo};
 		
-		actionResponse.setRenderParameter("searchParams", searchParams);
+		String searchKey = StringUtil.merge(searchParams) + 
+			"#searchParams";
+		
+		actionResponse.setRenderParameter("searchKey", searchKey);
 	}
 }

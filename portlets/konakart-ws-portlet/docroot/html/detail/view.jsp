@@ -40,12 +40,15 @@
 		modelVar="product" escapedModel="false">
 
 		<%
-			int productId = product.getId();
-			Product productDetail = LPruductLocalServiceUtil.getProduct(productId);
+			int pId = product.getId();
+		
+			String productId = String.valueOf(pId)+"#productId";
+		
+			Product productDetail = LPruductLocalServiceUtil.getProduct(pId);
 		%>
 		<portlet:renderURL var="testActionUrl">
 			<portlet:param name="jspPage" value="/html/detail/product_detail.jsp"></portlet:param>
-			<portlet:param name="productId" value="<%= String.valueOf(productId) %>"></portlet:param>
+			<portlet:param name="searchKey" value="<%= productId %>"></portlet:param>
 		</portlet:renderURL>
 		<liferay-ui:search-container-column-text
 			href="<%= testActionUrl.toString() %>"

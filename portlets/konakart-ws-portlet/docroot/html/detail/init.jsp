@@ -58,7 +58,6 @@
 <portlet:defineObjects />
 
 <%
-	
 	KKWSEngIf kkWsEng = KKWsUtil.getKKWsEng(renderRequest);
 		 
 	LPruductLocalServiceUtil.setKKWsEng(kkWsEng);

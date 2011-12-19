@@ -45,8 +45,3 @@
 		<%@ include file="/html/search/categories.jsp" %>
 	</c:when>
 </c:choose>
-
-<aui:script>
-	function tt(s) {
-	alert(s);}
-</aui:script>

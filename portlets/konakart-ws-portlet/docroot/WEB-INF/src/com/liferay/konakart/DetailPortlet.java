@@ -21,43 +21,12 @@ import javax.portlet.RenderResponse;
  */
 public class DetailPortlet extends MVCPortlet {
  
-	public void doView(
+	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse) 
 		throws IOException, PortletException{
 		
-		String productId = ParamUtil.getString(renderRequest, "productId");
-		
-		String productKeyWord = ParamUtil.getString(
-			renderRequest, "productKeyWord");
-		
-		String[] searchParams = renderRequest.getParameterValues("searchParams");
-		
-		String categoryId = ParamUtil.getString(
-			renderRequest, "categoryId");
-		
-		String manufacturerId = ParamUtil.getString(
-			renderRequest, "manufacturerId");
-		
-		if (Validator.isNotNull(productId)) {
-			renderRequest.setAttribute("productId", productId);
-			
-			include("/html/detail/product_detail.jsp", 
-				renderRequest, renderResponse);
-			
-			return;
-		}
-		
-		if (Validator.isNotNull(productKeyWord)) {
-			renderRequest.setAttribute("productKeyWord", productKeyWord);
-			
-			include("/html/detail/product_list.jsp", 
-				renderRequest, renderResponse);
-			
-			return;
-		}
-		
 		String webServiceAddress = KKWsUtil.getWebServiceAddress(renderRequest);
-	
+		
 		String serviceUrl = StringUtil.replace(webServiceAddress,
 				"services/KKWebServiceEng?wsdl", "");
 			
@@ -67,12 +36,44 @@ public class DetailPortlet extends MVCPortlet {
 		
 		LPruductLocalServiceUtil.setKKWsEng(kkWSEng);
 		
+		renderRequest.setAttribute("kkWSEng", kkWSEng);
+		
+		String searchKey = ParamUtil.getString(renderRequest, "searchKey");
+		
+		String[] valueAndType = null;
+		
+		if (Validator.isNotNull(searchKey)) {
+			valueAndType = StringUtil.split(searchKey, "#");
+
+			if (Validator.isNotNull(valueAndType[0])) {
+				if (valueAndType[1].equals("productId")) {
+					
+					Product product = LPruductLocalServiceUtil.getProduct(
+						Integer.valueOf(valueAndType[0]));
+					
+					renderRequest.setAttribute("product", product);
+					
+					include("/html/detail/product_detail.jsp", renderRequest, 
+						renderResponse);
+					
+					return ;
+				} else if (valueAndType[1].equals("categroyId")) {
+					renderRequest.setAttribute("categroyId", valueAndType[0]);
+					
+				} else if (valueAndType[1].equals("manufacturerId")) {
+					renderRequest.setAttribute("manufacturerId", valueAndType[0]);
+				} else if (valueAndType[1].equals("productKeyWord")) {
+					renderRequest.setAttribute("productKeyWord", valueAndType[0]);
+				} else if (valueAndType[1].equals("searchParams")) {
+					
+				}
+			}
+		}
+		
 		Product[] productArray = new Product[0];
 		
 		productArray = LPruductLocalServiceUtil.
-				getLastestProducts(5);
-		
-		renderRequest.setAttribute("kkWSEng", kkWSEng);
+			getLastestProducts(5);
 		
 		renderRequest.setAttribute("productArray", productArray);
 
@@ -80,6 +81,4 @@ public class DetailPortlet extends MVCPortlet {
 		
 		super.doView(renderRequest, renderResponse);
 	}
-	
-	
 }
