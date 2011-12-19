@@ -17,9 +17,9 @@
 <%@ include file="/html/detail/init.jsp" %>
 
 <%
-	int pId = ParamUtil.getInteger(renderRequest, "productId");
+	Product product = (Product) renderRequest.getAttribute("product");
 	
-	Product product = LPruductLocalServiceUtil.getProduct(pId);
+	System.out.println(product);
 %>
 
 name : <%= product.getName() %> <br>

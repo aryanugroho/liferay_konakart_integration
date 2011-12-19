@@ -25,21 +25,8 @@ public class DetailPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse) 
 		throws IOException, PortletException{
 		
-		String searchKey = ParamUtil.getString(renderRequest, "searchKey");
-		
-		String[] valueAndKey = null;
-		
-		if (Validator.isNotNull(searchKey)) {
-			valueAndKey = StringUtil.split(searchKey, "#");
-
-			if (Validator.isNotNull(valueAndKey[0])) {
-				System.out.println(valueAndKey[0]);
-				System.out.println(valueAndKey[1]);
-			}
-		}
-		
 		String webServiceAddress = KKWsUtil.getWebServiceAddress(renderRequest);
-	
+		
 		String serviceUrl = StringUtil.replace(webServiceAddress,
 				"services/KKWebServiceEng?wsdl", "");
 			
@@ -49,12 +36,44 @@ public class DetailPortlet extends MVCPortlet {
 		
 		LPruductLocalServiceUtil.setKKWsEng(kkWSEng);
 		
+		renderRequest.setAttribute("kkWSEng", kkWSEng);
+		
+		String searchKey = ParamUtil.getString(renderRequest, "searchKey");
+		
+		String[] valueAndType = null;
+		
+		if (Validator.isNotNull(searchKey)) {
+			valueAndType = StringUtil.split(searchKey, "#");
+
+			if (Validator.isNotNull(valueAndType[0])) {
+				if (valueAndType[1].equals("productId")) {
+					
+					Product product = LPruductLocalServiceUtil.getProduct(
+						Integer.valueOf(valueAndType[0]));
+					
+					renderRequest.setAttribute("product", product);
+					
+					include("/html/detail/product_detail.jsp", renderRequest, 
+						renderResponse);
+					
+					return ;
+				} else if (valueAndType[1].equals("categroyId")) {
+					renderRequest.setAttribute("categroyId", valueAndType[0]);
+					
+				} else if (valueAndType[1].equals("manufacturerId")) {
+					renderRequest.setAttribute("manufacturerId", valueAndType[0]);
+				} else if (valueAndType[1].equals("productKeyWord")) {
+					renderRequest.setAttribute("productKeyWord", valueAndType[0]);
+				} else if (valueAndType[1].equals("searchParams")) {
+					
+				}
+			}
+		}
+		
 		Product[] productArray = new Product[0];
 		
 		productArray = LPruductLocalServiceUtil.
 			getLastestProducts(5);
-		
-		renderRequest.setAttribute("kkWSEng", kkWSEng);
 		
 		renderRequest.setAttribute("productArray", productArray);
 
