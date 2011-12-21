@@ -14,6 +14,7 @@
 */
 --%>
 
+<%@page import="com.liferay.konakart.util.PortletUtil"%>
 <%@ include file="/html/detail/init.jsp" %>
 
 <% 
@@ -45,6 +46,8 @@
 			String productId = String.valueOf(pId)+"#productId";
 		
 			Product productDetail = LPruductLocalServiceUtil.getProduct(pId);
+			
+			PortletUtil.cutOut(productDetail.getDescription());
 		%>
 		<portlet:renderURL var="testActionUrl">
 			<portlet:param name="jspPage" value="/html/detail/product_detail.jsp"></portlet:param>
@@ -94,7 +97,7 @@
 		<liferay-ui:search-container-column-text
 			href="<%= testActionUrl.toString() %>"
 			name="Description"
-			value="<%= productDetail.getDescription() %>"
+			value="<%= PortletUtil.cutOut(productDetail.getDescription()) %>"
 		/>	
 			
 	</liferay-ui:search-container-row>
