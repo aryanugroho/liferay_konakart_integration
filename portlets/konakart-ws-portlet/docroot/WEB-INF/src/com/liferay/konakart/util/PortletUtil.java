@@ -17,7 +17,7 @@ public class PortletUtil {
 		if (s.length() > length) {
 			s = StringUtil.shorten(s, length);
 		}
-		System.out.println(s);
+		
 		return s;
 	}
 	

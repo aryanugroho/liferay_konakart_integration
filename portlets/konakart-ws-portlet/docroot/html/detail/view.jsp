@@ -14,7 +14,6 @@
 */
 --%>
 
-<%@page import="com.liferay.konakart.util.PortletUtil"%>
 <%@ include file="/html/detail/init.jsp" %>
 
 <% 

@@ -53,7 +53,7 @@
 <%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
 
 <%@page import="com.liferay.konakart.util.PortletConstants"%>
-
+<%@page import="com.liferay.konakart.util.PortletUtil"%>
 
 <portlet:defineObjects />
 
