@@ -130,6 +130,24 @@ public class LProductLocalServiceImpl extends LProductLocalServiceBaseImpl {
 		return searchProducts(null, ldd, lps, -1);
 	}
 	
+	public Product[] searchProductsByManufacturerId(int manufacturerId) 
+		throws RemoteException {
+			
+		LDataDescriptor ldd= new LDataDescriptor();
+			
+		return searchProductsByManufacturerId(null, ldd, manufacturerId, -1);
+	}
+	
+	public Product[] searchProductsByManufacturerId(String sessionId, 
+			LDataDescriptor ldd, int manufacturerId, int languageId) 
+		throws RemoteException {
+			
+		return _kkWsEng.getProductsPerManufacturer(
+			sessionId, ldd.get_dataDescriptor(), manufacturerId, 
+			KKConstant.KK_DEFAULT_LANGUAGE_ID).getProductArray();
+	}
+	
+	
 	public Product[] searchProducts(
 			String sessionId, LDataDescriptor ldd, LProductSearch lps, 
 			int langugeId) 

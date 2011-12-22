@@ -64,7 +64,10 @@ public class DetailPortlet extends MVCPortlet {
 					if (valueAndType[1].equals("categroyId")) {
 						
 					} else if (valueAndType[1].equals("manufacturerId")) {
-					
+						int manufacturerId = Integer.valueOf(valueAndType[0]);
+						
+						products = LProductLocalServiceUtil.
+							searchProductsByManufacturerId(manufacturerId);
 					} else if (valueAndType[1].equals("productKeyWord")) {
 						String key = valueAndType[0];
 						
