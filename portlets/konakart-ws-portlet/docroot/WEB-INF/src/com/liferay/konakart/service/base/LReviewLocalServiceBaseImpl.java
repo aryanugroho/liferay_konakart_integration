@@ -18,7 +18,7 @@ import com.liferay.counter.service.CounterLocalService;
 
 import com.liferay.konakart.service.LCategoryLocalService;
 import com.liferay.konakart.service.LManufacturerLocalService;
-import com.liferay.konakart.service.LPruductLocalService;
+import com.liferay.konakart.service.LProductLocalService;
 import com.liferay.konakart.service.LReviewLocalService;
 
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -95,22 +95,22 @@ public abstract class LReviewLocalServiceBaseImpl implements LReviewLocalService
 	}
 
 	/**
-	 * Returns the l pruduct local service.
+	 * Returns the l product local service.
 	 *
-	 * @return the l pruduct local service
+	 * @return the l product local service
 	 */
-	public LPruductLocalService getLPruductLocalService() {
-		return lPruductLocalService;
+	public LProductLocalService getLProductLocalService() {
+		return lProductLocalService;
 	}
 
 	/**
-	 * Sets the l pruduct local service.
+	 * Sets the l product local service.
 	 *
-	 * @param lPruductLocalService the l pruduct local service
+	 * @param lProductLocalService the l product local service
 	 */
-	public void setLPruductLocalService(
-		LPruductLocalService lPruductLocalService) {
-		this.lPruductLocalService = lPruductLocalService;
+	public void setLProductLocalService(
+		LProductLocalService lProductLocalService) {
+		this.lProductLocalService = lProductLocalService;
 	}
 
 	/**
@@ -305,8 +305,8 @@ public abstract class LReviewLocalServiceBaseImpl implements LReviewLocalService
 	protected LCategoryLocalService lCategoryLocalService;
 	@BeanReference(type = LManufacturerLocalService.class)
 	protected LManufacturerLocalService lManufacturerLocalService;
-	@BeanReference(type = LPruductLocalService.class)
-	protected LPruductLocalService lPruductLocalService;
+	@BeanReference(type = LProductLocalService.class)
+	protected LProductLocalService lProductLocalService;
 	@BeanReference(type = LReviewLocalService.class)
 	protected LReviewLocalService lReviewLocalService;
 	@BeanReference(type = CounterLocalService.class)

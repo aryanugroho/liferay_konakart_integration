@@ -9,9 +9,9 @@
 	<bean id="com.liferay.konakart.service.LManufacturerLocalServiceUtil" class="com.liferay.konakart.service.LManufacturerLocalServiceUtil">
 		<property name="service" ref="com.liferay.konakart.service.LManufacturerLocalService" />
 	</bean>
-	<bean id="com.liferay.konakart.service.LPruductLocalService" class="com.liferay.konakart.service.impl.LPruductLocalServiceImpl" />
-	<bean id="com.liferay.konakart.service.LPruductLocalServiceUtil" class="com.liferay.konakart.service.LPruductLocalServiceUtil">
-		<property name="service" ref="com.liferay.konakart.service.LPruductLocalService" />
+	<bean id="com.liferay.konakart.service.LProductLocalService" class="com.liferay.konakart.service.impl.LProductLocalServiceImpl" />
+	<bean id="com.liferay.konakart.service.LProductLocalServiceUtil" class="com.liferay.konakart.service.LProductLocalServiceUtil">
+		<property name="service" ref="com.liferay.konakart.service.LProductLocalService" />
 	</bean>
 	<bean id="com.liferay.konakart.service.LReviewLocalService" class="com.liferay.konakart.service.impl.LReviewLocalServiceImpl" />
 	<bean id="com.liferay.konakart.service.LReviewLocalServiceUtil" class="com.liferay.konakart.service.LReviewLocalServiceUtil">

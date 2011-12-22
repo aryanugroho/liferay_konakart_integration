@@ -2,7 +2,7 @@ package com.liferay.konakart;
 
 import com.konakart.ws.KKWSEngIf;
 import com.konakart.wsapp.Product;
-import com.liferay.konakart.service.LPruductLocalServiceUtil;
+import com.liferay.konakart.service.LProductLocalServiceUtil;
 import com.liferay.konakart.util.KKWsUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -34,7 +34,7 @@ public class DetailPortlet extends MVCPortlet {
 		
 		KKWSEngIf kkWSEng = KKWsUtil.getKKWsEng(url);
 		
-		LPruductLocalServiceUtil.setKKWsEng(kkWSEng);
+		LProductLocalServiceUtil.setKKWsEng(kkWSEng);
 		
 		renderRequest.setAttribute("kkWSEng", kkWSEng);
 		
@@ -49,7 +49,7 @@ public class DetailPortlet extends MVCPortlet {
 				if (valueAndType[1].equals("productId")) {
 					int productId = Integer.valueOf(valueAndType[0]);
 					
-					Product product = LPruductLocalServiceUtil.getProduct(
+					Product product = LProductLocalServiceUtil.getProduct(
 						productId);
 					
 					renderRequest.setAttribute("product", product);
@@ -68,7 +68,7 @@ public class DetailPortlet extends MVCPortlet {
 					} else if (valueAndType[1].equals("productKeyWord")) {
 						String key = valueAndType[0];
 						
-						products = LPruductLocalServiceUtil.searchProductsByKey(
+						products = LProductLocalServiceUtil.searchProductsByKey(
 							key);
 					} else if (valueAndType[1].equals("searchParams")) {
 						
@@ -85,7 +85,7 @@ public class DetailPortlet extends MVCPortlet {
 		
 		Product[] productArray = new Product[0];
 		
-		productArray = LPruductLocalServiceUtil.
+		productArray = LProductLocalServiceUtil.
 			getLastestProducts(5);
 		
 		renderRequest.setAttribute("productArray", productArray);

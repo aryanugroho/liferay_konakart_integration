@@ -14,7 +14,6 @@
 */
 --%>
 
-<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
 <%@ include file="/html/promotion/init.jsp" %>
 
 <% 	
@@ -67,7 +66,7 @@
 				renderUrl = null;
 			}
 			
-			product = LPruductLocalServiceUtil.getProduct(productId);
+			product = LProductLocalServiceUtil.getProduct(productId);
 		
 			for (int i = 0;i < showsColumns.length; i++) {
 				String showsColumn = showsColumns[i];

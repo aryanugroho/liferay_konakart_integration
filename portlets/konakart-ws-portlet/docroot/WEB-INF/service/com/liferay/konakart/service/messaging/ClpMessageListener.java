@@ -17,7 +17,7 @@ package com.liferay.konakart.service.messaging;
 import com.liferay.konakart.service.ClpSerializer;
 import com.liferay.konakart.service.LCategoryLocalServiceUtil;
 import com.liferay.konakart.service.LManufacturerLocalServiceUtil;
-import com.liferay.konakart.service.LPruductLocalServiceUtil;
+import com.liferay.konakart.service.LProductLocalServiceUtil;
 import com.liferay.konakart.service.LReviewLocalServiceUtil;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
@@ -41,7 +41,7 @@ public class ClpMessageListener extends BaseMessageListener {
 
 			LManufacturerLocalServiceUtil.clearService();
 
-			LPruductLocalServiceUtil.clearService();
+			LProductLocalServiceUtil.clearService();
 
 			LReviewLocalServiceUtil.clearService();
 		}

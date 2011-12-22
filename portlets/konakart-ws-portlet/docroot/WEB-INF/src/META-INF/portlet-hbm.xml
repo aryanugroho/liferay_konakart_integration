@@ -4,6 +4,6 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.konakart.model.LCategory" />
 	<import class="com.liferay.konakart.model.LManufacturer" />
-	<import class="com.liferay.konakart.model.LPruduct" />
+	<import class="com.liferay.konakart.model.LProduct" />
 	<import class="com.liferay.konakart.model.LReview" />
 </hibernate-mapping>

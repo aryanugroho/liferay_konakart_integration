@@ -21,8 +21,8 @@ import com.liferay.portal.kernel.util.MethodKey;
 /**
  * @author terry
  */
-public class LPruductLocalServiceClp implements LPruductLocalService {
-	public LPruductLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
+public class LProductLocalServiceClp implements LProductLocalService {
+	public LProductLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
 
 		_getBeanIdentifierMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),

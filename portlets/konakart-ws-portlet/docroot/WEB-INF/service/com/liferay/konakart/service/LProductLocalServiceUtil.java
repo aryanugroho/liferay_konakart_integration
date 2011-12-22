@@ -20,23 +20,23 @@ import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
- * The utility for the l pruduct local service. This utility wraps {@link com.liferay.konakart.service.impl.LPruductLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
+ * The utility for the l product local service. This utility wraps {@link com.liferay.konakart.service.impl.LProductLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
  * @author terry
- * @see LPruductLocalService
- * @see com.liferay.konakart.service.base.LPruductLocalServiceBaseImpl
- * @see com.liferay.konakart.service.impl.LPruductLocalServiceImpl
+ * @see LProductLocalService
+ * @see com.liferay.konakart.service.base.LProductLocalServiceBaseImpl
+ * @see com.liferay.konakart.service.impl.LProductLocalServiceImpl
  * @generated
  */
-public class LPruductLocalServiceUtil {
+public class LProductLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link com.liferay.konakart.service.impl.LPruductLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link com.liferay.konakart.service.impl.LProductLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
@@ -123,37 +123,37 @@ public class LPruductLocalServiceUtil {
 		_service = null;
 	}
 
-	public static LPruductLocalService getService() {
+	public static LProductLocalService getService() {
 		if (_service == null) {
 			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					LPruductLocalService.class.getName());
+					LProductLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					LPruductLocalService.class.getName(), portletClassLoader);
+					LProductLocalService.class.getName(), portletClassLoader);
 
-			_service = new LPruductLocalServiceClp(classLoaderProxy);
+			_service = new LProductLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
 
-			ReferenceRegistry.registerReference(LPruductLocalServiceUtil.class,
+			ReferenceRegistry.registerReference(LProductLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(LPruductLocalService.class);
+			MethodCache.remove(LProductLocalService.class);
 		}
 
 		return _service;
 	}
 
-	public void setService(LPruductLocalService service) {
-		MethodCache.remove(LPruductLocalService.class);
+	public void setService(LProductLocalService service) {
+		MethodCache.remove(LProductLocalService.class);
 
 		_service = service;
 
-		ReferenceRegistry.registerReference(LPruductLocalServiceUtil.class,
+		ReferenceRegistry.registerReference(LProductLocalServiceUtil.class,
 			"_service");
-		MethodCache.remove(LPruductLocalService.class);
+		MethodCache.remove(LProductLocalService.class);
 	}
 
-	private static LPruductLocalService _service;
+	private static LProductLocalService _service;
 }
