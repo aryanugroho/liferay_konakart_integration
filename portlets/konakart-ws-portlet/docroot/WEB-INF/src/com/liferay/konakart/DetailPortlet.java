@@ -60,10 +60,24 @@ public class DetailPortlet extends MVCPortlet {
 				} else if (valueAndType[1].equals("categroyId")) {
 					renderRequest.setAttribute("categroyId", valueAndType[0]);
 					
+					include("/html/detail/product_list.jsp", renderRequest, 
+							renderResponse);
+						
+					return ;
 				} else if (valueAndType[1].equals("manufacturerId")) {
 					renderRequest.setAttribute("manufacturerId", valueAndType[0]);
+					
+					include("/html/detail/product_list.jsp", renderRequest, 
+							renderResponse);
+						
+					return ;
 				} else if (valueAndType[1].equals("productKeyWord")) {
 					renderRequest.setAttribute("productKeyWord", valueAndType[0]);
+					
+					include("/html/detail/product_list.jsp", renderRequest, 
+							renderResponse);
+						
+					return ;
 				} else if (valueAndType[1].equals("searchParams")) {
 					
 				}

@@ -18,8 +18,6 @@
 
 <%
 	Product product = (Product) renderRequest.getAttribute("product");
-	
-	System.out.println(product);
 %>
 
 name : <%= product.getName() %> <br>
