@@ -47,9 +47,10 @@ public class DetailPortlet extends MVCPortlet {
 
 			if (Validator.isNotNull(valueAndType[0])) {
 				if (valueAndType[1].equals("productId")) {
+					int productId = Integer.valueOf(valueAndType[0]);
 					
 					Product product = LPruductLocalServiceUtil.getProduct(
-						Integer.valueOf(valueAndType[0]));
+						productId);
 					
 					renderRequest.setAttribute("product", product);
 					
@@ -57,29 +58,27 @@ public class DetailPortlet extends MVCPortlet {
 						renderResponse);
 					
 					return ;
-				} else if (valueAndType[1].equals("categroyId")) {
-					renderRequest.setAttribute("categroyId", valueAndType[0]);
+				} else {
+					Product[] products = new Product[0];
+					
+					if (valueAndType[1].equals("categroyId")) {
+						
+					} else if (valueAndType[1].equals("manufacturerId")) {
+					
+					} else if (valueAndType[1].equals("productKeyWord")) {
+						String key = valueAndType[0];
+						
+						products = LPruductLocalServiceUtil.searchProductsByKey(
+							key);
+					} else if (valueAndType[1].equals("searchParams")) {
+						
+					}
+					renderRequest.setAttribute("products", products);
 					
 					include("/html/detail/product_list.jsp", renderRequest, 
 							renderResponse);
 						
 					return ;
-				} else if (valueAndType[1].equals("manufacturerId")) {
-					renderRequest.setAttribute("manufacturerId", valueAndType[0]);
-					
-					include("/html/detail/product_list.jsp", renderRequest, 
-							renderResponse);
-						
-					return ;
-				} else if (valueAndType[1].equals("productKeyWord")) {
-					renderRequest.setAttribute("productKeyWord", valueAndType[0]);
-					
-					include("/html/detail/product_list.jsp", renderRequest, 
-							renderResponse);
-						
-					return ;
-				} else if (valueAndType[1].equals("searchParams")) {
-					
 				}
 			}
 		}

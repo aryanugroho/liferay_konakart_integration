@@ -31,7 +31,7 @@
 	title='advanced-search'
 />
 
-<portlet:actionURL name="AdvancedSearch" var="advancedSearchUrl"/>
+<portlet:actionURL name="advancedSearch" var="advancedSearchUrl"/>
 
 <aui:form action="<%= advancedSearchUrl.toString() %>">
 	<aui:input name="searchCriteria" title="search-criteria:" type="text"></aui:input>

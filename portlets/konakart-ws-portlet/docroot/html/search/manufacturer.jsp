@@ -26,7 +26,7 @@
 	}
 %>
 
-<portlet:actionURL name="SearchByManu" var="searchByManuUrl"/>
+<portlet:actionURL name="searchByManu" var="searchByManuUrl"/>
 
 <aui:form method="post" name="fm" action="<%= searchByManuUrl.toString() %>">
 	<aui:select name="manufacturerId" title="manufacturers" onChange="selectManu();">
