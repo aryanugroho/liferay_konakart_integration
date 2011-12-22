@@ -31,7 +31,7 @@
 	
 	for (int i = 0; i < allCategoryTrees.length; i++) { 
 %>
-	<portlet:actionURL name="SearchByCategory" var="search">
+	<portlet:actionURL name="searchByCategory" var="search">
 		<portlet:param name="categoryId" value="<%= String.valueOf(allCategoryTrees[i].getId()) %>"/>
 	</portlet:actionURL>
 	<aui:a href="<%= search.toString() %>"><%= calculateBlank(allCategoryTrees[i].getLevel()) + allCategoryTrees[i].getName() + "(" + allCategoryTrees[i].getNumberOfProducts() + ")"%></aui:a>		

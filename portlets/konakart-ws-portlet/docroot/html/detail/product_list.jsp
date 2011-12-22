@@ -17,11 +17,9 @@
 <%@ include file="/html/detail/init.jsp" %>
 
 <%
-	String key = ParamUtil.getString(renderRequest, "productKeyWord"); 
+	Product[] products = (Product[])renderRequest.getAttribute("products");
 	
-	Product[] productArray = LPruductLocalServiceUtil.searchProductsByKey(key);
-	
-	List<Product> productList = Arrays.asList(productArray);	 
+	List<Product> productList = Arrays.asList(products);	 
 %>
 
 <liferay-ui:search-container
@@ -81,7 +79,7 @@
 		<liferay-ui:search-container-column-text
 			href="<%= testActionUrl.toString() %>"
 			name="Description"
-			value="<%= productDetail.getDescription() %>"
+			value="<%= PortletUtil.cutOut(productDetail.getDescription()) %>"
 		/>	
 			
 	</liferay-ui:search-container-row>

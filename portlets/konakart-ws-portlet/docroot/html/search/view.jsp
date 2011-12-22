@@ -21,7 +21,7 @@
 %>
 <c:choose>
 	<c:when test="<%= searchType.equals(PortletConstants.FIND) %>">
-		<portlet:actionURL name="QuickFina" var="search"/>
+		<portlet:actionURL name="quickFind" var="search"/>
 		
 		<aui:form action="<%= search.toString() %>">
 			<aui:input name="productKeyWord"></aui:input>

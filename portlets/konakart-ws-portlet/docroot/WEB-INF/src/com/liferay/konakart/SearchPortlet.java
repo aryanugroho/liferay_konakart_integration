@@ -12,7 +12,7 @@ import javax.portlet.ActionResponse;
  */
 public class SearchPortlet extends MVCPortlet {
  
-	public void QuickFina(ActionRequest actionRequest, 
+	public void quickFind(ActionRequest actionRequest, 
 			ActionResponse actionResponse) {
 		
 		String productKeyWord = ParamUtil.getString(actionRequest, 
@@ -23,7 +23,7 @@ public class SearchPortlet extends MVCPortlet {
 		actionResponse.setRenderParameter("searchKey", searchKey);
 	}
 	
-	public void SearchByCategory(ActionRequest actionRequest, 
+	public void searchByCategory(ActionRequest actionRequest, 
 			ActionResponse actionResponse) {
 		
 		int categoryId = ParamUtil.getInteger(actionRequest, "categoryId");
@@ -33,7 +33,7 @@ public class SearchPortlet extends MVCPortlet {
 		actionResponse.setRenderParameter("searchKey", searchKey);
 	}
 	
-	public void SearchByManu(ActionRequest actionRequest, 
+	public void searchByManu(ActionRequest actionRequest, 
 			ActionResponse actionResponse) {
 		
 		int manufacturerId = ParamUtil.getInteger(actionRequest, 
@@ -46,7 +46,7 @@ public class SearchPortlet extends MVCPortlet {
 		actionResponse.setRenderParameter("searchKey", searchKey);
 	}
 
-	public void AdvancedSearch(ActionRequest actionRequest, 
+	public void advancedSearch(ActionRequest actionRequest, 
 			ActionResponse actionResponse) {
 		
 		String searchCriteria = ParamUtil.getString(actionRequest,
