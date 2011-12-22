@@ -125,6 +125,21 @@ public class LProductLocalServiceUtil {
 			manufacturerId, languageId);
 	}
 
+	public static com.konakart.wsapp.Product[] searchProductsByCategoryId(
+		int categoryId) throws java.rmi.RemoteException {
+		return getService().searchProductsByCategoryId(categoryId);
+	}
+
+	public static com.konakart.wsapp.Product[] searchProductsByCategoryId(
+		java.lang.String sessionId,
+		com.liferay.konakart.util.LDataDescriptor ldd, int categoryId,
+		boolean searchInSubCats, int languageId)
+		throws java.rmi.RemoteException {
+		return getService()
+				   .searchProductsByCategoryId(sessionId, ldd, categoryId,
+			searchInSubCats, languageId);
+	}
+
 	public static com.konakart.wsapp.Product[] searchProducts(
 		java.lang.String sessionId,
 		com.liferay.konakart.util.LDataDescriptor ldd,

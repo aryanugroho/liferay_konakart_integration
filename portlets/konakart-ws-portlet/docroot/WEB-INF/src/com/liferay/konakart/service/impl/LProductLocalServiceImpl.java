@@ -147,6 +147,23 @@ public class LProductLocalServiceImpl extends LProductLocalServiceBaseImpl {
 			KKConstant.KK_DEFAULT_LANGUAGE_ID).getProductArray();
 	}
 	
+	public Product[] searchProductsByCategoryId(int categoryId) 
+			throws RemoteException {
+				
+		LDataDescriptor ldd= new LDataDescriptor();
+				
+		return searchProductsByCategoryId(null, ldd, categoryId, true, -1);
+	}
+		
+	public Product[] searchProductsByCategoryId(String sessionId, 
+			LDataDescriptor ldd, int categoryId, boolean searchInSubCats, 
+			int languageId) 
+		throws RemoteException {
+				
+		return _kkWsEng.getProductsPerCategory(
+			sessionId, ldd.get_dataDescriptor(), categoryId, searchInSubCats,
+			KKConstant.KK_DEFAULT_LANGUAGE_ID).getProductArray();
+	}	
 	
 	public Product[] searchProducts(
 			String sessionId, LDataDescriptor ldd, LProductSearch lps, 

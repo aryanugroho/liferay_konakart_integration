@@ -108,6 +108,17 @@ public interface LProductLocalService {
 		int languageId) throws java.rmi.RemoteException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.konakart.wsapp.Product[] searchProductsByCategoryId(
+		int categoryId) throws java.rmi.RemoteException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.konakart.wsapp.Product[] searchProductsByCategoryId(
+		java.lang.String sessionId,
+		com.liferay.konakart.util.LDataDescriptor ldd, int categoryId,
+		boolean searchInSubCats, int languageId)
+		throws java.rmi.RemoteException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.konakart.wsapp.Product[] searchProducts(
 		java.lang.String sessionId,
 		com.liferay.konakart.util.LDataDescriptor ldd,

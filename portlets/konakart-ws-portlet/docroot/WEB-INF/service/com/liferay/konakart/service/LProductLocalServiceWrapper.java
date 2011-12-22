@@ -113,6 +113,20 @@ public class LProductLocalServiceWrapper implements LProductLocalService {
 			ldd, manufacturerId, languageId);
 	}
 
+	public com.konakart.wsapp.Product[] searchProductsByCategoryId(
+		int categoryId) throws java.rmi.RemoteException {
+		return _lProductLocalService.searchProductsByCategoryId(categoryId);
+	}
+
+	public com.konakart.wsapp.Product[] searchProductsByCategoryId(
+		java.lang.String sessionId,
+		com.liferay.konakart.util.LDataDescriptor ldd, int categoryId,
+		boolean searchInSubCats, int languageId)
+		throws java.rmi.RemoteException {
+		return _lProductLocalService.searchProductsByCategoryId(sessionId, ldd,
+			categoryId, searchInSubCats, languageId);
+	}
+
 	public com.konakart.wsapp.Product[] searchProducts(
 		java.lang.String sessionId,
 		com.liferay.konakart.util.LDataDescriptor ldd,

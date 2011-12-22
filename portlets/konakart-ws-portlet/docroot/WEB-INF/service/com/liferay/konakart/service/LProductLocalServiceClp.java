@@ -74,7 +74,15 @@ public class LProductLocalServiceClp implements LProductLocalService {
 				com.liferay.konakart.util.LDataDescriptor.class, int.class,
 				int.class);
 
-		_searchProductsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchProductsByCategoryIdMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"searchProductsByCategoryId", int.class);
+
+		_searchProductsByCategoryIdMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"searchProductsByCategoryId", java.lang.String.class,
+				com.liferay.konakart.util.LDataDescriptor.class, int.class,
+				boolean.class, int.class);
+
+		_searchProductsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchProducts", java.lang.String.class,
 				com.liferay.konakart.util.LDataDescriptor.class,
 				com.liferay.konakart.util.LProductSearch.class, int.class);
@@ -452,6 +460,65 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		return (com.konakart.wsapp.Product[])ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.konakart.wsapp.Product[] searchProductsByCategoryId(
+		int categoryId) throws java.rmi.RemoteException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_searchProductsByCategoryIdMethodKey15,
+				categoryId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.konakart.wsapp.Product[])ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.konakart.wsapp.Product[] searchProductsByCategoryId(
+		java.lang.String sessionId,
+		com.liferay.konakart.util.LDataDescriptor ldd, int categoryId,
+		boolean searchInSubCats, int languageId)
+		throws java.rmi.RemoteException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_searchProductsByCategoryIdMethodKey16,
+				ClpSerializer.translateInput(sessionId),
+				ClpSerializer.translateInput(ldd), categoryId, searchInSubCats,
+				languageId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof java.rmi.RemoteException) {
+				throw (java.rmi.RemoteException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.konakart.wsapp.Product[])ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.konakart.wsapp.Product[] searchProducts(
 		java.lang.String sessionId,
 		com.liferay.konakart.util.LDataDescriptor ldd,
@@ -459,7 +526,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchProductsMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_searchProductsMethodKey17,
 				ClpSerializer.translateInput(sessionId),
 				ClpSerializer.translateInput(ldd),
 				ClpSerializer.translateInput(lps), langugeId);
@@ -504,5 +571,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 	private MethodKey _searchProductsByKeyMethodKey12;
 	private MethodKey _searchProductsByManufacturerIdMethodKey13;
 	private MethodKey _searchProductsByManufacturerIdMethodKey14;
-	private MethodKey _searchProductsMethodKey15;
+	private MethodKey _searchProductsByCategoryIdMethodKey15;
+	private MethodKey _searchProductsByCategoryIdMethodKey16;
+	private MethodKey _searchProductsMethodKey17;
 }

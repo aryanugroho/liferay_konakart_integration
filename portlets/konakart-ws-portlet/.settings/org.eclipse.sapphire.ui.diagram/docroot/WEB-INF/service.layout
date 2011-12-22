@@ -6,4 +6,20 @@
     <guides>
         <visible>false</visible>
     </guides>
+    <node>
+        <id>Entity#LProduct</id>
+        <bounds x="50" y="50"/>
+    </node>
+    <node>
+        <id>Entity#LReview</id>
+        <bounds x="150" y="50"/>
+    </node>
+    <node>
+        <id>Entity#LManufacturer</id>
+        <bounds x="250" y="50"/>
+    </node>
+    <node>
+        <id>Entity#LCategory</id>
+        <bounds x="350" y="50"/>
+    </node>
 </diagram-geometry>
