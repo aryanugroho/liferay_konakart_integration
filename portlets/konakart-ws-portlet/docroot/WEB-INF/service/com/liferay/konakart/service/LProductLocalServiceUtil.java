@@ -111,6 +111,20 @@ public class LProductLocalServiceUtil {
 		return getService().searchProductsByKey(productKeyWord);
 	}
 
+	public static com.konakart.wsapp.Product[] searchProductsByManufacturerId(
+		int manufacturerId) throws java.rmi.RemoteException {
+		return getService().searchProductsByManufacturerId(manufacturerId);
+	}
+
+	public static com.konakart.wsapp.Product[] searchProductsByManufacturerId(
+		java.lang.String sessionId,
+		com.liferay.konakart.util.LDataDescriptor ldd, int manufacturerId,
+		int languageId) throws java.rmi.RemoteException {
+		return getService()
+				   .searchProductsByManufacturerId(sessionId, ldd,
+			manufacturerId, languageId);
+	}
+
 	public static com.konakart.wsapp.Product[] searchProducts(
 		java.lang.String sessionId,
 		com.liferay.konakart.util.LDataDescriptor ldd,

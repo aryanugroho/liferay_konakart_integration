@@ -98,6 +98,16 @@ public interface LProductLocalService {
 		java.lang.String productKeyWord) throws java.rmi.RemoteException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.konakart.wsapp.Product[] searchProductsByManufacturerId(
+		int manufacturerId) throws java.rmi.RemoteException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.konakart.wsapp.Product[] searchProductsByManufacturerId(
+		java.lang.String sessionId,
+		com.liferay.konakart.util.LDataDescriptor ldd, int manufacturerId,
+		int languageId) throws java.rmi.RemoteException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.konakart.wsapp.Product[] searchProducts(
 		java.lang.String sessionId,
 		com.liferay.konakart.util.LDataDescriptor ldd,
