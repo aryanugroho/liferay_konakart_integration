@@ -16,10 +16,8 @@ package com.liferay.konakart.service.impl;
 
 import com.konakart.app.DataDescConstants;
 import com.konakart.ws.KKWSEngIf;
-
 import com.konakart.wsapp.Product;
-
-import com.liferay.konakart.service.base.LPruductLocalServiceBaseImpl;
+import com.liferay.konakart.service.base.LProductLocalServiceBaseImpl;
 import com.liferay.konakart.util.KKConstant;
 import com.liferay.konakart.util.LDataDescriptor;
 import com.liferay.konakart.util.LProductSearch;
@@ -27,26 +25,25 @@ import com.liferay.konakart.util.LProductSearch;
 import java.rmi.RemoteException;
 
 /**
- * The implementation of the l pruduct local service.
+ * The implementation of the l product local service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.konakart.service.LPruductLocalService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.konakart.service.LProductLocalService} interface.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
  * @author terry
- * @see com.liferay.konakart.service.base.LPruductLocalServiceBaseImpl
- * @see com.liferay.konakart.service.LPruductLocalServiceUtil
+ * @see com.liferay.konakart.service.base.LProductLocalServiceBaseImpl
+ * @see com.liferay.konakart.service.LProductLocalServiceUtil
  */
-public class LPruductLocalServiceImpl extends LPruductLocalServiceBaseImpl {
+public class LProductLocalServiceImpl extends LProductLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link com.liferay.konakart.service.LPruductLocalServiceUtil} to access the l pruduct local service.
+	 * Never reference this interface directly. Always use {@link com.liferay.konakart.service.LProductLocalServiceUtil} to access the l product local service.
 	 */
-	
 	public void setKKWsEng(KKWSEngIf kkWsEng) {
 		_kkWsEng = kkWsEng;
 	}

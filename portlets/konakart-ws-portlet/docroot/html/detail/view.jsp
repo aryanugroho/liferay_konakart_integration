@@ -44,7 +44,7 @@
 		
 			String productId = String.valueOf(pId)+"#productId";
 		
-			Product productDetail = LPruductLocalServiceUtil.getProduct(pId);
+			Product productDetail = LProductLocalServiceUtil.getProduct(pId);
 			
 			PortletUtil.cutOut(productDetail.getDescription());
 		%>

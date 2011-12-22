@@ -37,7 +37,7 @@
 
 		<%
 			int productId = product.getId();
-			Product productDetail = LPruductLocalServiceUtil.getProduct(productId);
+			Product productDetail = LProductLocalServiceUtil.getProduct(productId);
 		%>
 		<portlet:renderURL var="testActionUrl">
 			<portlet:param name="jspPage" value="/html/detail/product_detail.jsp"></portlet:param>

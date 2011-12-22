@@ -21,25 +21,25 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
 /**
- * The interface for the l pruduct local service.
+ * The interface for the l product local service.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
  * @author terry
- * @see LPruductLocalServiceUtil
- * @see com.liferay.konakart.service.base.LPruductLocalServiceBaseImpl
- * @see com.liferay.konakart.service.impl.LPruductLocalServiceImpl
+ * @see LProductLocalServiceUtil
+ * @see com.liferay.konakart.service.base.LProductLocalServiceBaseImpl
+ * @see com.liferay.konakart.service.impl.LProductLocalServiceImpl
  * @generated
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface LPruductLocalService {
+public interface LProductLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link LPruductLocalServiceUtil} to access the l pruduct local service. Add custom service methods to {@link com.liferay.konakart.service.impl.LPruductLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link LProductLocalServiceUtil} to access the l product local service. Add custom service methods to {@link com.liferay.konakart.service.impl.LProductLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**

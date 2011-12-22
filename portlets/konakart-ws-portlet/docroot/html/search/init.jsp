@@ -50,7 +50,7 @@
 
 
 <%@page import="com.liferay.konakart.service.LManufacturerLocalServiceUtil"%>
-<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
+<%@page import="com.liferay.konakart.service.LProductLocalServiceUtil"%>
 <%@page import="com.liferay.konakart.service.LReviewLocalServiceUtil"%>
 <%@page import="com.liferay.konakart.service.LCategoryLocalServiceUtil"%>
 
@@ -77,6 +77,6 @@
 	KKWSEngIf kkWsEng = KKWsUtil.getKKWsEng(renderRequest);
 	
 	LManufacturerLocalServiceUtil.setKKWsEng(kkWsEng);	 
-	LPruductLocalServiceUtil.setKKWsEng(kkWsEng);
+	LProductLocalServiceUtil.setKKWsEng(kkWsEng);
 	LCategoryLocalServiceUtil.setKKWsEng(kkWsEng);
 %>

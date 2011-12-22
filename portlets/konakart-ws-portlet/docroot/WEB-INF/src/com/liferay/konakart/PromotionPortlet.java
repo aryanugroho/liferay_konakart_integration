@@ -3,7 +3,7 @@ package com.liferay.konakart;
 import com.konakart.ws.KKWSEngIf;
 import com.konakart.wsapp.Product;
 
-import com.liferay.konakart.service.LPruductLocalServiceUtil;
+import com.liferay.konakart.service.LProductLocalServiceUtil;
 import com.liferay.konakart.util.KKWsUtil;
 import com.liferay.konakart.util.PortletConstants;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -51,7 +51,7 @@ public class PromotionPortlet extends MVCPortlet {
 			
 			KKWSEngIf kkWSEng = KKWsUtil.getKKWsEng(renderRequest, url);
 			
-			LPruductLocalServiceUtil.setKKWsEng(kkWSEng);
+			LProductLocalServiceUtil.setKKWsEng(kkWSEng);
 			
 			String showType = KKWsUtil.getShowType(renderRequest);
 			
@@ -68,13 +68,13 @@ public class PromotionPortlet extends MVCPortlet {
 			}
 			
 			if (showType.equals(PortletConstants.BESTSELLERS)) {
-				productArray = LPruductLocalServiceUtil.
+				productArray = LProductLocalServiceUtil.
 					getBestSellers(showCount);
 			} else if (showType.equals(PortletConstants.SPECIAL)) {
-				productArray = LPruductLocalServiceUtil.
+				productArray = LProductLocalServiceUtil.
 					getSpecialProducts(showCount);
 			} else if (showType.equals(PortletConstants.LATEEST)) {
-				productArray = LPruductLocalServiceUtil.
+				productArray = LProductLocalServiceUtil.
 					getLastestProducts(showCount);
 			}
 			

@@ -16,17 +16,17 @@ package com.liferay.konakart.service;
 
 /**
  * <p>
- * This class is a wrapper for {@link LPruductLocalService}.
+ * This class is a wrapper for {@link LProductLocalService}.
  * </p>
  *
  * @author    terry
- * @see       LPruductLocalService
+ * @see       LProductLocalService
  * @generated
  */
-public class LPruductLocalServiceWrapper implements LPruductLocalService {
-	public LPruductLocalServiceWrapper(
-		LPruductLocalService lPruductLocalService) {
-		_lPruductLocalService = lPruductLocalService;
+public class LProductLocalServiceWrapper implements LProductLocalService {
+	public LProductLocalServiceWrapper(
+		LProductLocalService lProductLocalService) {
+		_lProductLocalService = lProductLocalService;
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class LPruductLocalServiceWrapper implements LPruductLocalService {
 	* @return the Spring bean ID for this bean
 	*/
 	public java.lang.String getBeanIdentifier() {
-		return _lPruductLocalService.getBeanIdentifier();
+		return _lProductLocalService.getBeanIdentifier();
 	}
 
 	/**
@@ -44,60 +44,60 @@ public class LPruductLocalServiceWrapper implements LPruductLocalService {
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_lPruductLocalService.setBeanIdentifier(beanIdentifier);
+		_lProductLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	public void setKKWsEng(com.konakart.ws.KKWSEngIf kkWsEng) {
-		_lPruductLocalService.setKKWsEng(kkWsEng);
+		_lProductLocalService.setKKWsEng(kkWsEng);
 	}
 
 	public com.konakart.wsapp.Product[] getBestSellers()
 		throws java.rmi.RemoteException {
-		return _lPruductLocalService.getBestSellers();
+		return _lProductLocalService.getBestSellers();
 	}
 
 	public com.konakart.wsapp.Product[] getBestSellers(int limit)
 		throws java.rmi.RemoteException {
-		return _lPruductLocalService.getBestSellers(limit);
+		return _lProductLocalService.getBestSellers(limit);
 	}
 
 	public com.konakart.wsapp.Product[] getBestSellers(
 		com.liferay.konakart.util.LDataDescriptor dd, int categoryId,
 		int languageId) throws java.rmi.RemoteException {
-		return _lPruductLocalService.getBestSellers(dd, categoryId, languageId);
+		return _lProductLocalService.getBestSellers(dd, categoryId, languageId);
 	}
 
 	public com.konakart.wsapp.Product[] getSpecialProducts() {
-		return _lPruductLocalService.getSpecialProducts();
+		return _lProductLocalService.getSpecialProducts();
 	}
 
 	public com.konakart.wsapp.Product[] getSpecialProducts(int limit) {
-		return _lPruductLocalService.getSpecialProducts(limit);
+		return _lProductLocalService.getSpecialProducts(limit);
 	}
 
 	public com.konakart.wsapp.Product getProduct(int productId)
 		throws java.rmi.RemoteException {
-		return _lPruductLocalService.getProduct(productId);
+		return _lProductLocalService.getProduct(productId);
 	}
 
 	public com.konakart.wsapp.Product getProduct(java.lang.String sessionId,
 		int productId, int languageId) throws java.rmi.RemoteException {
-		return _lPruductLocalService.getProduct(sessionId, productId, languageId);
+		return _lProductLocalService.getProduct(sessionId, productId, languageId);
 	}
 
 	public com.konakart.wsapp.Product[] getLastestProducts()
 		throws java.rmi.RemoteException {
-		return _lPruductLocalService.getLastestProducts();
+		return _lProductLocalService.getLastestProducts();
 	}
 
 	public com.konakart.wsapp.Product[] getLastestProducts(int limit)
 		throws java.rmi.RemoteException {
-		return _lPruductLocalService.getLastestProducts(limit);
+		return _lProductLocalService.getLastestProducts(limit);
 	}
 
 	public com.konakart.wsapp.Product[] searchProductsByKey(
 		java.lang.String productKeyWord) throws java.rmi.RemoteException {
-		return _lPruductLocalService.searchProductsByKey(productKeyWord);
+		return _lProductLocalService.searchProductsByKey(productKeyWord);
 	}
 
 	public com.konakart.wsapp.Product[] searchProducts(
@@ -105,18 +105,18 @@ public class LPruductLocalServiceWrapper implements LPruductLocalService {
 		com.liferay.konakart.util.LDataDescriptor ldd,
 		com.liferay.konakart.util.LProductSearch lps, int langugeId)
 		throws java.rmi.RemoteException {
-		return _lPruductLocalService.searchProducts(sessionId, ldd, lps,
+		return _lProductLocalService.searchProducts(sessionId, ldd, lps,
 			langugeId);
 	}
 
-	public LPruductLocalService getWrappedLPruductLocalService() {
-		return _lPruductLocalService;
+	public LProductLocalService getWrappedLProductLocalService() {
+		return _lProductLocalService;
 	}
 
-	public void setWrappedLPruductLocalService(
-		LPruductLocalService lPruductLocalService) {
-		_lPruductLocalService = lPruductLocalService;
+	public void setWrappedLProductLocalService(
+		LProductLocalService lProductLocalService) {
+		_lProductLocalService = lProductLocalService;
 	}
 
-	private LPruductLocalService _lPruductLocalService;
+	private LProductLocalService _lProductLocalService;
 }

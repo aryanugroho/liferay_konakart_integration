@@ -14,7 +14,6 @@
  */
 --%>
 
-<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
 <%@page import="com.liferay.konakart.util.KKWsUtil"%>
 <%@page import="com.liferay.portal.kernel.dao.orm.Session"%>
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
@@ -48,7 +47,7 @@
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="com.liferay.portal.kernel.util.PrefsParamUtil"%>
 
-<%@page import="com.liferay.konakart.service.LPruductLocalServiceUtil"%>
+<%@page import="com.liferay.konakart.service.LProductLocalServiceUtil"%>
 <%@page import="com.liferay.konakart.service.LReviewLocalServiceUtil"%>
 <%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
 
@@ -60,5 +59,5 @@
 <%
 	KKWSEngIf kkWsEng = KKWsUtil.getKKWsEng(renderRequest);
 		 
-	LPruductLocalServiceUtil.setKKWsEng(kkWsEng);
+	LProductLocalServiceUtil.setKKWsEng(kkWsEng);
 %>
