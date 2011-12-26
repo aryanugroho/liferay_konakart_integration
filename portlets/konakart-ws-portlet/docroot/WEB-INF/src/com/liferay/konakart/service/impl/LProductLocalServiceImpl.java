@@ -125,8 +125,7 @@ public class LProductLocalServiceImpl extends LProductLocalServiceBaseImpl {
 		LDataDescriptor ldd= new LDataDescriptor();
 		
 		lps.setSearchText(productKeyWord);
-		lps.setSearchTextRule(KKConstant.SEARCH_ADD_WILDCARD_BEFORE_AND_AFTER);
-		
+
 		return searchProducts(null, ldd, lps, -1);
 	}
 	

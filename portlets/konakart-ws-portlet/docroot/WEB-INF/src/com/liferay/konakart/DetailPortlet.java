@@ -3,13 +3,18 @@ package com.liferay.konakart;
 import com.konakart.ws.KKWSEngIf;
 import com.konakart.wsapp.Product;
 import com.liferay.konakart.service.LProductLocalServiceUtil;
+import com.liferay.konakart.util.KKConstant;
 import com.liferay.konakart.util.KKWsUtil;
+import com.liferay.konakart.util.LDataDescriptor;
+import com.liferay.konakart.util.LProductSearch;
+import com.liferay.konakart.util.PortletConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 
 import javax.portlet.PortletException;
@@ -76,7 +81,44 @@ public class DetailPortlet extends MVCPortlet {
 						products = LProductLocalServiceUtil.searchProductsByKey(
 							key);
 					} else if (valueAndType[1].equals("searchParams")) {
+						String[] searchParams = StringUtil.split(
+							valueAndType[0]);
 						
+						LProductSearch lpSearch = new LProductSearch();
+						
+						if (!searchParams[0].equals(
+								PortletConstants.LIFERAY_EMPTY)) {
+							
+							lpSearch.setSearchText(searchParams[0]);
+						}
+						if (!searchParams[1].equals(
+								PortletConstants.LIFERAY_EMPTY)) {
+							
+							lpSearch.setCategoryId(Integer.valueOf(
+								searchParams[1]));
+						}
+						if (!searchParams[2].equals(
+								PortletConstants.LIFERAY_EMPTY)) {
+							
+							lpSearch.setManufacturerId(Integer.valueOf(
+								searchParams[2]));	
+						}
+						if (!searchParams[3].equals(
+								PortletConstants.LIFERAY_EMPTY)) {
+							
+							lpSearch.setPriceFrom(new BigDecimal(
+								searchParams[3]));
+						}
+						if (!searchParams[4].equals(
+								PortletConstants.LIFERAY_EMPTY)) {
+
+							lpSearch.setPriceTo(new BigDecimal(
+								searchParams[4]));
+						}
+				
+						products = LProductLocalServiceUtil.searchProducts(
+							null, new LDataDescriptor(), lpSearch, 
+							KKConstant.KK_DEFAULT_LANGUAGE_ID);
 					}
 					renderRequest.setAttribute("products", products);
 					

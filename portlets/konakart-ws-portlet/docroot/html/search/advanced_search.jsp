@@ -36,8 +36,6 @@
 <aui:form action="<%= advancedSearchUrl.toString() %>">
 	<aui:input name="searchCriteria" title="search-criteria:" type="text"></aui:input>
 	
-	<aui:input name="searchInDesciption" title="search-in-product-descriptions" type="checkbox"></aui:input>
-	
 	<aui:select name="categoryId" title="categories">
 		<aui:option value="<%= KKConstant.ALL_CATEGORIES %>">All Categories</aui:option>
 		
@@ -65,11 +63,6 @@
 	<aui:input name="priceFrom" type="text"></aui:input>
 	
 	<aui:input name="priceTo" type="text"></aui:input>
-	
-	<aui:input name="dateFrom" type="text"></aui:input>
-	
-	<aui:input name="dateTo" type="text"></aui:input>
-	
 	<aui:button-row>
 		<aui:button type="submit" />
 	</aui:button-row>
