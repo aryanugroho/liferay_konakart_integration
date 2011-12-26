@@ -1,7 +1,9 @@
 package com.liferay.konakart;
 
+import com.liferay.konakart.util.PortletConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import javax.portlet.ActionRequest;
@@ -51,29 +53,43 @@ public class SearchPortlet extends MVCPortlet {
 		
 		String searchCriteria = ParamUtil.getString(actionRequest,
 			"searchCriteria");
-
-		String searchInDesciption = ParamUtil.getString(actionRequest, 
-			"searchInDesciption");
+		
+		if (Validator.isNull(searchCriteria)) {
+			searchCriteria = PortletConstants.LIFERAY_EMPTY; 
+		}
 		
 		String categoryId = ParamUtil.getString(actionRequest, "categoryId");
+		
+		if (Validator.isNull(categoryId)) {
+			categoryId = PortletConstants.LIFERAY_EMPTY; 
+		}
 		
 		String manufacturerId = ParamUtil.getString(actionRequest, 
 			"manufacturerId");
 		
+		if (Validator.isNull(manufacturerId)) {
+			manufacturerId = PortletConstants.LIFERAY_EMPTY; 
+		}
+		
 		String priceFrom = ParamUtil.getString(actionRequest, "priceFrom");
+		
+		if (Validator.isNull(priceFrom)) {
+			priceFrom = PortletConstants.LIFERAY_EMPTY; 
+		}
 		
 		String priceTo = ParamUtil.getString(actionRequest, "priceTo");
 		
-		String dateFrom = ParamUtil.getString(actionRequest, "dateFrom");
+		if (Validator.isNull(priceTo)) {
+			priceTo = PortletConstants.LIFERAY_EMPTY; 
+		}
+			
+		String[] searchParams = {searchCriteria, categoryId, manufacturerId, 
+			priceFrom, priceTo};
 		
-		String dateTo = ParamUtil.getString(actionRequest, "dateTo");
+		String searchParam = StringUtil.merge(searchParams);
 		
-		String[] searchParams = {searchCriteria, searchInDesciption, categoryId, 
-			manufacturerId, priceFrom, priceTo, dateFrom, dateTo};
+		searchParam = searchParam + "#searchParams";
 		
-		String searchKey = StringUtil.merge(searchParams) + 
-			"#searchParams";
-		
-		actionResponse.setRenderParameter("searchKey", searchKey);
+		actionResponse.setRenderParameter("searchKey", searchParam);
 	}
 }

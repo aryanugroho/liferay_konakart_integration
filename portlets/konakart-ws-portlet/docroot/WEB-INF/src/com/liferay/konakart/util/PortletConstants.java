@@ -44,4 +44,6 @@ public interface PortletConstants {
 	public static final String MANUFACTURER = "manufacturer";
 	
 	public static final String CATEGORIES = "categories";
+	
+	public static final String LIFERAY_EMPTY ="liferay_empty";
 }

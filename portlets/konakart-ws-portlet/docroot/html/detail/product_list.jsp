@@ -19,7 +19,7 @@
 <%
 	Product[] products = (Product[])renderRequest.getAttribute("products");
 	
-	List<Product> productList = Arrays.asList(products);	 
+	List<Product> productList = Arrays.asList(products);
 %>
 
 <liferay-ui:search-container
