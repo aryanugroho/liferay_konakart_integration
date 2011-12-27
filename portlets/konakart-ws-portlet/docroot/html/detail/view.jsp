@@ -24,10 +24,8 @@
 	List<Product> productList = Arrays.asList(productArray);
 	
 	String serviceUrl = (String) renderRequest.getAttribute("serviceUrl");
-		
-	boolean withTax = PrefsParamUtil.getBoolean(preferences, request, "withTax", false);
 	
-	String imgUrl = serviceUrl + "images/";
+	String imgUrl = KKWsUtil.getImgUrl(renderRequest);
 %>
 
 <liferay-ui:search-container
