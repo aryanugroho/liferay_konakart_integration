@@ -130,11 +130,25 @@ public class DetailPortlet extends MVCPortlet {
 			}
 		}
 		
+		String showType = KKWsUtil.getShowType(renderRequest);
+		
+		int showCount = KKWsUtil.getShowCount(renderRequest);
+		
 		Product[] productArray = new Product[0];
 		
-		productArray = LProductLocalServiceUtil.
-			getLastestProducts(5);
-		
+		if (showType.equals(PortletConstants.BESTSELLERS)) {
+			productArray = LProductLocalServiceUtil.
+				getBestSellers(showCount);
+		} else if (showType.equals(PortletConstants.SPECIAL)) {
+			productArray = LProductLocalServiceUtil.
+				getSpecialProducts(showCount);
+		} else if (showType.equals(PortletConstants.LATEEST)) {
+			productArray = LProductLocalServiceUtil.
+				getLastestProducts(showCount);
+		}
+					
+		renderRequest.setAttribute("kkWSEng", kkWSEng);
+			
 		renderRequest.setAttribute("productArray", productArray);
 
 		renderRequest.setAttribute("serviceUrl", serviceUrl);

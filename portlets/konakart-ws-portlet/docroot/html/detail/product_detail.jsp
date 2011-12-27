@@ -17,8 +17,15 @@
 <%@ include file="/html/detail/init.jsp" %>
 
 <%
+	String backURL = ParamUtil.getString(request, "backURL");
+		 
 	Product product = (Product) renderRequest.getAttribute("product");
 %>
+
+<liferay-ui:header
+	backURL="<%= backURL %>"
+	title='product-detatil'
+/>
 
 name : <%= product.getName() %> <br>
 price: <%= product.getPriceExTax() %> <br>

@@ -57,6 +57,10 @@
 			<name>view-jsp</name>
 			<value>/html/detail/view.jsp</value>
 		</init-param>
+		<init-param>
+			<name>config-jsp</name>
+			<value>/html/detail/configuration.jsp</value>
+		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
