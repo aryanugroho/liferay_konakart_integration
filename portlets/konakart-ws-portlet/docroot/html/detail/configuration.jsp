@@ -22,8 +22,6 @@
 	String showType = PrefsParamUtil.getString(preferences, renderRequest, "showType");
 		
 	boolean showRandom = PrefsParamUtil.getBoolean(preferences, renderRequest, "showRandom", false);
-	
-	boolean withTax = PrefsParamUtil.getBoolean(preferences, renderRequest, "withTax", false);
 		
 	int showCount = PrefsParamUtil.getInteger(preferences, renderRequest, "showCount", 5);
 %>

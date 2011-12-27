@@ -6,6 +6,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsParamUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
@@ -78,8 +79,7 @@ public class KKWsUtil {
 	}
 	
 	public static String getWebServiceAddress(RenderRequest renderRequest) {
-		String address = 
-			"http://localhost:8780/konakart/services/KKWebServiceEng?wsdl";
+		String address = defaultWebServiceAddress;
 
 		String webServiceAddress = 
 			PrefsParamUtil.getString(getPortletPreferences(renderRequest), 
@@ -92,6 +92,25 @@ public class KKWsUtil {
 		return address;
 	}
 
+	public static String getWebSiteUrl(String webServiceAddress) {
+		String serviceUrl = StringUtil.replace(webServiceAddress,
+				"services/KKWebServiceEng?wsdl", "");
+				
+		return serviceUrl;
+	}
+	
+	public static String getWebSiteUrl(RenderRequest renderRequest) {
+		return getWebSiteUrl(getWebServiceAddress(renderRequest));
+	}
+	
+	public static String getImgUrl(String webSiteUrl) {
+		return webSiteUrl + "images/";
+	}
+	
+	public static String getImgUrl(RenderRequest renderRequest) {
+		return getWebSiteUrl(renderRequest) + "images/";
+	}
+	
 	public static String getShowType(RenderRequest renderRequest) {
 		return PrefsParamUtil.getString(getPortletPreferences(renderRequest), 
 			renderRequest, "showType", PortletConstants.BESTSELLERS);
@@ -130,4 +149,6 @@ public class KKWsUtil {
 	}
 	
 	private static KKWSEngIf _kkWsEng;
+	private static final String defaultWebServiceAddress = 
+		"http://localhost:8780/konakart/services/KKWebServiceEng?wsdl";
 }

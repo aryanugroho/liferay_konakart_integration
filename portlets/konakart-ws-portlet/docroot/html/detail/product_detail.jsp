@@ -20,6 +20,8 @@
 	String backURL = ParamUtil.getString(request, "backURL");
 		 
 	Product product = (Product) renderRequest.getAttribute("product");
+		 
+	String imgUrl = KKWsUtil.getImgUrl(renderRequest);
 %>
 
 <liferay-ui:header

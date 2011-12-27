@@ -76,6 +76,7 @@
 		 
 	LProductLocalServiceUtil.setKKWsEng(kkWsEng);
 	
-	int rowsPerPage = GetterUtil.getInteger(preferences.getValue("rowsPerPage", "5"));
+	boolean withTax = PrefsParamUtil.getBoolean(preferences, request, "withTax", false);
 	
+	int rowsPerPage = GetterUtil.getInteger(preferences.getValue("rowsPerPage", "5"));
 %>
