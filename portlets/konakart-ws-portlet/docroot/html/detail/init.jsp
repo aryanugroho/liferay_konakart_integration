@@ -14,8 +14,6 @@
  */
 --%>
 
-<%@page import="com.liferay.konakart.util.KKWsUtil"%>
-<%@page import="com.liferay.portal.kernel.dao.orm.Session"%>
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
@@ -33,8 +31,10 @@
 <%@page import="java.util.List"%>
 <%@page import="java.math.BigDecimal"%>
 
+<%@page import="javax.portlet.PortletURL"%>
 <%@page import="javax.portlet.PortletPreferences"%>
 
+<%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@page import="com.liferay.portal.kernel.util.KeyValuePairComparator"%>
 <%@page import="com.liferay.portal.kernel.util.ListUtil"%>
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
@@ -51,13 +51,31 @@
 <%@page import="com.liferay.konakart.service.LReviewLocalServiceUtil"%>
 <%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
 
+<%@page import="com.liferay.konakart.util.KKWsUtil"%>
 <%@page import="com.liferay.konakart.util.PortletConstants"%>
 <%@page import="com.liferay.konakart.util.PortletUtil"%>
 
 <portlet:defineObjects />
 
 <%
+	PortletPreferences preferences = renderRequest.getPreferences();
+		
+	String portletResource = ParamUtil.getString(
+		renderRequest, "portletResource");
+	
+	if (Validator.isNotNull(portletResource)) {
+		preferences = PortletPreferencesFactoryUtil.getPortletSetup(
+			renderRequest, portletResource);
+	}
+	
+	String allShowColumns = "name,image,price,description";
+	
+	String[] showsColumns = StringUtil.split(PrefsParamUtil.getString(preferences, request, "showColumns", allShowColumns));	
+
 	KKWSEngIf kkWsEng = KKWsUtil.getKKWsEng(renderRequest);
 		 
 	LProductLocalServiceUtil.setKKWsEng(kkWsEng);
+	
+	int rowsPerPage = GetterUtil.getInteger(preferences.getValue("rowsPerPage", "5"));
+	
 %>

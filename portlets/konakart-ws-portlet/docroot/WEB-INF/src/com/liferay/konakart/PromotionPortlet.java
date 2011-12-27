@@ -41,60 +41,60 @@ public class PromotionPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse) 
 		throws IOException, PortletException{
 		
-			String webServiceAddress = KKWsUtil.getWebServiceAddress(
-				renderRequest);
+		String webServiceAddress = KKWsUtil.getWebServiceAddress(
+			renderRequest);
+		
+		String serviceUrl = StringUtil.replace(webServiceAddress,
+			"services/KKWebServiceEng?wsdl", "");
 			
-			String serviceUrl = StringUtil.replace(webServiceAddress,
-				"services/KKWebServiceEng?wsdl", "");
+		URL url = new URL(webServiceAddress);	
 			
-			URL url = new URL(webServiceAddress);	
+		KKWSEngIf kkWSEng = KKWsUtil.getKKWsEng(renderRequest, url);
 			
-			KKWSEngIf kkWSEng = KKWsUtil.getKKWsEng(renderRequest, url);
+		LProductLocalServiceUtil.setKKWsEng(kkWSEng);
 			
-			LProductLocalServiceUtil.setKKWsEng(kkWSEng);
+		String showType = KKWsUtil.getShowType(renderRequest);
 			
-			String showType = KKWsUtil.getShowType(renderRequest);
+		int showCount = KKWsUtil.getShowCount(renderRequest);
 			
-			int showCount = KKWsUtil.getShowCount(renderRequest);
+		Product[] productArray = new Product[0];
 			
-			Product[] productArray = new Product[0];
+		boolean showRandom = KKWsUtil.getShowRandom(renderRequest);
 			
-			boolean showRandom = KKWsUtil.getShowRandom(renderRequest);
+		int count =  showCount;
 			
-			int count =  showCount;
+		if (showRandom) {
+			showCount = showCount *2; 
+		}
 			
-			if (showRandom) {
-				showCount = showCount *2; 
-			}
+		if (showType.equals(PortletConstants.BESTSELLERS)) {
+			productArray = LProductLocalServiceUtil.
+				getBestSellers(showCount);
+		} else if (showType.equals(PortletConstants.SPECIAL)) {
+			productArray = LProductLocalServiceUtil.
+				getSpecialProducts(showCount);
+		} else if (showType.equals(PortletConstants.LATEEST)) {
+			productArray = LProductLocalServiceUtil.
+				getLastestProducts(showCount);
+		}
 			
-			if (showType.equals(PortletConstants.BESTSELLERS)) {
-				productArray = LProductLocalServiceUtil.
-					getBestSellers(showCount);
-			} else if (showType.equals(PortletConstants.SPECIAL)) {
-				productArray = LProductLocalServiceUtil.
-					getSpecialProducts(showCount);
-			} else if (showType.equals(PortletConstants.LATEEST)) {
-				productArray = LProductLocalServiceUtil.
-					getLastestProducts(showCount);
-			}
+		if (showRandom) {
+			productArray = getRandomShowProducts(productArray, count); 
+		}
 			
-			if (showRandom) {
-				productArray = getRandomShowProducts(productArray, count); 
-			}
+		renderRequest.setAttribute("kkWSEng", kkWSEng);
 			
-			renderRequest.setAttribute("kkWSEng", kkWSEng);
-			
-			renderRequest.setAttribute("productArray", productArray);
+		renderRequest.setAttribute("productArray", productArray);
 	
-			renderRequest.setAttribute("showType", showType);
+		renderRequest.setAttribute("showType", showType);
 	
-			renderRequest.setAttribute("serviceUrl", serviceUrl);
+		renderRequest.setAttribute("serviceUrl", serviceUrl);
 			
-			super.doView(renderRequest, renderResponse);	
+		super.doView(renderRequest, renderResponse);	
 	}
 	
-	protected Product[] getRandomShowProducts(
-			Product[] products, int showCount) {
+	protected Product[] getRandomShowProducts(Product[] products, 
+			int showCount) {
 		
 		Product[] randomProducts;
 		

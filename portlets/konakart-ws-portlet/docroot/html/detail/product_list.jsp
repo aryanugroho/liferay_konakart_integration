@@ -17,10 +17,17 @@
 <%@ include file="/html/detail/init.jsp" %>
 
 <%
+	String backURL = ParamUtil.getString(request, "backURL");
+		 
 	Product[] products = (Product[])renderRequest.getAttribute("products");
 	
 	List<Product> productList = Arrays.asList(products);
 %>
+
+<liferay-ui:header
+	backURL="<%= backURL %>"
+	title='product-list'
+/>
 
 <liferay-ui:search-container
 	delta='<%= 5 %>'
