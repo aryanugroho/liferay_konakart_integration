@@ -59,8 +59,10 @@
 		</liferay-ui:panel>
 		
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="showPanel" persistState="<%= true %>" title="show">
+			<!-- 
 			<aui:input label="show-count" name="preferences--showCount--" type="text" size="3" value="<%= showCount %>"/>
-	
+	 		-->
+			
 			<aui:field-wrapper label="show-columns">
 				<%
 				Set availableColumns = SetUtil.fromArray(StringUtil.split(allShowColumns));
@@ -113,13 +115,14 @@
 			<aui:input label="display-price-with-tax" name="preferences--withTax--" type="checkbox" value="<%= withTax %>"/>
 		</liferay-ui:panel>
 		
+		<!-- 
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="pricePanel" persistState="<%= true %>" title="reviews">
 			<aui:select label="review-type" name="preferences--reviewType--">
 				<aui:option label="the-average-rating" selected='<%=reviewType.equals(PortletConstants.AVERAGERATING) %>' value="<%= PortletConstants.AVERAGERATING %>"/>
 				<aui:option label="the-lastest-users-review" selected='<%= reviewType.equals(PortletConstants.LASTESTREVIEW) %>' value="<%= PortletConstants.LASTESTREVIEW %>"/>
 			</aui:select>
 		</liferay-ui:panel>
-
+ 		-->
 	</liferay-ui:panel-container>	
 	
 	<aui:button-row>

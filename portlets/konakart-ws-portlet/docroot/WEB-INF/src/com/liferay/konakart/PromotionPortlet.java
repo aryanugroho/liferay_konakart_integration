@@ -1,7 +1,9 @@
 package com.liferay.konakart;
 
-import com.konakart.ws.KKWSEngIf;
-import com.konakart.wsapp.Product;
+import com.konakart.al.KKAppEng;
+import com.konakart.app.KKException;
+import com.konakart.app.Product;
+import com.konakart.appif.ProductIf;
 
 import com.liferay.konakart.service.LProductLocalServiceUtil;
 import com.liferay.konakart.util.KKWsUtil;
@@ -12,8 +14,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.Random;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -47,76 +47,97 @@ public class PromotionPortlet extends MVCPortlet {
 		String serviceUrl = StringUtil.replace(webServiceAddress,
 			"services/KKWebServiceEng?wsdl", "");
 			
-		URL url = new URL(webServiceAddress);	
+//		URL url = new URL(webServiceAddress);	
 			
-		KKWSEngIf kkWSEng = KKWsUtil.getKKWsEng(renderRequest, url);
-			
-		LProductLocalServiceUtil.setKKWsEng(kkWSEng);
-			
-		String showType = KKWsUtil.getShowType(renderRequest);
-			
-		int showCount = KKWsUtil.getShowCount(renderRequest);
-			
-		Product[] productArray = new Product[0];
-			
-		boolean showRandom = KKWsUtil.getShowRandom(renderRequest);
-			
-		int count =  showCount;
-			
-		if (showRandom) {
-			showCount = showCount *2; 
-		}
-			
-		if (showType.equals(PortletConstants.BESTSELLERS)) {
-			productArray = LProductLocalServiceUtil.
-				getBestSellers(showCount);
-		} else if (showType.equals(PortletConstants.SPECIAL)) {
-			productArray = LProductLocalServiceUtil.
-				getSpecialProducts(showCount);
-		} else if (showType.equals(PortletConstants.LATEEST)) {
-			productArray = LProductLocalServiceUtil.
-				getLastestProducts(showCount);
-		}
-			
-		if (showRandom) {
-			productArray = getRandomShowProducts(productArray, count); 
-		}
-			
-		renderRequest.setAttribute("kkWSEng", kkWSEng);
-			
-		renderRequest.setAttribute("productArray", productArray);
-	
-		renderRequest.setAttribute("showType", showType);
-	
-		renderRequest.setAttribute("serviceUrl", serviceUrl);
-			
-		super.doView(renderRequest, renderResponse);	
-	}
-	
-	protected Product[] getRandomShowProducts(Product[] products, 
-			int showCount) {
+//		KKWSEngIf kkWSEng = KKWsUtil.getKKWsEng(renderRequest, url);
 		
-		Product[] randomProducts;
+		KKAppEng kkAppEng = KKWsUtil.getKKAppEng();
 		
-		if (products.length <= showCount) {
-			randomProducts = products;
-		} else {
-			randomProducts = new Product[showCount];
+		try {
+			LProductLocalServiceUtil.setKKAppEng(kkAppEng);
 			
-			Random random = new Random();
-			
-			int i = 0;
-			
-			while (i < showCount) {
-				int r = random.nextInt(products.length);
+			//LProductLocalServiceUtil.setKKWsEng(kkWSEng);
 				
-				if (!ArrayUtil.contains(randomProducts, products[r])) {
-					randomProducts[i] = products[r];
-					i++;
-				}
+			String showType = KKWsUtil.getShowType(renderRequest);
+				
+//			int showCount = KKWsUtil.getShowCount(renderRequest);
+				
+			//Product[] productArray = new Product[0];
+				
+			ProductIf[] products = new Product[0];
+			
+//			boolean showRandom = KKWsUtil.getShowRandom(renderRequest);
+//				
+//			int count =  showCount;
+//				
+//			if (showRandom) {
+//				showCount = showCount *2; 
+//			}
+				
+			if (showType.equals(PortletConstants.BESTSELLERS)) {
+				products = LProductLocalServiceUtil.getBestSeller();
+				
+//				productArray = LProductLocalServiceUtil.
+//					getBestSellers(showCount);
+			} else if (showType.equals(PortletConstants.SPECIAL)) {
+				products = ArrayUtil.append(
+					products, LProductLocalServiceUtil.getRandomSpecial());
+				
+//				productArray = LProductLocalServiceUtil.
+//					getSpecialProducts(showCount);
+			} else if (showType.equals(PortletConstants.LATEEST)) {
+				products = ArrayUtil.append(
+					products, LProductLocalServiceUtil.getRandomNewProd());
+				
+//				productArray = LProductLocalServiceUtil.
+//					getLastestProducts(showCount);
 			}
-		}
+				
+//			if (showRandom) {
+//				productArray = getRandomShowProducts(productArray, count); 
+//			}
+				
+//			renderRequest.setAttribute("kkWSEng", kkWSEng);
+				
+			//renderRequest.setAttribute("productArray", productArray);
 		
-		return randomProducts;
+			renderRequest.setAttribute("products", products);
+			
+			renderRequest.setAttribute("showType", showType);
+		
+			renderRequest.setAttribute("serviceUrl", serviceUrl);
+				
+			super.doView(renderRequest, renderResponse);	
+		} catch (KKException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+	
+//	protected Product[] getRandomShowProducts(Product[] products, 
+//			int showCount) {
+//		
+//		Product[] randomProducts;
+//		
+//		if (products.length <= showCount) {
+//			randomProducts = products;
+//		} else {
+//			randomProducts = new Product[showCount];
+//			
+//			Random random = new Random();
+//			
+//			int i = 0;
+//			
+//			while (i < showCount) {
+//				int r = random.nextInt(products.length);
+//				
+//				if (!ArrayUtil.contains(randomProducts, products[r])) {
+//					randomProducts[i] = products[r];
+//					i++;
+//				}
+//			}
+//		}
+//		
+//		return randomProducts;
+//	}
 }

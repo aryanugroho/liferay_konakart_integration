@@ -65,7 +65,7 @@
 			renderRequest, portletResource);
 	}
 	
-	String allShowColumns = "name,image,price,review";
+	String allShowColumns = "name,image,price";
 	
 	String[] showsColumns = StringUtil.split(PrefsParamUtil.getString(preferences, request, "showColumns", allShowColumns));
 	

@@ -14,7 +14,11 @@
 
 package com.liferay.konakart.service.impl;
 
+import com.konakart.al.KKAppEng;
+import com.konakart.al.ProductMgr;
 import com.konakart.app.DataDescConstants;
+import com.konakart.app.KKException;
+import com.konakart.appif.ProductIf;
 import com.konakart.ws.KKWSEngIf;
 import com.konakart.wsapp.Product;
 import com.liferay.konakart.service.base.LProductLocalServiceBaseImpl;
@@ -47,6 +51,30 @@ public class LProductLocalServiceImpl extends LProductLocalServiceBaseImpl {
 	public void setKKWsEng(KKWSEngIf kkWsEng) {
 		_kkWsEng = kkWsEng;
 	}
+	
+	public void setKKAppEng(KKAppEng kkAppEng) throws KKException {
+		_kkAppEng = kkAppEng;
+		
+		_productMgr = _kkAppEng.getProductMgr();
+		
+		if (!_productMgr.isMgrReady()) {
+			_productMgr.refreshConfigs();
+		}
+	}
+	
+	public ProductIf[] getBestSeller() throws KKException {
+		ProductIf[] products = _productMgr.getBestSellers();
+		
+		return products;
+	}	
+	
+	public ProductIf getRandomNewProd() {
+		return _productMgr.getRandomNewProd();
+	}
+	
+	public ProductIf getRandomSpecial() {
+		return _productMgr.getRandomSpecial();
+	}	
 	
 	public Product[] getBestSellers() throws RemoteException{
 		return getBestSellers(new LDataDescriptor(),
@@ -173,5 +201,8 @@ public class LProductLocalServiceImpl extends LProductLocalServiceBaseImpl {
 			lps.getProductSearch(), -1).getProductArray();
 	}
 	
+	private static KKAppEng _kkAppEng;
+	private static ProductMgr _productMgr;
 	private static KKWSEngIf _kkWsEng;
+	
 }

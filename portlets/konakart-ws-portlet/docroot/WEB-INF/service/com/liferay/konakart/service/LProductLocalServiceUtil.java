@@ -61,6 +61,24 @@ public class LProductLocalServiceUtil {
 		getService().setKKWsEng(kkWsEng);
 	}
 
+	public static void setKKAppEng(com.konakart.al.KKAppEng kkAppEng)
+		throws com.konakart.app.KKException {
+		getService().setKKAppEng(kkAppEng);
+	}
+
+	public static com.konakart.appif.ProductIf[] getBestSeller()
+		throws com.konakart.app.KKException {
+		return getService().getBestSeller();
+	}
+
+	public static com.konakart.appif.ProductIf getRandomNewProd() {
+		return getService().getRandomNewProd();
+	}
+
+	public static com.konakart.appif.ProductIf getRandomSpecial() {
+		return getService().getRandomSpecial();
+	}
+
 	public static com.konakart.wsapp.Product[] getBestSellers()
 		throws java.rmi.RemoteException {
 		return getService().getBestSellers();

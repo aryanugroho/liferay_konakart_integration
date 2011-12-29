@@ -34,55 +34,67 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		_setKKWsEngMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setKKWsEng", com.konakart.ws.KKWSEngIf.class);
 
-		_getBestSellersMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setKKAppEngMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setKKAppEng", com.konakart.al.KKAppEng.class);
+
+		_getBestSellerMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBestSeller");
+
+		_getRandomNewProdMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getRandomNewProd");
+
+		_getRandomSpecialMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getRandomSpecial");
+
+		_getBestSellersMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBestSellers");
 
-		_getBestSellersMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBestSellersMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBestSellers", int.class);
 
-		_getBestSellersMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBestSellersMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBestSellers",
 				com.liferay.konakart.util.LDataDescriptor.class, int.class,
 				int.class);
 
-		_getSpecialProductsMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getSpecialProductsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSpecialProducts");
 
-		_getSpecialProductsMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getSpecialProductsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSpecialProducts", int.class);
 
-		_getProductMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getProductMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getProduct", int.class);
 
-		_getProductMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getProductMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getProduct", java.lang.String.class, int.class, int.class);
 
-		_getLastestProductsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getLastestProductsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLastestProducts");
 
-		_getLastestProductsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getLastestProductsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLastestProducts", int.class);
 
-		_searchProductsByKeyMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchProductsByKeyMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchProductsByKey", java.lang.String.class);
 
-		_searchProductsByManufacturerIdMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchProductsByManufacturerIdMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchProductsByManufacturerId", int.class);
 
-		_searchProductsByManufacturerIdMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchProductsByManufacturerIdMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchProductsByManufacturerId", java.lang.String.class,
 				com.liferay.konakart.util.LDataDescriptor.class, int.class,
 				int.class);
 
-		_searchProductsByCategoryIdMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchProductsByCategoryIdMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchProductsByCategoryId", int.class);
 
-		_searchProductsByCategoryIdMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchProductsByCategoryIdMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchProductsByCategoryId", java.lang.String.class,
 				com.liferay.konakart.util.LDataDescriptor.class, int.class,
 				boolean.class, int.class);
 
-		_searchProductsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchProductsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchProducts", java.lang.String.class,
 				com.liferay.konakart.util.LDataDescriptor.class,
 				com.liferay.konakart.util.LProductSearch.class, int.class);
@@ -145,11 +157,102 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		}
 	}
 
+	public void setKKAppEng(com.konakart.al.KKAppEng kkAppEng)
+		throws com.konakart.app.KKException {
+		MethodHandler methodHandler = new MethodHandler(_setKKAppEngMethodKey3,
+				ClpSerializer.translateInput(kkAppEng));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.konakart.app.KKException) {
+				throw (com.konakart.app.KKException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public com.konakart.appif.ProductIf[] getBestSeller()
+		throws com.konakart.app.KKException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBestSellerMethodKey4);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.konakart.app.KKException) {
+				throw (com.konakart.app.KKException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.konakart.appif.ProductIf[])ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.konakart.appif.ProductIf getRandomNewProd() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getRandomNewProdMethodKey5);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.konakart.appif.ProductIf)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.konakart.appif.ProductIf getRandomSpecial() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getRandomSpecialMethodKey6);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.konakart.appif.ProductIf)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.konakart.wsapp.Product[] getBestSellers()
 		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBestSellersMethodKey3);
+		MethodHandler methodHandler = new MethodHandler(_getBestSellersMethodKey7);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -175,7 +278,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBestSellersMethodKey4,
+		MethodHandler methodHandler = new MethodHandler(_getBestSellersMethodKey8,
 				limit);
 
 		try {
@@ -203,7 +306,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		int languageId) throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBestSellersMethodKey5,
+		MethodHandler methodHandler = new MethodHandler(_getBestSellersMethodKey9,
 				ClpSerializer.translateInput(dd), categoryId, languageId);
 
 		try {
@@ -229,7 +332,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 	public com.konakart.wsapp.Product[] getSpecialProducts() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSpecialProductsMethodKey6);
+		MethodHandler methodHandler = new MethodHandler(_getSpecialProductsMethodKey10);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -250,7 +353,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 	public com.konakart.wsapp.Product[] getSpecialProducts(int limit) {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSpecialProductsMethodKey7,
+		MethodHandler methodHandler = new MethodHandler(_getSpecialProductsMethodKey11,
 				limit);
 
 		try {
@@ -273,7 +376,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getProductMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getProductMethodKey12,
 				productId);
 
 		try {
@@ -300,7 +403,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		int productId, int languageId) throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getProductMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getProductMethodKey13,
 				ClpSerializer.translateInput(sessionId), productId, languageId);
 
 		try {
@@ -327,7 +430,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getLastestProductsMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getLastestProductsMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -353,7 +456,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getLastestProductsMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_getLastestProductsMethodKey15,
 				limit);
 
 		try {
@@ -380,7 +483,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		java.lang.String productKeyWord) throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchProductsByKeyMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_searchProductsByKeyMethodKey16,
 				ClpSerializer.translateInput(productKeyWord));
 
 		try {
@@ -407,7 +510,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		int manufacturerId) throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchProductsByManufacturerIdMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_searchProductsByManufacturerIdMethodKey17,
 				manufacturerId);
 
 		try {
@@ -436,7 +539,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		int languageId) throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchProductsByManufacturerIdMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_searchProductsByManufacturerIdMethodKey18,
 				ClpSerializer.translateInput(sessionId),
 				ClpSerializer.translateInput(ldd), manufacturerId, languageId);
 
@@ -464,7 +567,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		int categoryId) throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchProductsByCategoryIdMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_searchProductsByCategoryIdMethodKey19,
 				categoryId);
 
 		try {
@@ -494,7 +597,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchProductsByCategoryIdMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_searchProductsByCategoryIdMethodKey20,
 				ClpSerializer.translateInput(sessionId),
 				ClpSerializer.translateInput(ldd), categoryId, searchInSubCats,
 				languageId);
@@ -526,7 +629,7 @@ public class LProductLocalServiceClp implements LProductLocalService {
 		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchProductsMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_searchProductsMethodKey21,
 				ClpSerializer.translateInput(sessionId),
 				ClpSerializer.translateInput(ldd),
 				ClpSerializer.translateInput(lps), langugeId);
@@ -559,19 +662,23 @@ public class LProductLocalServiceClp implements LProductLocalService {
 	private MethodKey _getBeanIdentifierMethodKey0;
 	private MethodKey _setBeanIdentifierMethodKey1;
 	private MethodKey _setKKWsEngMethodKey2;
-	private MethodKey _getBestSellersMethodKey3;
-	private MethodKey _getBestSellersMethodKey4;
-	private MethodKey _getBestSellersMethodKey5;
-	private MethodKey _getSpecialProductsMethodKey6;
-	private MethodKey _getSpecialProductsMethodKey7;
-	private MethodKey _getProductMethodKey8;
-	private MethodKey _getProductMethodKey9;
-	private MethodKey _getLastestProductsMethodKey10;
-	private MethodKey _getLastestProductsMethodKey11;
-	private MethodKey _searchProductsByKeyMethodKey12;
-	private MethodKey _searchProductsByManufacturerIdMethodKey13;
-	private MethodKey _searchProductsByManufacturerIdMethodKey14;
-	private MethodKey _searchProductsByCategoryIdMethodKey15;
-	private MethodKey _searchProductsByCategoryIdMethodKey16;
-	private MethodKey _searchProductsMethodKey17;
+	private MethodKey _setKKAppEngMethodKey3;
+	private MethodKey _getBestSellerMethodKey4;
+	private MethodKey _getRandomNewProdMethodKey5;
+	private MethodKey _getRandomSpecialMethodKey6;
+	private MethodKey _getBestSellersMethodKey7;
+	private MethodKey _getBestSellersMethodKey8;
+	private MethodKey _getBestSellersMethodKey9;
+	private MethodKey _getSpecialProductsMethodKey10;
+	private MethodKey _getSpecialProductsMethodKey11;
+	private MethodKey _getProductMethodKey12;
+	private MethodKey _getProductMethodKey13;
+	private MethodKey _getLastestProductsMethodKey14;
+	private MethodKey _getLastestProductsMethodKey15;
+	private MethodKey _searchProductsByKeyMethodKey16;
+	private MethodKey _searchProductsByManufacturerIdMethodKey17;
+	private MethodKey _searchProductsByManufacturerIdMethodKey18;
+	private MethodKey _searchProductsByCategoryIdMethodKey19;
+	private MethodKey _searchProductsByCategoryIdMethodKey20;
+	private MethodKey _searchProductsMethodKey21;
 }
