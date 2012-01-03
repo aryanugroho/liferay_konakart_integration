@@ -14,16 +14,15 @@
 */
 --%>
 
+<%@page import="com.konakart.al.DropListElement"%>
 <%@ include file="/html/search/init.jsp" %>
 
 <% 
 	String backURL = ParamUtil.getString(request, "backURL");
 	
-	Manufacturer[] manufacturers = LManufacturerLocalServiceUtil.getAllManufacturers();
-	
-	Category[] categories = LCategoryLocalServiceUtil.getCategoryTree(true);
-	
-	Category[] allCategoryTrees = LCategoryLocalServiceUtil.getAllCategoryTree(categories, true);
+	ManufacturerIf[] manufacturers = LProductLocalServiceUtil.getAllManuArray();
+		LCategoryLocalServiceUtil.setKKAppEng(KKWsUtil.getKKAppEng());
+	DropListElement[] allcats = LCategoryLocalServiceUtil.getAllCatsDropList();
 %>
 
 <liferay-ui:header
@@ -40,9 +39,9 @@
 		<aui:option value="<%= KKConstant.ALL_CATEGORIES %>">All Categories</aui:option>
 		
 		<% 
-		for (int i = 0; i < allCategoryTrees.length; i++) {
+		for (int i = 0; i < allcats.length; i++) {
 		%>
-		<aui:option value="<%= allCategoryTrees[i].getId() %>"><%= allCategoryTrees[i].getName() %></aui:option>
+		<aui:option value="<%= allcats[i].getId() %>"><%= allcats[i].getDesc() %></aui:option>
 		<% 
 		}
 		%>

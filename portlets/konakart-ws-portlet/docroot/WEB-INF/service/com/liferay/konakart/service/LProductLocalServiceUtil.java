@@ -79,6 +79,14 @@ public class LProductLocalServiceUtil {
 		return getService().getRandomSpecial();
 	}
 
+	public static com.konakart.appif.ManufacturerIf[] getAllManuArray() {
+		return getService().getAllManuArray();
+	}
+
+	public static com.konakart.al.DropListElement[] getAllManuDropList() {
+		return getService().getAllManuDropList();
+	}
+
 	public static com.konakart.wsapp.Product[] getBestSellers()
 		throws java.rmi.RemoteException {
 		return getService().getBestSellers();

@@ -1,5 +1,8 @@
 package com.liferay.konakart;
 
+import com.konakart.al.KKAppException;
+import com.konakart.app.KKException;
+import com.liferay.konakart.service.LCategoryLocalServiceUtil;
 import com.liferay.konakart.util.PortletConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -26,13 +29,12 @@ public class SearchPortlet extends MVCPortlet {
 	}
 	
 	public void searchByCategory(ActionRequest actionRequest, 
-			ActionResponse actionResponse) {
+			ActionResponse actionResponse) throws KKAppException, KKException {
 		
 		int categoryId = ParamUtil.getInteger(actionRequest, "categoryId");
 		
-		String searchKey = categoryId + "#categoryId";
+		LCategoryLocalServiceUtil.setCurrentCatAndUpdateProducts(categoryId);
 		
-		actionResponse.setRenderParameter("searchKey", searchKey);
 	}
 	
 	public void searchByManu(ActionRequest actionRequest, 

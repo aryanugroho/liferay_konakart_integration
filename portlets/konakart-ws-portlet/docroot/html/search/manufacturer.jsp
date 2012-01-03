@@ -15,7 +15,7 @@
 --%>
 
 <%
-	Manufacturer[] manufacturers = LManufacturerLocalServiceUtil.getAllManufacturers();
+	ManufacturerIf[] manufacturers = LProductLocalServiceUtil.getAllManuArray();
 	
 	Object mId = request.getAttribute("manufacturerId");
 	

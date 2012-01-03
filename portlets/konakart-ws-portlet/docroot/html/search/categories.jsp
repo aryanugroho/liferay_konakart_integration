@@ -13,6 +13,7 @@
 * details.
 */
 --%>
+
 <%! 
 	String calculateBlank(int count) {
 		String blanks = "";
@@ -25,17 +26,18 @@
 	}
 %>
 <%
-	Category[] categories = LCategoryLocalServiceUtil.getCategoryTree(true);
-	
-	Category[] allCategoryTrees = LCategoryLocalServiceUtil.getAllCategoryTree(categories, true);
-	
-	for (int i = 0; i < allCategoryTrees.length; i++) { 
+LCategoryLocalServiceUtil.setKKAppEng(KKWsUtil.getKKAppEng());
+
+List<CategoryIf> categores = LCategoryLocalServiceUtil.getCatMenuList();
+
+for (int i = 0; i < categores.size(); i++) {
+	CategoryIf category = categores.get(i);
 %>
 	<portlet:actionURL name="searchByCategory" var="search">
-		<portlet:param name="categoryId" value="<%= String.valueOf(allCategoryTrees[i].getId()) %>"/>
+		<portlet:param name="categoryId" value="<%= String.valueOf(category.getId()) %>"/>
 	</portlet:actionURL>
-	<aui:a href="<%= search.toString() %>"><%= calculateBlank(allCategoryTrees[i].getLevel()) + allCategoryTrees[i].getName() + "(" + allCategoryTrees[i].getNumberOfProducts() + ")"%></aui:a>		
-		<br>
-	<%
-	}
-	%>
+	
+<aui:a href="<%= search.toString() %>"><%= calculateBlank(category.getLevel())%><%= category.getName()%>(<%= category.getNumberOfProducts()%>)</aui:a><br>
+<%
+}
+%>

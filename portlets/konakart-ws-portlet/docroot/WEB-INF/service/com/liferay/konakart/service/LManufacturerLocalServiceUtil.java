@@ -61,6 +61,10 @@ public class LManufacturerLocalServiceUtil {
 		getService().setKKWsEng(kkWsEng);
 	}
 
+	public static void setKKAppEng(com.konakart.al.KKAppEng kkAppEng) {
+		getService().setKKAppEng(kkAppEng);
+	}
+
 	public static com.konakart.wsapp.Manufacturer[] getAllManufacturers()
 		throws java.rmi.RemoteException {
 		return getService().getAllManufacturers();

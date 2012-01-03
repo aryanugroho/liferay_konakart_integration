@@ -47,33 +47,22 @@ public class LCategoryLocalServiceWrapper implements LCategoryLocalService {
 		_lCategoryLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
-	public void setKKWsEng(com.konakart.ws.KKWSEngIf kkWsEng) {
-		_lCategoryLocalService.setKKWsEng(kkWsEng);
+	public void setKKAppEng(com.konakart.al.KKAppEng kkAppEng)
+		throws com.konakart.al.KKAppException, com.konakart.app.KKException {
+		_lCategoryLocalService.setKKAppEng(kkAppEng);
 	}
 
-	public com.konakart.wsapp.Category[] getCategoryTree()
-		throws java.rmi.RemoteException {
-		return _lCategoryLocalService.getCategoryTree();
+	public java.util.List<com.konakart.appif.CategoryIf> getCatMenuList() {
+		return _lCategoryLocalService.getCatMenuList();
 	}
 
-	public com.konakart.wsapp.Category getCategory(int categoryId)
-		throws java.rmi.RemoteException {
-		return _lCategoryLocalService.getCategory(categoryId);
+	public com.konakart.al.DropListElement[] getAllCatsDropList() {
+		return _lCategoryLocalService.getAllCatsDropList();
 	}
 
-	public com.konakart.wsapp.Category[] getCategoryTree(boolean getNumProducts)
-		throws java.rmi.RemoteException {
-		return _lCategoryLocalService.getCategoryTree(getNumProducts);
-	}
-
-	public com.konakart.wsapp.Category[] getAllCategoryTree(
-		com.konakart.wsapp.Category[] categories, boolean isFirst) {
-		return _lCategoryLocalService.getAllCategoryTree(categories, isFirst);
-	}
-
-	public com.konakart.wsapp.Category[] getCategoryTree(int languageId,
-		boolean getNumProducts) throws java.rmi.RemoteException {
-		return _lCategoryLocalService.getCategoryTree(languageId, getNumProducts);
+	public int setCurrentCatAndUpdateProducts(int cateId)
+		throws com.konakart.al.KKAppException, com.konakart.app.KKException {
+		return _lCategoryLocalService.setCurrentCatAndUpdateProducts(cateId);
 	}
 
 	public LCategoryLocalService getWrappedLCategoryLocalService() {

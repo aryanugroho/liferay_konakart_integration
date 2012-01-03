@@ -14,10 +14,12 @@
 
 package com.liferay.konakart.service.impl;
 
+import com.konakart.al.DropListElement;
 import com.konakart.al.KKAppEng;
 import com.konakart.al.ProductMgr;
 import com.konakart.app.DataDescConstants;
 import com.konakart.app.KKException;
+import com.konakart.appif.ManufacturerIf;
 import com.konakart.appif.ProductIf;
 import com.konakart.ws.KKWSEngIf;
 import com.konakart.wsapp.Product;
@@ -76,6 +78,15 @@ public class LProductLocalServiceImpl extends LProductLocalServiceBaseImpl {
 		return _productMgr.getRandomSpecial();
 	}	
 	
+	public ManufacturerIf[] getAllManuArray() {
+		return _productMgr.getAllManuArray();
+	}
+	
+	public DropListElement[] getAllManuDropList(){
+		return _productMgr.getAllManuDropList();
+	}
+	
+	//以下为server eng的调用，待用。
 	public Product[] getBestSellers() throws RemoteException{
 		return getBestSellers(new LDataDescriptor(),
 			KKConstant.KK_NOT_CONSTRAINT_CATEGORY_ID,

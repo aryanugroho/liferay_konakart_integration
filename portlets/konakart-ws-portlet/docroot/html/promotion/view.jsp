@@ -20,8 +20,6 @@
 <% 	
 	ProductIf[] products = (ProductIf[]) renderRequest.getAttribute("products");	
 
-//	Product[] productArray = (Product[]) renderRequest.getAttribute("productArray");
-
 	List<ProductIf> productList = Arrays.asList(products);
 	
 	String serviceUrl = (String) renderRequest.getAttribute("serviceUrl");

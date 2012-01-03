@@ -69,6 +69,14 @@ public class LProductLocalServiceWrapper implements LProductLocalService {
 		return _lProductLocalService.getRandomSpecial();
 	}
 
+	public com.konakart.appif.ManufacturerIf[] getAllManuArray() {
+		return _lProductLocalService.getAllManuArray();
+	}
+
+	public com.konakart.al.DropListElement[] getAllManuDropList() {
+		return _lProductLocalService.getAllManuDropList();
+	}
+
 	public com.konakart.wsapp.Product[] getBestSellers()
 		throws java.rmi.RemoteException {
 		return _lProductLocalService.getBestSellers();

@@ -23,8 +23,9 @@
 <%@page import="com.konakart.ws.KKWSEngIf"%>
 <%@page import="com.konakart.wsapp.Product"%>
 <%@page import="com.konakart.wsapp.Review"%>
-<%@page import="com.konakart.wsapp.Category"%>
-<%@page import="com.konakart.wsapp.Manufacturer"%>
+<%@page import="com.konakart.appif.ManufacturerIf"%>
+<%@page import="com.konakart.appif.CategoryIf"%>
+<%@page import="com.konakart.app.Category"%>
 
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Arrays"%>
@@ -74,9 +75,9 @@
 	
 	String searchType = PrefsParamUtil.getString(preferences, renderRequest, "searchType", PortletConstants.FIND);
 	
-	KKWSEngIf kkWsEng = KKWsUtil.getKKWsEng(renderRequest);
+//	KKWSEngIf kkWsEng = KKWsUtil.getKKWsEng(renderRequest);
 	
-	LManufacturerLocalServiceUtil.setKKWsEng(kkWsEng);	 
-	LProductLocalServiceUtil.setKKWsEng(kkWsEng);
-	LCategoryLocalServiceUtil.setKKWsEng(kkWsEng);
+//	LManufacturerLocalServiceUtil.setKKWsEng(kkWsEng);	 
+//	LProductLocalServiceUtil.setKKWsEng(kkWsEng);
+//	LCategoryLocalServiceUtil.setKKWsEng(kkWsEng);
 %>
