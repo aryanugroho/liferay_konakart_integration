@@ -14,12 +14,13 @@
 */
 --%>
 
+<%@page import="com.konakart.appif.ProductIf"%>
 <%@ include file="/html/promotion/init.jsp" %>
 
 <% 	
-	Product[] productArray = (Product[]) renderRequest.getAttribute("productArray");
+	ProductIf[] products = (ProductIf[]) renderRequest.getAttribute("products");	
 
-	List<Product> productList = Arrays.asList(productArray);
+	List<ProductIf> productList = Arrays.asList(products);
 	
 	String serviceUrl = (String) renderRequest.getAttribute("serviceUrl");
 		
@@ -45,7 +46,7 @@
 		total="<%= productList.size() %>" />
 
 	<liferay-ui:search-container-row
-		className="com.konakart.wsapp.Product" keyProperty="id"
+		className="com.konakart.appif.ProductIf" keyProperty="id"
 		modelVar="product" escapedModel="false">
 
 		<%
@@ -66,7 +67,7 @@
 				renderUrl = null;
 			}
 			
-			product = LProductLocalServiceUtil.getProduct(productId);
+			//product = LProductLocalServiceUtil.getProduct(productId);
 		
 			for (int i = 0;i < showsColumns.length; i++) {
 				String showsColumn = showsColumns[i];
@@ -127,45 +128,7 @@
 				</liferay-ui:search-container-column-text>
 			</c:when>
 			
-			<c:when test='<%= showsColumn.equals("review") %>'>
-				<% 
-					LReviewLocalServiceUtil.setKKWsEng(kkWsEng);
-					
-					if (reviewType.equals(PortletConstants.AVERAGERATING)) { 	
-						
-						float rating = (float) LReviewLocalServiceUtil.getAverageRating(productId);
-				%>
-					
-					<liferay-ui:search-container-column-text
-						name="rating"
-						value="<%= String.valueOf(rating*2/10) %>"
-					/>
-						
-				<% 
-					} else if (reviewType.equals(PortletConstants.LASTESTREVIEW)) {
-						Review review = LReviewLocalServiceUtil.getLastestRating(productId);
-						
-						if (Validator.isNull(review)) {
-							review = new Review();
-							review.setRating(0);
-							review.setReviewText("No Review");
-						}
-				%>
-					<liferay-ui:search-container-column-text
-						name="rating"
-						value="<%= String.valueOf(review.getRating()) %>"
-					/>
-					
-					<liferay-ui:search-container-column-text
-						href="<%= renderUrl %>"
-						name="commit"
-						value="<%= review.getReviewText() %>"
-					/>
-					
-				<% } %>
-			</c:when>
 		</c:choose>
-		
 		<% } %>
 	</liferay-ui:search-container-row>
 

@@ -58,6 +58,8 @@ public interface LManufacturerLocalService {
 
 	public void setKKWsEng(com.konakart.ws.KKWSEngIf kkWsEng);
 
+	public void setKKAppEng(com.konakart.al.KKAppEng kkAppEng);
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.konakart.wsapp.Manufacturer[] getAllManufacturers()
 		throws java.rmi.RemoteException;

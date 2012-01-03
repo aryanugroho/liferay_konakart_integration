@@ -58,6 +58,25 @@ public interface LProductLocalService {
 
 	public void setKKWsEng(com.konakart.ws.KKWSEngIf kkWsEng);
 
+	public void setKKAppEng(com.konakart.al.KKAppEng kkAppEng)
+		throws com.konakart.app.KKException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.konakart.appif.ProductIf[] getBestSeller()
+		throws com.konakart.app.KKException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.konakart.appif.ProductIf getRandomNewProd();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.konakart.appif.ProductIf getRandomSpecial();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.konakart.appif.ManufacturerIf[] getAllManuArray();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.konakart.al.DropListElement[] getAllManuDropList();
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.konakart.wsapp.Product[] getBestSellers()
 		throws java.rmi.RemoteException;

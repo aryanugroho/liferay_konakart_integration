@@ -31,24 +31,17 @@ public class LCategoryLocalServiceClp implements LCategoryLocalService {
 		_setBeanIdentifierMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_setKKWsEngMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-				"setKKWsEng", com.konakart.ws.KKWSEngIf.class);
+		_setKKAppEngMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setKKAppEng", com.konakart.al.KKAppEng.class);
 
-		_getCategoryTreeMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getCategoryTree");
+		_getCatMenuListMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCatMenuList");
 
-		_getCategoryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getCategory", int.class);
+		_getAllCatsDropListMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAllCatsDropList");
 
-		_getCategoryTreeMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getCategoryTree", boolean.class);
-
-		_getAllCategoryTreeMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getAllCategoryTree", com.konakart.wsapp.Category[].class,
-				boolean.class);
-
-		_getCategoryTreeMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getCategoryTree", int.class, boolean.class);
+		_setCurrentCatAndUpdateProductsMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setCurrentCatAndUpdateProducts", int.class);
 	}
 
 	public java.lang.String getBeanIdentifier() {
@@ -90,36 +83,21 @@ public class LCategoryLocalServiceClp implements LCategoryLocalService {
 		}
 	}
 
-	public void setKKWsEng(com.konakart.ws.KKWSEngIf kkWsEng) {
-		MethodHandler methodHandler = new MethodHandler(_setKKWsEngMethodKey2,
-				ClpSerializer.translateInput(kkWsEng));
+	public void setKKAppEng(com.konakart.al.KKAppEng kkAppEng)
+		throws com.konakart.al.KKAppException, com.konakart.app.KKException {
+		MethodHandler methodHandler = new MethodHandler(_setKKAppEngMethodKey2,
+				ClpSerializer.translateInput(kkAppEng));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
+			if (t instanceof com.konakart.al.KKAppException) {
+				throw (com.konakart.al.KKAppException)t;
 			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
 
-	public com.konakart.wsapp.Category[] getCategoryTree()
-		throws java.rmi.RemoteException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getCategoryTreeMethodKey3);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
+			if (t instanceof com.konakart.app.KKException) {
+				throw (com.konakart.app.KKException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -130,70 +108,12 @@ public class LCategoryLocalServiceClp implements LCategoryLocalService {
 					" is not a valid exception");
 			}
 		}
-
-		return (com.konakart.wsapp.Category[])ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.konakart.wsapp.Category getCategory(int categoryId)
-		throws java.rmi.RemoteException {
+	public java.util.List<com.konakart.appif.CategoryIf> getCatMenuList() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCategoryMethodKey4,
-				categoryId);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.konakart.wsapp.Category)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public com.konakart.wsapp.Category[] getCategoryTree(boolean getNumProducts)
-		throws java.rmi.RemoteException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getCategoryTreeMethodKey5,
-				getNumProducts);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.konakart.wsapp.Category[])ClpSerializer.translateOutput(returnObj);
-	}
-
-	public com.konakart.wsapp.Category[] getAllCategoryTree(
-		com.konakart.wsapp.Category[] categories, boolean isFirst) {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getAllCategoryTreeMethodKey6,
-				ClpSerializer.translateInput(categories), isFirst);
+		MethodHandler methodHandler = new MethodHandler(_getCatMenuListMethodKey3);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -208,22 +128,47 @@ public class LCategoryLocalServiceClp implements LCategoryLocalService {
 			}
 		}
 
-		return (com.konakart.wsapp.Category[])ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.konakart.appif.CategoryIf>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.konakart.wsapp.Category[] getCategoryTree(int languageId,
-		boolean getNumProducts) throws java.rmi.RemoteException {
+	public com.konakart.al.DropListElement[] getAllCatsDropList() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCategoryTreeMethodKey7,
-				languageId, getNumProducts);
+		MethodHandler methodHandler = new MethodHandler(_getAllCatsDropListMethodKey4);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
-			if (t instanceof java.rmi.RemoteException) {
-				throw (java.rmi.RemoteException)t;
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.konakart.al.DropListElement[])ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int setCurrentCatAndUpdateProducts(int cateId)
+		throws com.konakart.al.KKAppException, com.konakart.app.KKException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_setCurrentCatAndUpdateProductsMethodKey5,
+				cateId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.konakart.al.KKAppException) {
+				throw (com.konakart.al.KKAppException)t;
+			}
+
+			if (t instanceof com.konakart.app.KKException) {
+				throw (com.konakart.app.KKException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -235,7 +180,7 @@ public class LCategoryLocalServiceClp implements LCategoryLocalService {
 			}
 		}
 
-		return (com.konakart.wsapp.Category[])ClpSerializer.translateOutput(returnObj);
+		return ((Integer)returnObj).intValue();
 	}
 
 	public ClassLoaderProxy getClassLoaderProxy() {
@@ -245,10 +190,8 @@ public class LCategoryLocalServiceClp implements LCategoryLocalService {
 	private ClassLoaderProxy _classLoaderProxy;
 	private MethodKey _getBeanIdentifierMethodKey0;
 	private MethodKey _setBeanIdentifierMethodKey1;
-	private MethodKey _setKKWsEngMethodKey2;
-	private MethodKey _getCategoryTreeMethodKey3;
-	private MethodKey _getCategoryMethodKey4;
-	private MethodKey _getCategoryTreeMethodKey5;
-	private MethodKey _getAllCategoryTreeMethodKey6;
-	private MethodKey _getCategoryTreeMethodKey7;
+	private MethodKey _setKKAppEngMethodKey2;
+	private MethodKey _getCatMenuListMethodKey3;
+	private MethodKey _getAllCatsDropListMethodKey4;
+	private MethodKey _setCurrentCatAndUpdateProductsMethodKey5;
 }

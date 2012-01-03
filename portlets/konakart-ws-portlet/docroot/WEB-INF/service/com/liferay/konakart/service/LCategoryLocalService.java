@@ -56,25 +56,15 @@ public interface LCategoryLocalService {
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	public void setKKWsEng(com.konakart.ws.KKWSEngIf kkWsEng);
+	public void setKKAppEng(com.konakart.al.KKAppEng kkAppEng)
+		throws com.konakart.al.KKAppException, com.konakart.app.KKException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.konakart.wsapp.Category[] getCategoryTree()
-		throws java.rmi.RemoteException;
+	public java.util.List<com.konakart.appif.CategoryIf> getCatMenuList();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.konakart.wsapp.Category getCategory(int categoryId)
-		throws java.rmi.RemoteException;
+	public com.konakart.al.DropListElement[] getAllCatsDropList();
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.konakart.wsapp.Category[] getCategoryTree(boolean getNumProducts)
-		throws java.rmi.RemoteException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.konakart.wsapp.Category[] getAllCategoryTree(
-		com.konakart.wsapp.Category[] categories, boolean isFirst);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.konakart.wsapp.Category[] getCategoryTree(int languageId,
-		boolean getNumProducts) throws java.rmi.RemoteException;
+	public int setCurrentCatAndUpdateProducts(int cateId)
+		throws com.konakart.al.KKAppException, com.konakart.app.KKException;
 }

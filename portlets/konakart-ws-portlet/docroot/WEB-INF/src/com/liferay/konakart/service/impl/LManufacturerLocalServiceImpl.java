@@ -14,6 +14,7 @@
 
 package com.liferay.konakart.service.impl;
 
+import com.konakart.al.KKAppEng;
 import com.konakart.ws.KKWSEngIf;
 import com.konakart.wsapp.Manufacturer;
 import com.liferay.konakart.service.base.LManufacturerLocalServiceBaseImpl;
@@ -46,9 +47,15 @@ public class LManufacturerLocalServiceImpl
 		_kkWsEng = kkWsEng;
 	}
 	
+	public void setKKAppEng(KKAppEng kkAppEng) {
+		_kkAppEng = kkAppEng;
+		
+	}
+	
 	public  Manufacturer[] getAllManufacturers() throws RemoteException {
 		return _kkWsEng.getAllManufacturers();
 	}
 	
+	private static KKAppEng _kkAppEng;
 	private static KKWSEngIf _kkWsEng;
 }

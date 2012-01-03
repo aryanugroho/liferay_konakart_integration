@@ -1,5 +1,9 @@
 package com.liferay.konakart.util;
 
+import com.konakart.al.KKAppEng;
+import com.konakart.al.StoreInfo;
+import com.konakart.app.EngineConfig;
+import com.konakart.appif.EngineConfigIf;
 import com.konakart.ws.KKWSEngIf;
 import com.konakart.ws.KKWSEngIfServiceLocator;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -20,6 +24,24 @@ import javax.servlet.http.HttpSession;
 import javax.xml.rpc.ServiceException;
 
 public class KKWsUtil {
+	
+	static {
+		try {
+			EngineConfigIf engConf = new EngineConfig();
+			engConf.setAppPropertiesFileName("konakart_app.properties");
+			_kkAppEng = new KKAppEng(engConf);
+			
+			StoreInfo si = new StoreInfo();
+			si.setStoreId(engConf.getStoreId()); // we have default store or request store
+			_kkAppEng = new KKAppEng(si);
+		} catch (Exception e) {
+			
+		}
+	}
+	
+	public static KKAppEng getKKAppEng() {
+		return _kkAppEng;
+	}
 	
 	public static KKWSEngIf getKKWsEng() {
 		try {
@@ -149,6 +171,7 @@ public class KKWsUtil {
 	}
 	
 	private static KKWSEngIf _kkWsEng;
+	private static KKAppEng _kkAppEng;
 	private static final String defaultWebServiceAddress = 
 		"http://localhost:8780/konakart/services/KKWebServiceEng?wsdl";
 }

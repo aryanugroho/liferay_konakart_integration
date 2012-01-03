@@ -51,6 +51,32 @@ public class LProductLocalServiceWrapper implements LProductLocalService {
 		_lProductLocalService.setKKWsEng(kkWsEng);
 	}
 
+	public void setKKAppEng(com.konakart.al.KKAppEng kkAppEng)
+		throws com.konakart.app.KKException {
+		_lProductLocalService.setKKAppEng(kkAppEng);
+	}
+
+	public com.konakart.appif.ProductIf[] getBestSeller()
+		throws com.konakart.app.KKException {
+		return _lProductLocalService.getBestSeller();
+	}
+
+	public com.konakart.appif.ProductIf getRandomNewProd() {
+		return _lProductLocalService.getRandomNewProd();
+	}
+
+	public com.konakart.appif.ProductIf getRandomSpecial() {
+		return _lProductLocalService.getRandomSpecial();
+	}
+
+	public com.konakart.appif.ManufacturerIf[] getAllManuArray() {
+		return _lProductLocalService.getAllManuArray();
+	}
+
+	public com.konakart.al.DropListElement[] getAllManuDropList() {
+		return _lProductLocalService.getAllManuDropList();
+	}
+
 	public com.konakart.wsapp.Product[] getBestSellers()
 		throws java.rmi.RemoteException {
 		return _lProductLocalService.getBestSellers();

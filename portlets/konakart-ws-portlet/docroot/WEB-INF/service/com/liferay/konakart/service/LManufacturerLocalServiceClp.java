@@ -34,7 +34,10 @@ public class LManufacturerLocalServiceClp implements LManufacturerLocalService {
 		_setKKWsEngMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setKKWsEng", com.konakart.ws.KKWSEngIf.class);
 
-		_getAllManufacturersMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setKKAppEngMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setKKAppEng", com.konakart.al.KKAppEng.class);
+
+		_getAllManufacturersMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAllManufacturers");
 	}
 
@@ -95,11 +98,29 @@ public class LManufacturerLocalServiceClp implements LManufacturerLocalService {
 		}
 	}
 
+	public void setKKAppEng(com.konakart.al.KKAppEng kkAppEng) {
+		MethodHandler methodHandler = new MethodHandler(_setKKAppEngMethodKey3,
+				ClpSerializer.translateInput(kkAppEng));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.konakart.wsapp.Manufacturer[] getAllManufacturers()
 		throws java.rmi.RemoteException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAllManufacturersMethodKey3);
+		MethodHandler methodHandler = new MethodHandler(_getAllManufacturersMethodKey4);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -129,5 +150,6 @@ public class LManufacturerLocalServiceClp implements LManufacturerLocalService {
 	private MethodKey _getBeanIdentifierMethodKey0;
 	private MethodKey _setBeanIdentifierMethodKey1;
 	private MethodKey _setKKWsEngMethodKey2;
-	private MethodKey _getAllManufacturersMethodKey3;
+	private MethodKey _setKKAppEngMethodKey3;
+	private MethodKey _getAllManufacturersMethodKey4;
 }
