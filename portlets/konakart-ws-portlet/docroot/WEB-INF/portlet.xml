@@ -17,7 +17,7 @@
 		</init-param>
 		<init-param>
 			<name>config-jsp</name>
-			<value>/html/promotion/config.jsp</value>
+			<value>/html/promotion/configuration.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
