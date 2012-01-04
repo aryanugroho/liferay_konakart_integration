@@ -15,9 +15,8 @@
 --%>
 
 <%@ include file="/html/init.jsp" %>
+<%@page import="com.konakart.appif.CategoryIf"%>
 
-<%@page import="java.math.BigDecimal"%>
-<%@page import="com.konakart.appif.ProductIf"%>
 
 <%
 	PortletPreferences preferences = renderRequest.getPreferences();
@@ -30,15 +29,5 @@
 			renderRequest, portletResource);
 	}
 	
-	String allShowColumns = "name,image,price";
-	
-	String[] showsColumns = StringUtil.split(PrefsParamUtil.getString(preferences, request, "showColumns", allShowColumns));
-	
-	String linkType = PrefsParamUtil.getString(preferences, request, "linkType");
-	
-	int rowsPerPage = GetterUtil.getInteger(preferences.getValue("rowsPerPage", "5"));
-	
-	String showType = PrefsParamUtil.getString(preferences, renderRequest, "showType");
-	
-	boolean withTax = PrefsParamUtil.getBoolean(preferences, renderRequest, "withTax", false);
+	String searchType = PrefsParamUtil.getString(preferences, renderRequest, "searchType", PortletConstants.FIND);
 %>
