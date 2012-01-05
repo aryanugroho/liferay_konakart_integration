@@ -10,8 +10,6 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -61,7 +59,5 @@ public class Detail extends MVCPortlet {
 		productMgr.fetchAlsoPurchasedArray();
 		
 		productMgr.fetchRelatedProducts();
-		
-		ProductIf product = productMgr.getSelectedProduct();
 	}
 }
