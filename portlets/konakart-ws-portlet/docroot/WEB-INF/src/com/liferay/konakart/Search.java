@@ -58,5 +58,7 @@ public class Search extends MVCPortlet {
 		ProductMgr productMgr = KKUtil.getProductMgr();
 		
 		productMgr.fetchProductsPerManufacturer(manufacturerId);
+		
+		actionRequest.setAttribute("manufacturerId", manufacturerId);
 	}
 }

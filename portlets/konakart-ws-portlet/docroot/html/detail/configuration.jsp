@@ -14,8 +14,95 @@
 */
 --%>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ include file="/html/detail/init.jsp" %>
 
-<portlet:defineObjects />
+<liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
-This is the <b>Detail</b> portlet in Config mode.
+<aui:form action="<%= configurationURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfiguration();" %>'>
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+	<aui:input name="preferences--showColumns--" type="hidden" />
+
+	<liferay-ui:panel-container extended="<%= true %>" id="settingsPanelContainer" persistState="<%= true %>">
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="overallPanel" persistState="<%= true %>" title="overall">
+			<aui:fieldset>
+				<aui:select label="show-type" name="preferences--showType--">
+					<aui:option label="best-sellers" selected='<%=showType.equals(PortletConstants.BESTSELLERS) %>' value="<%= PortletConstants.BESTSELLERS %>"/>
+					<aui:option label="special" selected='<%= showType.equals(PortletConstants.SPECIAL) %>' value="<%= PortletConstants.SPECIAL %>"/>
+					<aui:option label="whats-new" selected='<%= showType.equals(PortletConstants.LATEEST) %>' value="<%= PortletConstants.LATEEST %>"/>
+				</aui:select>	
+				
+				<aui:input label="rows-per-page" name="preferences--rowsPerPage--" type="text" size="3" value="<%= rowsPerPage %>"/>	
+				
+			</aui:fieldset>
+		</liferay-ui:panel>
+		
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="showPanel" persistState="<%= true %>" title="show">
+		
+		<aui:field-wrapper label="show-columns">
+				<%
+				Set availableColumns = SetUtil.fromArray(StringUtil.split(allShowColumns));
+				
+				// Left list
+		
+				List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
+				
+				for (int i = 0; i < showsColumns.length; i++) {
+					String showsColumn = showsColumns[i];
+		
+					leftList.add(new KeyValuePair(showsColumn, LanguageUtil.get(pageContext, showsColumn)));
+				}
+		
+				// Right list
+		
+				List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
+				
+				Arrays.sort(showsColumns);
+		
+				Iterator itr = availableColumns.iterator();
+		
+				while (itr.hasNext()) {
+					String showsColumn = (String)itr.next();
+		
+					if (Arrays.binarySearch(showsColumns, showsColumn) < 0) {
+						rightList.add(new KeyValuePair(showsColumn, LanguageUtil.get(pageContext, showsColumn)));
+					}
+				}
+		
+				rightList = ListUtil.sort(rightList, new KeyValuePairComparator(false, true));
+				%>
+		
+				<liferay-ui:input-move-boxes
+					leftTitle="current"
+					rightTitle="available"
+					leftBoxName="currentColumns"
+					rightBoxName="availableColumns"
+					leftReorder="true"
+					leftList="<%= leftList %>"
+					rightList="<%= rightList %>"
+				/>
+			
+			</aui:field-wrapper>
+			
+			</liferay-ui:panel>
+		
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="pricePanel" persistState="<%= true %>" title="price">
+			<aui:input label="display-price-with-tax" name="preferences--withTax--" type="checkbox" value="<%= withTax %>"/>
+		</liferay-ui:panel>
+		
+		</liferay-ui:panel-container>
+	<aui:button-row>
+		<aui:button type="submit" />
+	</aui:button-row>
+</aui:form>
+
+<aui:script>
+	Liferay.provide(
+		window,
+		'<portlet:namespace />saveConfiguration',
+		function() {
+			document.<portlet:namespace />fm.<portlet:namespace />showColumns.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentColumns);
+			submitForm(document.<portlet:namespace />fm);
+		},
+		['liferay-util-list-fields']
+	);
+</aui:script>

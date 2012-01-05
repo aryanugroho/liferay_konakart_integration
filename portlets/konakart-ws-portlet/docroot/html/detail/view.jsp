@@ -14,8 +14,104 @@
 */
 --%>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ include file="/html/detail/init.jsp" %>
 
-<portlet:defineObjects />
+<%
+	ProductIf[] products = KKUtil.getProductMgr().getCurrentProducts();	
 
-This is the <b>Detail</b> portlet in View mode.
+	String currentURL = PortalUtil.getCurrentURL(request);
+	
+	List<ProductIf> productList = Arrays.asList(products);
+		
+	String renderUrl = "";	
+	
+	out.print(showType+"<br>");	
+%>
+
+<liferay-ui:search-container
+	delta='<%= rowsPerPage %>'
+	headerNames="<%= StringUtil.merge(showsColumns) %>"
+	emptyResultsMessage="there are no products"
+	>
+	
+	<liferay-ui:search-container-results
+		results="<%= ListUtil.subList(productList, searchContainer.getStart(), searchContainer.getEnd()) %>"
+		total="<%= productList.size() %>" />
+
+	<liferay-ui:search-container-row
+		className="com.konakart.appif.ProductIf" keyProperty="id"
+		modelVar="product" escapedModel="false">
+		
+		<liferay-portlet:renderURL varImpl="rowURL">
+  	 		<portlet:param name="jspPage" value="/html/detail/product_detail.jsp" />
+   			<portlet:param name="backURL" value="<%= currentURL %>" />
+   			<portlet:param name="productId" value="<%= String.valueOf(product.getId()) %>" />
+  		</liferay-portlet:renderURL>
+  		
+		<%
+		int productId = product.getId();
+		
+		renderUrl = rowURL.toString();
+		
+		for (int i = 0;i < showsColumns.length; i++) {
+			String showsColumn = showsColumns[i];
+		%>
+		
+		<c:choose>
+			<c:when test='<%= showsColumn.equals("name") %>'>
+				<liferay-ui:search-container-column-text
+					href="<%= renderUrl %>"
+					name="Name"
+					value="<%= product.getName() %>"
+				/>
+			</c:when>
+		
+			<c:when test='<%= showsColumn.equals("image") %>'>
+				<liferay-ui:search-container-column-text 
+					href="<%= renderUrl  %>"
+					name="Image"
+					>
+				</liferay-ui:search-container-column-text>
+			</c:when>
+			
+			<c:when test='<%= showsColumn.equals("price") %>'>
+				<liferay-ui:search-container-column-text
+					name="Price"
+					href="<%= renderUrl  %>"
+					buffer="buffer" 
+				>
+				
+				<% 	
+					BigDecimal price;
+					BigDecimal specialPrice;
+					
+					if (withTax) {
+						price = product.getPriceIncTax();
+						specialPrice = product.getSpecialPriceIncTax();
+					} else {
+						price = product.getPriceExTax();
+						specialPrice = product.getSpecialPriceExTax();
+					}
+					
+					if (Validator.isNull(specialPrice)) {
+						buffer.append("$");
+						buffer.append(price);
+					} else {
+						buffer.append("<s>$");
+						buffer.append(price);
+						buffer.append("</s> ");
+						buffer.append("<i><font color='red'>$");
+						buffer.append(specialPrice);
+						buffer.append("</font></i>");
+					}
+				%>
+				
+				</liferay-ui:search-container-column-text>
+			</c:when>
+			
+		</c:choose>
+		<% } %>
+	</liferay-ui:search-container-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>

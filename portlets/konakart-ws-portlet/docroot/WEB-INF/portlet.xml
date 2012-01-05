@@ -84,7 +84,7 @@
 	<portlet>
 		<portlet-name>detail</portlet-name>
 		<display-name>Detail</display-name>
-		<portlet-class>com.liferay.konkart.Detail</portlet-class>
+		<portlet-class>com.liferay.konakart.Detail</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/html/detail/view.jsp</value>
