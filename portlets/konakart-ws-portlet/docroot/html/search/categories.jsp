@@ -26,9 +26,8 @@
 	}
 %>
 <%
-LCategoryLocalServiceUtil.setKKAppEng(KKWsUtil.getKKAppEng());
 
-List<CategoryIf> categores = LCategoryLocalServiceUtil.getCatMenuList();
+List<CategoryIf> categores = KKUtil.getCategoryMgr().getCatMenuList();
 
 for (int i = 0; i < categores.size(); i++) {
 	CategoryIf category = categores.get(i);

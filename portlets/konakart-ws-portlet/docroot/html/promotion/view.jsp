@@ -14,23 +14,14 @@
 */
 --%>
 
-<%@page import="com.konakart.appif.ProductIf"%>
 <%@ include file="/html/promotion/init.jsp" %>
 
-<% 	
+<%
 	ProductIf[] products = (ProductIf[]) renderRequest.getAttribute("products");	
 
 	List<ProductIf> productList = Arrays.asList(products);
-	
-	String serviceUrl = (String) renderRequest.getAttribute("serviceUrl");
 		
-	String imgUrl = serviceUrl + "images/";
-	
-	String renderUrl = "";
-	
-	String showType = (String) renderRequest.getAttribute("showType");
-	
-	boolean withTax = PrefsParamUtil.getBoolean(preferences, request, "withTax", false);
+	String renderUrl = "";	
 	
 	out.print(showType+"<br>");	
 %>
@@ -50,27 +41,20 @@
 		modelVar="product" escapedModel="false">
 
 		<%
-			int productId = product.getId();
-			
-			LReviewLocalServiceUtil.setKKWsEng(kkWsEng);		
-			
-			if (linkType.equals(PortletConstants.NOLINK)) {
-				renderUrl = null;
-			} else if(linkType.equals(PortletConstants.LINKTOSITE)) {
-				renderUrl = renderUrl + "serviceUrl" + productId;
-			} else if(linkType.equals(PortletConstants.DETAIL)) {
-				PortletURL pUrl = renderResponse.createActionURL();
-				pUrl.setParameter("productId", String.valueOf(productId));
-				
-				renderUrl = pUrl.toString();	
-			} else if(linkType.equals(PortletConstants.SELF)) {
-				renderUrl = null;
-			}
-			
-			//product = LProductLocalServiceUtil.getProduct(productId);
+		int productId = product.getId();
 		
-			for (int i = 0;i < showsColumns.length; i++) {
-				String showsColumn = showsColumns[i];
+		if (linkType.equals(PortletConstants.NOLINK)) {
+			renderUrl = null;
+		} else if(linkType.equals(PortletConstants.LINKTOSITE)) {
+			renderUrl = null;
+		} else if(linkType.equals(PortletConstants.DETAIL)) {
+			renderUrl = null;
+		} else if(linkType.equals(PortletConstants.SELF)) {
+			renderUrl = null;
+		}
+		
+		for (int i = 0;i < showsColumns.length; i++) {
+			String showsColumn = showsColumns[i];
 		%>
 		
 		<c:choose>
@@ -87,9 +71,6 @@
 					href="<%= renderUrl  %>"
 					name="Image"
 					>
-					<liferay-ui:icon
-						src="<%= imgUrl + product.getImage()%>"
-					/>
 				</liferay-ui:search-container-column-text>
 			</c:when>
 			

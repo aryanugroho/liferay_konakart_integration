@@ -14,15 +14,15 @@
 */
 --%>
 
-<%@page import="com.konakart.al.DropListElement"%>
+<%@page import="com.liferay.konakart.util.KKConstants"%>
 <%@ include file="/html/search/init.jsp" %>
 
 <% 
 	String backURL = ParamUtil.getString(request, "backURL");
 	
-	ManufacturerIf[] manufacturers = LProductLocalServiceUtil.getAllManuArray();
-		LCategoryLocalServiceUtil.setKKAppEng(KKWsUtil.getKKAppEng());
-	DropListElement[] allcats = LCategoryLocalServiceUtil.getAllCatsDropList();
+	DropListElement[] manufacturers = KKUtil.getProductMgr().getAllManuDropList();
+	
+	DropListElement[] allcats = KKUtil.getCategoryMgr().getAllCatsDropList();
 %>
 
 <liferay-ui:header
@@ -36,7 +36,7 @@
 	<aui:input name="searchCriteria" title="search-criteria:" type="text"></aui:input>
 	
 	<aui:select name="categoryId" title="categories">
-		<aui:option value="<%= KKConstant.ALL_CATEGORIES %>">All Categories</aui:option>
+		<aui:option value="<%= KKConstants.ALL_CATEGORIES %>">All Categories</aui:option>
 		
 		<% 
 		for (int i = 0; i < allcats.length; i++) {
@@ -48,12 +48,12 @@
 	</aui:select>
 	
 	<aui:select name="manufacturerId" title="manufacturers">
-		<aui:option value="<%= KKConstant.ALL_MANUFACTURER %>">All Manufacturers</aui:option>
+		<aui:option value="<%= KKConstants.ALL_MANUFACTURER %>">All Manufacturers</aui:option>
 		
 		<% 
 		for (int i = 0; i < manufacturers.length; i++) {
 		%>
-		<aui:option value="<%= manufacturers[i].getId() %>"><%= manufacturers[i].getName() %></aui:option>
+		<aui:option value="<%= manufacturers[i].getId() %>"><%= manufacturers[i].getDesc() %></aui:option>
 		<% 
 		}
 		%>

@@ -1,27 +1,41 @@
 package com.liferay.konakart.util;
 
-import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PrefsParamUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import javax.portlet.PortletPreferences;
+import javax.portlet.RenderRequest;
 
 public class PortletUtil {
 	
-	public static String cutOut(String s, int length) {
-		Pattern pattern = Pattern.compile("\t|\r|\n");
-		
-		Matcher matcher = pattern.matcher(s);
-		
-		s = matcher.replaceAll("");
-		
-		if (s.length() > length) {
-			s = StringUtil.shorten(s, length);
-		}
-		
-		return s;
+	public static String getShowType(RenderRequest renderRequest) {
+		return PrefsParamUtil.getString(getPortletPreferences(renderRequest), 
+			renderRequest, "showType", PortletConstants.BESTSELLERS);
 	}
 	
-	public static String cutOut(String s) {
-		return cutOut(s, 100);
+	public static PortletPreferences getPortletPreferences(
+			RenderRequest renderRequest) {
+		
+		PortletPreferences preferences = renderRequest.getPreferences();
+
+		String portletResource = ParamUtil.getString(renderRequest,
+				"portletResource");
+
+		if (Validator.isNotNull(portletResource)) {
+			try {
+				preferences = PortletPreferencesFactoryUtil.getPortletSetup(
+					renderRequest, portletResource);
+			} catch (PortalException e) {			
+				e.printStackTrace();
+			} catch (SystemException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return preferences;
 	}
 }

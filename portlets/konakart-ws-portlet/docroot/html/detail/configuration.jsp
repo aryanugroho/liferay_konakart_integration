@@ -16,28 +16,15 @@
 
 <%@ include file="/html/detail/init.jsp" %>
 
-<% 
-	String webServiceAddress = PrefsParamUtil.getString(preferences, renderRequest, "webServiceAddress", "");
-	
-	String showType = PrefsParamUtil.getString(preferences, renderRequest, "showType");
-		
-	boolean showRandom = PrefsParamUtil.getBoolean(preferences, renderRequest, "showRandom", false);
-		
-	int showCount = PrefsParamUtil.getInteger(preferences, renderRequest, "showCount", 5);
-%>
-
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
 <aui:form action="<%= configurationURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfiguration();" %>'>
-
-	<aui:input name="<%= com.liferay.portal.kernel.util.Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="preferences--showColumns--" type="hidden" />
 
 	<liferay-ui:panel-container extended="<%= true %>" id="settingsPanelContainer" persistState="<%= true %>">
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="overallPanel" persistState="<%= true %>" title="overall">
 			<aui:fieldset>
-				<aui:input helpMessage="address-help-message" lable="web-service-address" name="preferences--webServiceAddress--" size="80" type="test" value="<%= webServiceAddress %>"/> 
-		
 				<aui:select label="show-type" name="preferences--showType--">
 					<aui:option label="best-sellers" selected='<%=showType.equals(PortletConstants.BESTSELLERS) %>' value="<%= PortletConstants.BESTSELLERS %>"/>
 					<aui:option label="special" selected='<%= showType.equals(PortletConstants.SPECIAL) %>' value="<%= PortletConstants.SPECIAL %>"/>
@@ -45,14 +32,13 @@
 				</aui:select>	
 				
 				<aui:input label="rows-per-page" name="preferences--rowsPerPage--" type="text" size="3" value="<%= rowsPerPage %>"/>	
-							
+				
 			</aui:fieldset>
 		</liferay-ui:panel>
 		
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="showPanel" persistState="<%= true %>" title="show">
-			<aui:input label="show-count" name="preferences--showCount--" type="text" size="3" value="<%= showCount %>"/>
-	
-			<aui:field-wrapper label="show-columns">
+		
+		<aui:field-wrapper label="show-columns">
 				<%
 				Set availableColumns = SetUtil.fromArray(StringUtil.split(allShowColumns));
 				
@@ -96,14 +82,14 @@
 				/>
 			
 			</aui:field-wrapper>
-		</liferay-ui:panel>
+			
+			</liferay-ui:panel>
 		
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="pricePanel" persistState="<%= true %>" title="price">
 			<aui:input label="display-price-with-tax" name="preferences--withTax--" type="checkbox" value="<%= withTax %>"/>
 		</liferay-ui:panel>
 		
-	</liferay-ui:panel-container>	
-	
+		</liferay-ui:panel-container>
 	<aui:button-row>
 		<aui:button type="submit" />
 	</aui:button-row>

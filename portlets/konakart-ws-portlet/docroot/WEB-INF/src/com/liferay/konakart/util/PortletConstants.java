@@ -24,13 +24,7 @@ public interface PortletConstants {
 	public static final String SPECIAL = "special";
 	
 	public static final String LATEEST = "lastest";
-	
-	public static final String AVERAGERATING = "averageRating";
-	
-	public static final String LASTESTREVIEW = "lastestReview";
-	
-	public static final String KKWSENG = "kkWsEng";
-	
+		
 	public static final String NOLINK = "noLink";
 	
 	public static final String DETAIL = "detail";

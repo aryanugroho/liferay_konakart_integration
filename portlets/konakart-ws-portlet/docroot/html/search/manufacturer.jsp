@@ -15,7 +15,7 @@
 --%>
 
 <%
-	ManufacturerIf[] manufacturers = LProductLocalServiceUtil.getAllManuArray();
+	DropListElement[] manufacturers = KKUtil.getProductMgr().getAllManuDropList();
 	
 	Object mId = request.getAttribute("manufacturerId");
 	
@@ -35,7 +35,7 @@
 		<% 
 		for (int i = 0; i < manufacturers.length; i++) {
 		%>
-		<aui:option value="<%= manufacturers[i].getId() %>" selected="<%= manufacturers[i].getId() == manufacturerId %>"><%= manufacturers[i].getName() %></aui:option>
+		<aui:option value="<%= manufacturers[i].getId() %>" selected="<%= manufacturers[i].getId() == manufacturerId %>"><%= manufacturers[i].getDesc() %></aui:option>
 		<% 
 		}
 		%>

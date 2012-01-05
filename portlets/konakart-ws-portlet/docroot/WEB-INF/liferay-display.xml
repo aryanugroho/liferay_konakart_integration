@@ -4,7 +4,7 @@
 <display>
 	<category name="category.konakart">
 		<portlet id="promotion"></portlet>
-		<portlet id="detail"></portlet>
 		<portlet id="search"></portlet>
+		<portlet id="detail"></portlet>
 	</category>
 </display>

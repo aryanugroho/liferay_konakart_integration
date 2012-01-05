@@ -14,49 +14,14 @@
  */
 --%>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
-<%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+<%@ include file="/html/init.jsp" %>
 
-<%@page import="com.konakart.ws.KKWSEngIf"%>
-<%@page import="com.konakart.wsapp.Product"%>
-<%@page import="com.konakart.wsapp.Review"%>
-
-<%@page import="java.util.Iterator"%>
-<%@page import="java.util.Arrays"%>
-<%@page import="java.util.Set"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
 <%@page import="java.math.BigDecimal"%>
-
-<%@page import="javax.portlet.PortletPreferences"%>
-<%@page import="javax.portlet.PortletURL"%>
-
-<%@page import="com.liferay.portal.kernel.util.KeyValuePairComparator"%>
-<%@page import="com.liferay.portal.kernel.util.ListUtil"%>
-<%@page import="com.liferay.portal.kernel.util.Constants"%>
-<%@page import="com.liferay.portal.kernel.util.GetterUtil"%>
-<%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
-<%@page import="com.liferay.portal.kernel.util.KeyValuePair"%>
-<%@page import="com.liferay.portal.kernel.util.StringUtil"%>
-<%@page import="com.liferay.portal.kernel.util.SetUtil"%>
-<%@page import="com.liferay.portal.kernel.util.Validator"%>
-<%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
-<%@page import="com.liferay.portal.kernel.util.PrefsParamUtil"%>
-
-<%@page import="com.liferay.konakart.service.LProductLocalServiceUtil"%>
-<%@page import="com.liferay.konakart.service.LReviewLocalServiceUtil"%>
-<%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
-
-<%@page import="com.liferay.konakart.util.PortletConstants"%>
-
-<portlet:defineObjects />
+<%@page import="com.konakart.appif.ProductIf"%>
 
 <%
 	PortletPreferences preferences = renderRequest.getPreferences();
-		 	
+		
 	String portletResource = ParamUtil.getString(
 		renderRequest, "portletResource");
 	
@@ -69,13 +34,11 @@
 	
 	String[] showsColumns = StringUtil.split(PrefsParamUtil.getString(preferences, request, "showColumns", allShowColumns));
 	
-	String reviewType = PrefsParamUtil.getString(preferences, request, "reviewType");
-	
 	String linkType = PrefsParamUtil.getString(preferences, request, "linkType");
-	
-	KKWSEngIf kkWsEng = (KKWSEngIf) renderRequest.getAttribute("kkWSEng");
 	
 	int rowsPerPage = GetterUtil.getInteger(preferences.getValue("rowsPerPage", "5"));
 	
-	boolean linkToSite = PrefsParamUtil.getBoolean(preferences, request, "linkToSite", false);
+	String showType = PrefsParamUtil.getString(preferences, renderRequest, "showType");
+	
+	boolean withTax = PrefsParamUtil.getBoolean(preferences, renderRequest, "withTax", false);
 %>
