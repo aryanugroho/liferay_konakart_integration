@@ -49,8 +49,6 @@
 			renderUrl = null;
 		} else if(linkType.equals(PortletConstants.DETAIL)) {
 			renderUrl = null;
-		} else if(linkType.equals(PortletConstants.SELF)) {
-			renderUrl = null;
 		}
 		
 		for (int i = 0;i < showsColumns.length; i++) {
@@ -70,6 +68,7 @@
 				<liferay-ui:search-container-column-text 
 					href="<%= renderUrl  %>"
 					name="Image"
+					value="<%= product.getImage() %>"
 					>
 				</liferay-ui:search-container-column-text>
 			</c:when>
