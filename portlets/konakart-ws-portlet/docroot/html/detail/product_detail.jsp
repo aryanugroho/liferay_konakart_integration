@@ -19,15 +19,7 @@
 <%
 	String backURL = ParamUtil.getString(request, "backURL");
 		
-	int productId = ParamUtil.getInteger(renderRequest, "productId");
-	
 	ProductMgr productMgr = KKUtil.getProductMgr();
-	
-	productMgr.fetchSelectedProduct(productId);
-	
-	productMgr.fetchAlsoPurchasedArray();
-	
-	productMgr.fetchRelatedProducts();
 	
 	ProductIf product = productMgr.getSelectedProduct();
 %>

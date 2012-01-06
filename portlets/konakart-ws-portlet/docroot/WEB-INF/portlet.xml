@@ -43,6 +43,9 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
+		<supported-public-render-parameter>
+			actionType
+		</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>search</portlet-name>
@@ -80,6 +83,9 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
+		<supported-public-render-parameter>
+			actionType
+		</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>detail</portlet-name>
@@ -117,5 +123,12 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
+		<supported-public-render-parameter>
+			actionType
+		</supported-public-render-parameter>
 	</portlet>
+	<public-render-parameter>
+    	<identifier>actionType</identifier>
+    	<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:actionType</qname>
+    </public-render-parameter>
 </portlet-app>
