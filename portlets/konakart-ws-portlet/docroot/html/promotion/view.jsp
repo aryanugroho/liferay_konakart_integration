@@ -48,7 +48,11 @@
 		} else if(linkType.equals(PortletConstants.LINKTOSITE)) {
 			renderUrl = null;
 		} else if(linkType.equals(PortletConstants.DETAIL)) {
-			renderUrl = null;
+			
+			PortletURL pUrl = renderResponse.createActionURL();
+			pUrl.setParameter("productId", String.valueOf(productId));
+			
+			renderUrl = pUrl.toString();
 		}
 		
 		for (int i = 0;i < showsColumns.length; i++) {

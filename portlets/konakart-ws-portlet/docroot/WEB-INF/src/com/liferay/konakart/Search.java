@@ -35,6 +35,10 @@ public class Search extends MVCPortlet {
 		ProductMgr productMgr = KKUtil.getProductMgr();
 		
 		productMgr.searchForProducts(localProductSearch);
+		
+		String actionType = "showProductListAction";
+		
+		actionResponse.setRenderParameter("actionType", actionType);
 	}
 	
 	public void searchByCategory(ActionRequest actionRequest, 
@@ -46,6 +50,10 @@ public class Search extends MVCPortlet {
 		CategoryMgr categoryMgr = KKUtil.getCategoryMgr();
 		
 		categoryMgr.setCurrentCatAndUpdateProducts1(categoryId);
+		
+		String actionType = "showProductListAction";
+		
+		actionResponse.setRenderParameter("actionType", actionType);
 	}
 	
 	public void searchByManu(ActionRequest actionRequest, 
@@ -60,5 +68,9 @@ public class Search extends MVCPortlet {
 		productMgr.fetchProductsPerManufacturer(manufacturerId);
 		
 		actionRequest.setAttribute("manufacturerId", manufacturerId);
+	
+		String actionType = "showProductListAction";
+		
+		actionResponse.setRenderParameter("actionType", actionType);
 	}
 }

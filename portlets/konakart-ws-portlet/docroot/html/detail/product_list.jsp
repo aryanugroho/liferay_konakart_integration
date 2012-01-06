@@ -18,17 +18,12 @@
 
 <%
 	ProductIf[] products = KKUtil.getProductMgr().getCurrentProducts();	
-	
-	if (products == null || products.length == 0) {
-		KKUtil.getProductMgr().fetchAllNewProds();
-		products = KKUtil.getProductMgr().getCurrentProducts();
-	}
 		
 	String currentURL = PortalUtil.getCurrentURL(request);
 	
 	List<ProductIf> productList = Arrays.asList(products);
 		
-	String renderUrl = "";	
+	String renderUrl = "";		
 %>
 
 <liferay-ui:search-container
@@ -46,9 +41,9 @@
 		modelVar="product" escapedModel="false">
 		
 		<liferay-portlet:renderURL varImpl="rowURL">
-			<portlet:param name="jspPage" value="/html/detail/product_detail.jsp" />
-			<portlet:param name="backURL" value="<%= currentURL %>" />
-			<portlet:param name="actionType" value="showProductDetailAction" />
+  	 		<portlet:param name="jspPage" value="/html/detail/product_detail.jsp" />
+   			<portlet:param name="backURL" value="<%= currentURL %>" />
+   			<portlet:param name="actionType" value="showProductDetailAction" />
    			<portlet:param name="productId" value="<%= String.valueOf(product.getId()) %>" />
   		</liferay-portlet:renderURL>
   		

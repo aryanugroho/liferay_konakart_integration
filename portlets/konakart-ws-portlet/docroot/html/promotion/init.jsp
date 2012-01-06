@@ -21,7 +21,7 @@
 
 <%
 	PortletPreferences preferences = renderRequest.getPreferences();
-		
+		 
 	String portletResource = ParamUtil.getString(
 		renderRequest, "portletResource");
 	
