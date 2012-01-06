@@ -37,7 +37,5 @@
 	
 	int rowsPerPage = GetterUtil.getInteger(preferences.getValue("rowsPerPage", "5"));
 	
-	String showType = PrefsParamUtil.getString(preferences, renderRequest, "showType");
-	
 	boolean withTax = PrefsParamUtil.getBoolean(preferences, renderRequest, "withTax", false);
 %>
