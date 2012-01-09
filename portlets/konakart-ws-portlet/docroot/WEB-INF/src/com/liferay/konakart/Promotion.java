@@ -40,13 +40,10 @@ public class Promotion extends MVCPortlet {
 		
 			actionResponse.setRenderParameter("actionType", actionType);
 		} catch (KKException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (KKAppException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -74,7 +71,6 @@ public class Promotion extends MVCPortlet {
 					products, productMgr.getRandomNewProd());
 			}
 		} catch (KKException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
