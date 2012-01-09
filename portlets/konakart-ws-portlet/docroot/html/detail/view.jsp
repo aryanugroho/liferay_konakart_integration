@@ -98,14 +98,13 @@
 					}
 					
 					if (Validator.isNull(specialPrice)) {
-						buffer.append("$");
-						buffer.append(price);
+						buffer.append(kkAppEng.formatPrice(price));
 					} else {
-						buffer.append("<s>$");
-						buffer.append(price);
+						buffer.append("<s>");
+						buffer.append(kkAppEng.formatPrice(price));
 						buffer.append("</s> ");
-						buffer.append("<i><font color='red'>$");
-						buffer.append(specialPrice);
+						buffer.append("<i><font color='red'>");
+						buffer.append(kkAppEng.formatPrice(specialPrice));
 						buffer.append("</font></i>");
 					}
 				%>
