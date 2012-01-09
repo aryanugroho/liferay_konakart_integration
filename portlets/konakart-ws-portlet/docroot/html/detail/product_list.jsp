@@ -70,6 +70,9 @@
 					href="<%= renderUrl  %>"
 					name="Image"
 					>
+					<liferay-ui:icon
+						src="<%= imgURL + product.getImage()%>"
+					/>
 				</liferay-ui:search-container-column-text>
 			</c:when>
 			
