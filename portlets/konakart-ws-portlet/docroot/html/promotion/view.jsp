@@ -72,8 +72,10 @@
 				<liferay-ui:search-container-column-text 
 					href="<%= renderUrl  %>"
 					name="Image"
-					value="<%= product.getImage() %>"
 					>
+					<liferay-ui:icon
+						src="<%= imgURL + product.getImage()%>"
+					/>
 				</liferay-ui:search-container-column-text>
 			</c:when>
 			

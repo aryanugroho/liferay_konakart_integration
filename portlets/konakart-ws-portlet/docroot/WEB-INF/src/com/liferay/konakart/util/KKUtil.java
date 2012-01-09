@@ -8,6 +8,15 @@ import com.konakart.al.StoreInfo;
 import com.konakart.app.EngineConfig;
 import com.konakart.app.KKException;
 import com.konakart.appif.EngineConfigIf;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class KKUtil {
 	static {
@@ -26,6 +35,40 @@ public class KKUtil {
 	
 	public static KKAppEng getKKAppEng() {
 		return _kkAppEng;
+	}
+	
+	public static String getServerURL() {
+		String webServerURL = "";
+		String serverURL = "";
+		String propURL = KKUtil.class.getClassLoader().
+			getResource("konakart_axis_client.properties").getPath();
+		
+		if (Validator.isNotNull(propURL)) {
+			InputStream in;
+			
+			try {
+				Properties prop = new Properties();
+				
+				in = new BufferedInputStream(new FileInputStream(propURL));
+				
+				prop.load(in);
+				
+				webServerURL = prop.getProperty("konakart.webservice.URL");
+				
+				serverURL = StringUtil.replace(
+					webServerURL, "services/KKWebServiceEng", "");
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return serverURL;
+	}
+	
+	public static String getImageUrl() {
+		return getServerURL() + "images/";
 	}
 	
 	public static ProductMgr getProductMgr() throws KKException {

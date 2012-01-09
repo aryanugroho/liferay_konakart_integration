@@ -53,4 +53,6 @@
 
 <%
 	KKAppEng kkAppEng = KKUtil.getKKAppEng();
+		 
+	String imgURL = KKUtil.getImageUrl();
 %>
