@@ -19,6 +19,7 @@
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://alloy.liferay.com/tld/aui" prefix="aui"%>
+
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
 <%@page import="com.liferay.portal.kernel.util.KeyValuePairComparator"%>
 <%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
@@ -34,6 +35,8 @@
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@page import="com.liferay.portal.kernel.util.Validator"%>
 
+<%@page import="com.konakart.al.ProdOptionContainer"%>
+<%@page import="com.konakart.al.ProductMgr"%>
 <%@page import="com.konakart.al.KKAppEng"%>
 <%@page import="com.konakart.al.DropListElement"%>
 
@@ -55,4 +58,6 @@
 	KKAppEng kkAppEng = KKUtil.getKKAppEng();
 		 
 	String imgURL = KKUtil.getImageUrl();
+		 
+	ProductMgr prodMgr = KKUtil.getProductMgr();
 %>

@@ -10,6 +10,8 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -43,11 +45,11 @@ public class Detail extends MVCPortlet {
 		}	
 	}
 	
-	public void showProductDetail(RenderRequest renderRequest, 
-			RenderResponse renderResponse) 
+	public void showProductDetail(ActionRequest actionRequest, 
+			ActionResponse actionResponse) 
 		throws KKException, KKAppException {
 		
-		int productId = ParamUtil.getInteger(renderRequest, "productId");
+		int productId = ParamUtil.getInteger(actionRequest, "productId");
 		
 		ProductMgr productMgr = KKUtil.getProductMgr();
 		

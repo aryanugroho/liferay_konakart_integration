@@ -22,6 +22,8 @@
 	ProductMgr productMgr = KKUtil.getProductMgr();
 	
 	ProductIf product = productMgr.getSelectedProduct();
+	
+	String prodUrl = product.getUrl();
 %>
 
 <liferay-ui:header
@@ -29,16 +31,65 @@
 	title='product-detatil'
 />
 
-name : <%= product.getName() %> <br>
-price: <%= product.getPriceExTax() %> <br>
-Description: <%= product.getDescription() %> <br>
+<%= product.getName() %> <br>
+
+[<%=product.getModel()%>]<br>
+
+<%if (product.getQuantity()>0){%>
+	 - <%=product.getQuantity()%> In stock
+<%}else{%>
+	Out of stock
+<%}%>	
+
+<br>
+<% 	
+	BigDecimal price;
+	BigDecimal specialPrice;
+					
+	if (withTax) {
+		price = product.getPriceIncTax();
+		specialPrice = product.getSpecialPriceIncTax();
+	} else {
+		price = product.getPriceExTax();
+		specialPrice = product.getSpecialPriceExTax();
+	}
+					
+	if (Validator.isNull(specialPrice)) {
+		out.print(kkAppEng.formatPrice(price));
+	} else {
+		out.print("<s>");
+		out.print(kkAppEng.formatPrice(price));
+		out.print("</s> ");
+		out.print("<i><font color='red'>");
+		out.print(kkAppEng.formatPrice(specialPrice));
+		out.print("</font></i>");
+	}
+%>
+<br>
+<img src="<%= imgURL + product.getImage()%>"></img>
+<br>
+<%= product.getDescription() %> <br>
 
 <% 
-	if (product.getOpts().length != 0) {
+List<ProdOptionContainer> selectedOpts = prodMgr.getSelectedProductOptions();
+
+Iterator opts = selectedOpts.iterator();
+
+while (opts.hasNext()) {
+	ProdOptionContainer optContainer = (ProdOptionContainer)opts.next();
+	
+	List<ProdOption> values = optContainer.getOptValues();
+	
+	out.print(optContainer.getName()+":");
+	out.print("<select>");
+	for (int i = 0; i < values.size(); i++) {
+		out.print("<option>"+values.get(i).getFormattedValueExTax()+"</option>");
+	}
+	out.print("</select>");
+	out.print("<br>");
+}
+
 %>
-	<select>
-		<% for (int i = 0; i <product.getOpts().length; i++) {%>
-			<option><%=product.getOpts()[i].getValue() %></option>
-		<%} %>
-	</select>
-<% }%>
+<%if (prodUrl != null && ((String)(prodUrl)).length() > 0){%>
+	For more information, please visit this product<a href="http://<%=prodUrl%>" target="_blank"><u>webpage</u></a>.</p>
+<%}%>	
