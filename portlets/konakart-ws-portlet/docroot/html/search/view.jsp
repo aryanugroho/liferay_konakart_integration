@@ -34,9 +34,7 @@
 		<portlet:renderURL var="advancedSearchUrl">
 			<portlet:param name="jspPage" value="/html/search/advanced_search.jsp" />
 			<portlet:param name="backURL" value="<%= currentURL %>" />
-		</portlet:renderURL>
-		
-		<aui:a href="<%= advancedSearchUrl.toString() %>">Advanced Search</aui:a>	
+		</portlet:renderURL>	
 	</c:when>
 	<c:when test="<%= searchType.equals(PortletConstants.MANUFACTURER) %>">
 		<%@ include file="/html/search/manufacturer.jsp" %>
