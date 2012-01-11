@@ -14,6 +14,8 @@
  */
 --%>
 
+<%@page import="com.konakart.appif.CategoryIf"%>
+<%@page import="com.konakart.al.CategoryMgr"%>
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
@@ -60,4 +62,6 @@
 	String imgURL = KKUtil.getImageUrl();
 		 
 	ProductMgr prodMgr = KKUtil.getProductMgr();
+	
+	CategoryMgr cateMgr = KKUtil.getCategoryMgr();
 %>

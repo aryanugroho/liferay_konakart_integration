@@ -1,5 +1,6 @@
 package com.liferay.konakart;
 
+import com.konakart.al.CategoryMgr;
 import com.konakart.al.KKAppException;
 import com.konakart.al.ProductMgr;
 import com.konakart.app.KKException;
@@ -43,6 +44,30 @@ public class Detail extends MVCPortlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+	}
+	
+	public void fiterByCate(ActionRequest actionRequest, 
+			ActionResponse actionResponse) 
+		throws KKException, KKAppException {
+		
+		int categoryId = ParamUtil.getInteger(actionRequest, "fiterCategoryId");
+		
+		ProductMgr productMgr = KKUtil.getProductMgr();
+		
+		productMgr.filterCurrentProdsByCategory(categoryId);
+		
+		actionRequest.setAttribute("fiterCategoryId", categoryId);
+	}
+	
+	public void showSubCateProductList(ActionRequest actionRequest, 
+			ActionResponse actionResponse) 
+		throws KKException, KKAppException {
+		
+		int categoryId = ParamUtil.getInteger(actionRequest, "categoryId");
+		
+		CategoryMgr categoryMgr = KKUtil.getCategoryMgr();
+		
+		categoryMgr.setCurrentCatAndUpdateProducts1(categoryId);
 	}
 	
 	public void showProductDetail(ActionRequest actionRequest, 

@@ -89,7 +89,6 @@ while (opts.hasNext()) {
 	out.print("<br>");
 }
 
-%>
-<%if (prodUrl != null && ((String)(prodUrl)).length() > 0){%>
+if (prodUrl != null && ((String)(prodUrl)).length() > 0){%>
 	For more information, please visit this product<a href="http://<%=prodUrl%>" target="_blank"><u>webpage</u></a>.</p>
 <%}%>	

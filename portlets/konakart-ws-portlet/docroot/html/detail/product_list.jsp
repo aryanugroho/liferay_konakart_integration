@@ -20,11 +20,87 @@
 	ProductIf[] products = KKUtil.getProductMgr().getCurrentProducts();	
 		
 	String currentURL = PortalUtil.getCurrentURL(request);
-	
+		
 	List<ProductIf> productList = Arrays.asList(products);
 		
+	CategoryIf[] currentSubCates = cateMgr.getCurrentSubCats();
+	
+	CategoryIf[] currentCates = prodMgr.getCurrentCategories();
+	
 	String renderUrl = "";		
-%>
+
+	if (Validator.isNotNull(currentSubCates)) {
+		List<CategoryIf> currentSubCatesList = Arrays.asList(currentSubCates);
+		
+		%>
+	<b>Categories</b>
+	
+<liferay-ui:search-container
+	delta='<%= rowsPerPage %>'
+	>
+	
+	<liferay-ui:search-container-results
+		results="<%= ListUtil.subList(currentSubCatesList, searchContainer.getStart(), searchContainer.getEnd()) %>"
+		total="<%= currentSubCatesList.size() %>" />
+
+		<liferay-ui:search-container-row
+			className="com.konakart.appif.CategoryIf" keyProperty="id"
+			modelVar="category" escapedModel="false">
+			
+			<liferay-portlet:actionURL name="showSubCateProductList" varImpl="rowURL">
+	   			<portlet:param name="backURL" value="<%= currentURL %>" />
+	   			<portlet:param name="actionType" value="showProductListAction" />
+	   			<portlet:param name="categoryId" value="<%= String.valueOf(category.getId()) %>" />
+	  		</liferay-portlet:actionURL>
+  		
+			<liferay-ui:search-container-column-text
+				href="<%= rowURL.toString() %>"
+				name="Name"
+				value="<%= category.getName() %>"
+			/>
+			<liferay-ui:search-container-column-text 
+				name="Image"
+			>
+				<liferay-ui:icon
+					src="<%= imgURL + category.getImage()%>"
+				/>
+			</liferay-ui:search-container-column-text>
+		</liferay-ui:search-container-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>
+	
+	<%
+	}
+	
+	if (Validator.isNotNull(currentCates)) {
+		Object fiterCateId = request.getAttribute("fiterCategoryId");
+		
+		int currentCateId = -100;
+		
+		if (fiterCateId != null) {
+			currentCateId = Integer.valueOf(fiterCateId.toString());
+		}
+	%>
+	<portlet:actionURL name="fiterByCate" var="fiterByCateURL"/>
+	
+	<aui:form method="post" name="fm" action="<%= fiterByCateURL.toString() %>">
+		<aui:select name="fiterCategoryId" onChange="fiterByCate();">
+			<aui:option value="-100">All Categories</aui:option>
+				
+			<% 
+			for (int i = 0; i < currentCates.length; i++) {
+			%>
+			<aui:option value="<%= currentCates[i].getId() %>"selected="<%= currentCates[i].getId() == currentCateId %>"><%= currentCates[i].getName() %></aui:option>
+			<% 
+			}
+			%>
+	</aui:select>
+</aui:form>
+	
+	<%
+	}
+	%>
 
 <liferay-ui:search-container
 	delta='<%= rowsPerPage %>'
@@ -115,3 +191,9 @@
 
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
+
+<aui:script>
+	function fiterByCate() {
+		submitForm(document.<portlet:namespace />fm);
+	}
+</aui:script>
