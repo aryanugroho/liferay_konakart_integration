@@ -36,7 +36,7 @@
 [<%=product.getModel()%>]<br>
 
 <%if (product.getQuantity()>0){%>
-	 - <%=product.getQuantity()%> In stock
+	  <%=product.getQuantity()%> In stock
 <%}else{%>
 	Out of stock
 <%}%>	
