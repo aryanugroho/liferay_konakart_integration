@@ -51,7 +51,7 @@ public class Search extends MVCPortlet {
 		
 		categoryMgr.setCurrentCatAndUpdateProducts1(categoryId);
 		
-		String actionType = "showProductListAction";
+		String actionType = "showProductListByCateAction";
 		
 		actionResponse.setRenderParameter("actionType", actionType);
 	}
@@ -65,11 +65,13 @@ public class Search extends MVCPortlet {
 		
 		ProductMgr productMgr = KKUtil.getProductMgr();
 		
+		CategoryMgr categoryMgr = KKUtil.getCategoryMgr();
+		
 		productMgr.fetchProductsPerManufacturer(manufacturerId);
 		
 		actionRequest.setAttribute("manufacturerId", manufacturerId);
 	
-		String actionType = "showProductListAction";
+		String actionType = "showProductListByManuAction";
 		
 		actionResponse.setRenderParameter("actionType", actionType);
 	}

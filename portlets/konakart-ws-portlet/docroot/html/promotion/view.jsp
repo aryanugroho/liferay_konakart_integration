@@ -46,7 +46,7 @@
 		if (linkType.equals(PortletConstants.NOLINK)) {
 			renderUrl = null;
 		} else if(linkType.equals(PortletConstants.LINKTOSITE)) {
-			renderUrl = null;
+			renderUrl = serverURL + "SelectProd.do?prodId=" + productId;
 		} else if(linkType.equals(PortletConstants.DETAIL)) {
 			
 			PortletURL pUrl = renderResponse.createActionURL();

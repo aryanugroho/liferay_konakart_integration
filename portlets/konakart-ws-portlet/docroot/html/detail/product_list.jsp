@@ -20,7 +20,7 @@
 	ProductIf[] products = KKUtil.getProductMgr().getCurrentProducts();	
 		
 	String currentURL = PortalUtil.getCurrentURL(request);
-		
+	
 	List<ProductIf> productList = Arrays.asList(products);
 		
 	CategoryIf[] currentSubCates = cateMgr.getCurrentSubCats();
@@ -28,11 +28,14 @@
 	CategoryIf[] currentCates = prodMgr.getCurrentCategories();
 	
 	String renderUrl = "";		
-
-	if (Validator.isNotNull(currentSubCates)) {
-		List<CategoryIf> currentSubCatesList = Arrays.asList(currentSubCates);
-		
-		%>
+	
+	String actionType = renderRequest.getParameter("actionType");
+	
+	if (actionType.equals("showProductListByCateAction")) {
+		if (Validator.isNotNull(currentSubCates)) {
+			List<CategoryIf> currentSubCatesList = Arrays.asList(currentSubCates);
+			
+			%>
 	<b>Categories</b>
 	
 <liferay-ui:search-container
@@ -72,16 +75,17 @@
 	
 	<%
 	}
-	
-	if (Validator.isNotNull(currentCates)) {
-		Object fiterCateId = request.getAttribute("fiterCategoryId");
-		
-		int currentCateId = -100;
-		
-		if (fiterCateId != null) {
-			currentCateId = Integer.valueOf(fiterCateId.toString());
-		}
-	%>
+	}
+	if (actionType.equals("showProductListByManuAction")) {
+		if (Validator.isNotNull(currentCates)) {
+			Object fiterCateId = request.getAttribute("fiterCategoryId");
+			
+			int currentCateId = -100;
+			
+			if (fiterCateId != null) {
+				currentCateId = Integer.valueOf(fiterCateId.toString());
+			}
+		%>
 	<portlet:actionURL name="fiterByCate" var="fiterByCateURL"/>
 	
 	<aui:form method="post" name="fm" action="<%= fiterByCateURL.toString() %>">
@@ -99,6 +103,7 @@
 </aui:form>
 	
 	<%
+		}
 	}
 	%>
 

@@ -32,7 +32,10 @@ public class Detail extends MVCPortlet {
 				if (actionType.equals("showProductDetailAction")) {
 					include("/html/detail/product_detail.jsp", 
 						renderRequest, renderResponse);
-				} else if (actionType.equals("showProductListAction")) {
+				} else if (actionType.equals("showProductListAction") || 
+					actionType.equals("showProductListByManuAction") || 
+					actionType.equals("showProductListByCateAction")) {
+					
 					include("/html/detail/product_list.jsp", 
 						renderRequest, renderResponse);
 				}
@@ -50,9 +53,12 @@ public class Detail extends MVCPortlet {
 			ActionResponse actionResponse) 
 		throws KKException, KKAppException {
 		
+		
 		int categoryId = ParamUtil.getInteger(actionRequest, "fiterCategoryId");
 		
 		ProductMgr productMgr = KKUtil.getProductMgr();
+		
+		productMgr.refreshCaches();
 		
 		productMgr.filterCurrentProdsByCategory(categoryId);
 		

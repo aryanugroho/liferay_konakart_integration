@@ -17,8 +17,8 @@
 <%@ include file="/html/detail/init.jsp" %>
 
 <%
-	String backURL = ParamUtil.getString(request, "backURL");
-		
+	String backURL = request.getParameter("backURL");
+	
 	ProductMgr productMgr = KKUtil.getProductMgr();
 	
 	ProductIf product = productMgr.getSelectedProduct();
@@ -30,7 +30,7 @@
 	backURL="<%= backURL %>"
 	title='product-detatil'
 />
-
+<a href="<%= serverURL + "SelectProd.do?prodId=" + product.getId()%>">Show in web site</a><br>
 <%= product.getName() %> <br>
 
 [<%=product.getModel()%>]<br>
