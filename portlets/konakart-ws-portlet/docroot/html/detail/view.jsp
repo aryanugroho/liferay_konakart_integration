@@ -45,12 +45,11 @@
 		className="com.konakart.appif.ProductIf" keyProperty="id"
 		modelVar="product" escapedModel="false">
 		
-		<liferay-portlet:renderURL varImpl="rowURL">
-			<portlet:param name="jspPage" value="/html/detail/product_detail.jsp" />
+		<liferay-portlet:actionURL name="showProductDetail" varImpl="rowURL">
 			<portlet:param name="backURL" value="<%= currentURL %>" />
 			<portlet:param name="actionType" value="showProductDetailAction" />
    			<portlet:param name="productId" value="<%= String.valueOf(product.getId()) %>" />
-  		</liferay-portlet:renderURL>
+  		</liferay-portlet:actionURL>
   		
 		<%
 		int productId = product.getId();

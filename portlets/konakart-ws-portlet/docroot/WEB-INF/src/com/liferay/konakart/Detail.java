@@ -1,5 +1,6 @@
 package com.liferay.konakart;
 
+import com.konakart.al.CategoryMgr;
 import com.konakart.al.KKAppException;
 import com.konakart.al.ProductMgr;
 import com.konakart.app.KKException;
@@ -10,6 +11,8 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -29,7 +32,10 @@ public class Detail extends MVCPortlet {
 				if (actionType.equals("showProductDetailAction")) {
 					include("/html/detail/product_detail.jsp", 
 						renderRequest, renderResponse);
-				} else if (actionType.equals("showProductListAction")) {
+				} else if (actionType.equals("showProductListAction") || 
+					actionType.equals("showProductListByManuAction") || 
+					actionType.equals("showProductListByCateAction")) {
+					
 					include("/html/detail/product_list.jsp", 
 						renderRequest, renderResponse);
 				}
@@ -43,11 +49,38 @@ public class Detail extends MVCPortlet {
 		}	
 	}
 	
-	public void showProductDetail(RenderRequest renderRequest, 
-			RenderResponse renderResponse) 
+	public void fiterByCate(ActionRequest actionRequest, 
+			ActionResponse actionResponse) 
 		throws KKException, KKAppException {
 		
-		int productId = ParamUtil.getInteger(renderRequest, "productId");
+		
+		int categoryId = ParamUtil.getInteger(actionRequest, "fiterCategoryId");
+		
+		ProductMgr productMgr = KKUtil.getProductMgr();
+		
+		productMgr.refreshCaches();
+		
+		productMgr.filterCurrentProdsByCategory(categoryId);
+		
+		actionRequest.setAttribute("fiterCategoryId", categoryId);
+	}
+	
+	public void showSubCateProductList(ActionRequest actionRequest, 
+			ActionResponse actionResponse) 
+		throws KKException, KKAppException {
+		
+		int categoryId = ParamUtil.getInteger(actionRequest, "categoryId");
+		
+		CategoryMgr categoryMgr = KKUtil.getCategoryMgr();
+		
+		categoryMgr.setCurrentCatAndUpdateProducts1(categoryId);
+	}
+	
+	public void showProductDetail(ActionRequest actionRequest, 
+			ActionResponse actionResponse) 
+		throws KKException, KKAppException {
+		
+		int productId = ParamUtil.getInteger(actionRequest, "productId");
 		
 		ProductMgr productMgr = KKUtil.getProductMgr();
 		

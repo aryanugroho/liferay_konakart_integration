@@ -19,6 +19,7 @@
 <%@page import="java.math.BigDecimal"%>
 <%@page import="com.konakart.appif.ProductIf"%>
 <%@page import="com.konakart.al.ProductMgr"%>
+<%@page import="com.konakart.al.ProdOption"%>
 
 <%
 	PortletPreferences preferences = renderRequest.getPreferences();

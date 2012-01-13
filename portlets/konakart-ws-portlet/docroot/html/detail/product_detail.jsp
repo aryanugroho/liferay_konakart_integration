@@ -17,28 +17,78 @@
 <%@ include file="/html/detail/init.jsp" %>
 
 <%
-	String backURL = ParamUtil.getString(request, "backURL");
-		
+	String backURL = request.getParameter("backURL");
+	
 	ProductMgr productMgr = KKUtil.getProductMgr();
 	
 	ProductIf product = productMgr.getSelectedProduct();
+	
+	String prodUrl = product.getUrl();
 %>
 
 <liferay-ui:header
 	backURL="<%= backURL %>"
 	title='product-detatil'
 />
+<a href="<%= serverURL + "SelectProd.do?prodId=" + product.getId()%>">Show in web site</a><br>
+<%= product.getName() %> <br>
 
-name : <%= product.getName() %> <br>
-price: <%= product.getPriceExTax() %> <br>
-Description: <%= product.getDescription() %> <br>
+[<%=product.getModel()%>]<br>
+
+<%if (product.getQuantity()>0){%>
+	  <%=product.getQuantity()%> In stock
+<%}else{%>
+	Out of stock
+<%}%>	
+
+<br>
+<% 	
+	BigDecimal price;
+	BigDecimal specialPrice;
+					
+	if (withTax) {
+		price = product.getPriceIncTax();
+		specialPrice = product.getSpecialPriceIncTax();
+	} else {
+		price = product.getPriceExTax();
+		specialPrice = product.getSpecialPriceExTax();
+	}
+					
+	if (Validator.isNull(specialPrice)) {
+		out.print(kkAppEng.formatPrice(price));
+	} else {
+		out.print("<s>");
+		out.print(kkAppEng.formatPrice(price));
+		out.print("</s> ");
+		out.print("<i><font color='red'>");
+		out.print(kkAppEng.formatPrice(specialPrice));
+		out.print("</font></i>");
+	}
+%>
+<br>
+<img src="<%= imgURL + product.getImage()%>"></img>
+<br>
+<%= product.getDescription() %> <br>
 
 <% 
-	if (product.getOpts().length != 0) {
-%>
-	<select>
-		<% for (int i = 0; i <product.getOpts().length; i++) {%>
-			<option><%=product.getOpts()[i].getValue() %></option>
-		<%} %>
-	</select>
-<% }%>
+List<ProdOptionContainer> selectedOpts = prodMgr.getSelectedProductOptions();
+
+Iterator opts = selectedOpts.iterator();
+
+while (opts.hasNext()) {
+	ProdOptionContainer optContainer = (ProdOptionContainer)opts.next();
+	
+	List<ProdOption> values = optContainer.getOptValues();
+	
+	out.print(optContainer.getName()+":");
+	out.print("<select>");
+	for (int i = 0; i < values.size(); i++) {
+		out.print("<option>"+values.get(i).getFormattedValueExTax()+"</option>");
+	}
+	out.print("</select>");
+	out.print("<br>");
+}
+
+if (prodUrl != null && ((String)(prodUrl)).length() > 0){%>
+	For more information, please visit this product<a href="http://<%=prodUrl%>" target="_blank"><u>webpage</u></a>.</p>
+<%}%>	
